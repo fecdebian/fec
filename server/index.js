@@ -5,9 +5,7 @@ const express = require('express');
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, '/client/public')));
-
-// console.log(process.env.SECRET_KEY);
+app.use(express.static(path.join(__dirname, '../client/public')));
 
 // to API
 app.use('/*', (req, res) => {
