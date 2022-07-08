@@ -4,6 +4,8 @@ import React from 'react';
 const root = createRoot(document.getElementById('root'));
 
 // Huzzah for jsx!
-const App = () => { <h1>Hello World</h1>; };
+const App = function WhateverStupidName() {
+  return <h1>Hello World!!</h1>;
+};
 
 root.render(<App />);
