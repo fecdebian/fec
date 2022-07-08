@@ -8,9 +8,8 @@
   "scripts": {
     "start": "webpack --mode=development",
     "build": "webpack --mode=production",
-    "dev": "webpack serve --open --watch",
+    "client-dev": "webpack serve --open",
     "server-dev": "npx nodemon --watch server server/index.js",
-    "client-dev": "webpack --watch",
     "both-dev": "yarn server-dev & yarn client-dev"
   },
   "dependencies": {
