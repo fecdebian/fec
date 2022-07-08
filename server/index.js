@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, '/client/public')));
 
 // to API
 app.use('/*', (req, res) => {
-  res.send(599);
+  res.sendStatus(599);
 });
 
 // app.listen(process.env.PORT);
