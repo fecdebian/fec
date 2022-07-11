@@ -1,11 +1,24 @@
-import React from 'react';
+/** @jsx jsx */
+import React, { useState } from 'react';
+import { css, jsx } from '@emotion/react';
 
-function Reviews() {
+import ReviewList from './ReviewList';
+import MoreReviewsButton from './MoreReviewsButton';
+
+import sampleReview from './sampleReview';
+
+export default function Reviews() {
   return (
-    <div>
-      Reviews
+    <div
+      css={css`
+        padding: 10px;
+        margin: 10px;
+        border: solid black 2px;
+      `}
+    >
+      <ReviewList reviewEntries={sampleReview.results} />
+      {/* <ReviewList reviewEntries={[]} /> */}
+      <MoreReviewsButton />
     </div>
   );
 }
-
-export default Reviews;
