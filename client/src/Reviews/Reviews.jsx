@@ -1,9 +1,8 @@
 /** @jsx jsx */
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import { css, jsx } from '@emotion/react';
 
 import ReviewList from './ReviewList';
-import MoreReviewsButton from './MoreReviewsButton';
 
 import sampleReview from './sampleReview';
 
@@ -18,7 +17,6 @@ export default function Reviews() {
     >
       <ReviewList reviewEntries={sampleReview.results} />
       {/* <ReviewList reviewEntries={[]} /> */}
-      <MoreReviewsButton />
     </div>
   );
 }
