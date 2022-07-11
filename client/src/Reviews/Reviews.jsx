@@ -3,6 +3,7 @@
 import { css, jsx } from '@emotion/react';
 
 import ReviewList from './ReviewList';
+import SubmitReview from './SubmitReview';
 
 import sampleReview from './sampleReview';
 
@@ -16,7 +17,7 @@ export default function Reviews() {
       `}
     >
       <ReviewList reviewEntries={sampleReview.results} />
-      {/* <ReviewList reviewEntries={[]} /> */}
+      <SubmitReview />
     </div>
   );
 }
