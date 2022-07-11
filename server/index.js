@@ -19,6 +19,7 @@ app.use('/*', (req, res) => {
     params: req.query,
     headers: { Authorization: process.env.API_KEY },
   }).then((response) => {
+    console.log(req.baseUrl);
     res.status(200).send(response.data);
   }).catch((err) => {
     console.error('API error: ', err);
