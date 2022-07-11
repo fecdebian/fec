@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
-import { atom, useRecoilState } from 'recoil';
+import { atom, useRecoilState, useRecoilValue } from 'recoil';
+
+import currentProductState from '../currentProduct';
 
 const avgStarsState = atom({
   key: 'avgStars',
   default: 0,
 });
 
-function Stars(productID) {
+function Stars() {
+  const product = useRecoilValue(currentProductState);
+  const productID = product.id;
   const [avgStars, setAvgStars] = useRecoilState(avgStarsState);
 
   useEffect(() => {
@@ -17,7 +21,6 @@ function Stars(productID) {
       params: { product_id: productID },
     })
       .then((reviews) => {
-        console.log('reviews:', reviews);
         const ratingsObj = reviews.data.ratings;
         const ratingsValues = Object.values(ratingsObj);
         const ratingsWeights = Object.keys(ratingsObj);
