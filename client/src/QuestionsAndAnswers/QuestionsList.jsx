@@ -5,6 +5,7 @@ import {
   questions as questionsAtom, productID as productIDAtom, page as pageAtom, count as countAtom,
 } from './atoms';
 import Question from './Question';
+import currentProductState from '../currentProduct';
 
 function QuestionsList() {
   const [questions, setQuestions] = useRecoilState(questionsAtom);
