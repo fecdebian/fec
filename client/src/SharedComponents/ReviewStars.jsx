@@ -20,18 +20,25 @@ function Stars(productID) {
         console.log('reviews:', reviews);
         const ratingsObj = reviews.data.ratings;
         const ratingsValues = Object.values(ratingsObj);
-        let sumOfRatings = 0;
-        let avgRating = 0;
+        const ratingsWeights = Object.keys(ratingsObj);
+        let sumOfTotalRatings = 0;
+        let sumOfWeightedRatings = 0;
+
+        for (let i = 0; i < ratingsValues.length; i += 1) {
+          sumOfTotalRatings += Number(ratingsValues[i]);
+        }
+        for (let i = 0; i < ratingsWeights.length; i += 1) {
+          sumOfWeightedRatings += (ratingsValues[i] * ratingsWeights[i]);
+        }
+        console.log('sumOfTotalRatings:', sumOfTotalRatings, 'sumOfWeightedRatings:', sumOfWeightedRatings);
+        const avgRating = (Math.round(((sumOfWeightedRatings / sumOfTotalRatings) * 4))
+         / 4).toFixed(2);
+
         // If there are no reviews, we need to hide this component.
         // Setting to -1 for conditional rendering below
-        if (ratingsValues.length < 1) {
+        if (sumOfTotalRatings < 1) {
           setAvgStars(-1);
         } else {
-          // Looping through array of values to get average of reviews
-          for (let i = 0; i < ratingsValues.length; i += 1) {
-            sumOfRatings += ratingsValues[i];
-          }
-          avgRating = sumOfRatings / ratingsValues.length;
           setAvgStars(avgRating);
         }
       })
