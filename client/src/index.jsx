@@ -3,6 +3,7 @@ import React from 'react';
 import Overview from './Overview/Overview';
 import RelatedItems from './RelatedItems/RelatedItems';
 import Reviews from './Reviews/Reviews';
+import QuestionsAndAnswers from './QuestionsAndAnswers/QuestionsAndAnswers';
 
 const root = createRoot(document.getElementById('root'));
 
@@ -14,6 +15,7 @@ const App = function WhateverStupidName() {
       <Overview />
       <RelatedItems />
       <Reviews />
+      <QuestionsAndAnswers />
     </div>
   );
 };
