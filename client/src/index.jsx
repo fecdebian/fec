@@ -1,8 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import React from 'react';
-import {
-  RecoilRoot,
-} from 'recoil';
+import { RecoilRoot } from 'recoil';
 
 import ProductDetailPage from './ProductDetailPage';
 
