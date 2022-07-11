@@ -1,6 +1,8 @@
+/** @jsx jsx */
+import { css, jsx } from '@emotion/react';
 import React, { useState } from 'react';
-import ReviewListEntry from './ReviewListEntry';
 import PropTypes from 'prop-types';
+import ReviewListEntry from './ReviewListEntry';
 import MoreReviewsButton from './MoreReviewsButton';
 
 export default function ReviewList({ reviewEntries }) {
@@ -16,10 +18,23 @@ export default function ReviewList({ reviewEntries }) {
   };
 
   return (
-    <div>
-      {reviewEntries.slice(0, currentEntryLen).map((entry) => {
-        return <ReviewListEntry entry={entry} key={entry.review_id} />
-      })}
+    <div
+      css={css`
+        max-height: 70px;
+        overflow: auto;
+        padding: 10px;
+        margin: 10px;
+        border: solid red 2px;
+      `}
+    >
+      {reviewEntries
+        .slice(0, currentEntryLen)
+        .map((entry) => (
+          <ReviewListEntry
+            entry={entry}
+            key={entry.review_id}
+          />
+        ))}
       {displayButton ? <MoreReviewsButton onClick={handleClick} /> : null}
     </div>
   );
