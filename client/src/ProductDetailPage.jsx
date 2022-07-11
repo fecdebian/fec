@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-  useRecoilState,
-} from 'recoil';
+import { useRecoilState } from 'recoil';
 import axios from 'axios';
 
 import Overview from './Overview/Overview';
