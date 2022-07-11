@@ -44,4 +44,9 @@ module.exports = {
   },
 
   plugins: [new ESLintPlugin()],
+  resolve: {
+    extensions: [
+      '.js', '.json', '.jsx',
+    ],
+  },
 };
