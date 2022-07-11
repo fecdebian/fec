@@ -1,11 +1,11 @@
 import React from 'react';
+import RelatedProductsCards from './RelatedProductsCards/RelatedProductsCards';
 
-function RelatedItems() {
+export default function RelatedItems() {
   return (
     <div>
       RelatedItems
+      <RelatedProductsCards />
     </div>
   );
 }
-
-export default RelatedItems;
