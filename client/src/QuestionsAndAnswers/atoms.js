@@ -1,21 +1,21 @@
 import { atom } from 'recoil';
 
-export const questions = atom({
-  key: 'questions',
+export const questionsState = atom({
+  key: 'questionsState',
   default: [],
 });
 
-export const productID = atom({
-  key: 'productID',
-  default: '37313',
-});
-
-export const page = atom({
-  key: 'page',
+export const pageState = atom({
+  key: 'pageState',
   default: '1',
 });
 
-export const count = atom({
-  key: 'count',
+export const countState = atom({
+  key: 'countState',
   default: '4',
+});
+
+export const sortedQuestionsState = atom({
+  key: 'sortedQuestionsState',
+  default: [],
 });
