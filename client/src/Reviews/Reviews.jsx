@@ -1,14 +1,27 @@
 /** @jsx jsx */
-// import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { css, jsx } from '@emotion/react';
+import { useRecoilValue } from 'recoil';
+import axios from 'axios';
 
 import ReviewList from './ReviewList';
 import SubmitReview from './SubmitReview';
 
-import sampleReview from './sampleReview';
+import currentProduct from '../currentProduct';
 
 export default function Reviews() {
-  return (
+  const prod = useRecoilValue(currentProduct);
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    axios.get(`/reviews?product_id=${prod.id}`)
+      .then((res) => {
+        setReviews(res.data.results);
+      })
+      .catch((err) => console.error(err));
+  }, [prod]);
+
+  return reviews && (
     <div
       css={css`
         padding: 10px;
@@ -16,7 +29,7 @@ export default function Reviews() {
         border: solid black 2px;
       `}
     >
-      <ReviewList reviewEntries={sampleReview.results} />
+      <ReviewList reviewEntries={reviews} />
       <SubmitReview />
     </div>
   );
