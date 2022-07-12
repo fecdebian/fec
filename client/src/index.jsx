@@ -10,10 +10,8 @@ const root = createRoot(document.getElementById('root'));
 const App = function WhateverStupidName() {
   return (
     <RecoilRoot>
-      <div>
-        <h1>Hello World!!</h1>
-        <ProductDetailPage />
-      </div>
+      <h1>Hello World!!</h1>
+      <ProductDetailPage />
     </RecoilRoot>
   );
 };
