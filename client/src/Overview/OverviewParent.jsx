@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ReviewWeightedAverage from '../SharedComponents/ReviewWeightedAverage';
-import CatAndTitle from './categoryAndTitle';
+import CatAndTitle from './CategoryAndTitle';
 
 function Overview() {
   return (
