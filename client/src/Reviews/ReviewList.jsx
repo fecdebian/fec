@@ -2,7 +2,7 @@
 import { css, jsx } from '@emotion/react';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import ReviewListEntry from './ReviewListEntry';
+import ReviewListEntry from './ReviewListEntry/ReviewListEntry';
 import MoreReviewsButton from './MoreReviewsButton';
 
 export default function ReviewList({ reviewEntries }) {
