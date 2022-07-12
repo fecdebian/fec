@@ -6,7 +6,7 @@ import FormattedDate from '../../SharedComponents/FormattedDate';
 import ReviewSummary from './ReviewSummary';
 
 export default function ReviewListEntry({ entry }) {
-  console.log('entry is', entry);
+  // console.log('entry is', entry);
   return (
     <div>
       <StarReview num={entry.rating} />
