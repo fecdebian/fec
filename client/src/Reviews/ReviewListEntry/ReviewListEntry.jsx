@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 
 import StarReview from '../../SharedComponents/StarReview';
 import FormattedDate from '../../SharedComponents/FormattedDate';
+import ReviewSummary from './ReviewSummary';
 
 export default function ReviewListEntry({ entry }) {
+  // console.log('entry is', entry);
   return (
     <div>
       <StarReview num={entry.rating} />
       <FormattedDate dateStr={entry.date} />
+      <ReviewSummary summary={entry.summary} />
     </div>
   );
 }
