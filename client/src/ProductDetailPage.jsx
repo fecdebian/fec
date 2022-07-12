@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { useRecoilState } from "recoil";
-import axios from "axios";
+import React, { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import axios from 'axios';
 
 import Overview from "./Overview/Overview";
 import RelatedItems from "./RelatedItems/RelatedItems";
