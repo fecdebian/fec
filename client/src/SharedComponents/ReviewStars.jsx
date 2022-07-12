@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react';
+import { useRecoilValue, atom, useRecoilState } from 'recoil';
 import axios from 'axios';
-import { atom, useRecoilState, useRecoilValue } from 'recoil';
 
 import currentProductState from '../currentProduct';
+import StarReview from './StarReview';
 
 const avgStarsState = atom({
   key: 'avgStars',
   default: 0,
 });
+
+let totalReviews = 0;
 
 function Stars() {
   const product = useRecoilValue(currentProductState);
@@ -29,11 +32,12 @@ function Stars() {
 
         for (let i = 0; i < ratingsValues.length; i += 1) {
           sumOfTotalRatings += Number(ratingsValues[i]);
+          totalReviews += Number(ratingsValues[i]);
         }
         for (let i = 0; i < ratingsWeights.length; i += 1) {
           sumOfWeightedRatings += (ratingsValues[i] * ratingsWeights[i]);
         }
-        console.log('sumOfTotalRatings:', sumOfTotalRatings, 'sumOfWeightedRatings:', sumOfWeightedRatings);
+
         const avgRating = (Math.round(((sumOfWeightedRatings / sumOfTotalRatings) * 4))
          / 4).toFixed(2);
 
@@ -48,13 +52,16 @@ function Stars() {
       .catch((err) => console.log('Error getting average stars: ', err));
   }, []);
 
-  let averageStarRating = avgStars;
-  if (averageStarRating < 0) {
-    averageStarRating = '';
+  const averageStarRating = Number(avgStars);
+  if (totalReviews < 1) {
+    return null;
   }
   return (
     <div>
-      {averageStarRating}
+      <StarReview num={averageStarRating} />
+      <button>
+        Read all {totalReviews} reviews
+      </button>
     </div>
   );
 }
