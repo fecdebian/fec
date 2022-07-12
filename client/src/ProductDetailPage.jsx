@@ -7,10 +7,12 @@ import RelatedItems from './RelatedItems/RelatedItems';
 import Reviews from './Reviews/Reviews';
 import QuestionsAndAnswers from './QuestionsAndAnswers/QuestionsAndAnswers';
 import currentProductState from './currentProduct';
+import { questions as questionState } from './QuestionsAndAnswers/atoms';
 
 // Huzzah for jsx!
 const ProductDetailPage = function WhateverStupidName() {
   const [currentProduct, setCurrentProduct] = useRecoilState(currentProductState);
+  const [questions, setQuestions] = useRecoilState(questionState);
 
   let id;
 
@@ -36,9 +38,7 @@ const ProductDetailPage = function WhateverStupidName() {
         return Promise.all([getMetaReview, getQuestions]);
       })
       .then((responses) => {
-        responses.forEach((res) => {
-          console.log(res.data);
-        });
+        setQuestions(responses[1].data.results);
       })
       .catch((err) => {
         console.error('Unable to get product from server ', err);
