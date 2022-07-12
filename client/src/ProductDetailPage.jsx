@@ -10,8 +10,7 @@ import currentProductState from './currentProduct';
 
 // Huzzah for jsx!
 const ProductDetailPage = function WhateverStupidName() {
-  const [currentProduct, setCurrentProduct] =
-    useRecoilState(currentProductState);
+  const [currentProduct, setCurrentProduct] = useRecoilState(currentProductState);
 
   let id;
 
