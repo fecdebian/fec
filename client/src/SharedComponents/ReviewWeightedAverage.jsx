@@ -12,7 +12,7 @@ const avgStarsState = atom({
 
 let totalReviews = 0;
 
-function Stars() {
+function ReviewWeightedAverage() {
   const product = useRecoilValue(currentProductState);
   const productID = product.id;
   const [avgStars, setAvgStars] = useRecoilState(avgStarsState);
@@ -66,4 +66,4 @@ function Stars() {
   );
 }
 
-export default Stars;
+export default ReviewWeightedAverage;
