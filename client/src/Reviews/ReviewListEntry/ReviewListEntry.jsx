@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import StarReview from '../SharedComponents/StarReview';
+import StarReview from '../../SharedComponents/StarReview';
+import FormattedDate from '../../SharedComponents/FormattedDate';
 
 export default function ReviewListEntry({ entry }) {
   return (
     <div>
       <StarReview num={entry.rating} />
+      <FormattedDate dateStr={entry.date} />
     </div>
   );
 }
