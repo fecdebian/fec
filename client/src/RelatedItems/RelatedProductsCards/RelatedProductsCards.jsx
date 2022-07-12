@@ -48,9 +48,16 @@ export default function RelatedProductsCards() {
   return (
     <div>
       RelatedProductsCards
-      <ProductCard />
-      {/* {relatedProducts[0].name} */}
-      {relatedProducts.map((product) => <div key={product.id}>{product.name}</div>)}
+      <ul>
+        {relatedProducts.map(
+          (product) => (
+            <li key={product.id}>
+              <ProductCard product={product} />
+            </li>
+          ),
+        )}
+      </ul>
+
     </div>
   );
 }
