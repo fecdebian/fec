@@ -1,19 +1,17 @@
 import React, { useEffect } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import axios from 'axios';
 
-import Overview from './Overview/Overview';
+import Overview from './Overview/OverviewParent';
 import RelatedItems from './RelatedItems/RelatedItems';
 import Reviews from './Reviews/Reviews';
 import QuestionsAndAnswers from './QuestionsAndAnswers/QuestionsAndAnswers';
 import currentProductState from './currentProduct';
-import currentMetaReviewState from './reviewMeta';
 import { questions as questionState } from './QuestionsAndAnswers/atoms';
 
 // Huzzah for jsx!
 const ProductDetailPage = function WhateverStupidName() {
   const [currentProduct, setCurrentProduct] = useRecoilState(currentProductState);
-  const setCurrentMetaReview = useSetRecoilState(currentMetaReviewState);
   const [questions, setQuestions] = useRecoilState(questionState);
 
   let id;
@@ -27,23 +25,15 @@ const ProductDetailPage = function WhateverStupidName() {
       })
       .then(() => {
         console.log('currentProduct.id', id);
-        const getMetaReview = axios({
-          method: 'get',
-          url: '/reviews/meta',
-          params: { product_id: id },
-        });
+
         const getQuestions = axios({
           method: 'get',
           url: '/qa/questions',
           params: { product_id: id },
         });
-        return Promise.all([getMetaReview, getQuestions]);
+        return Promise.all([getQuestions]);
       })
       .then((responses) => {
-        responses.forEach((res) => {
-          console.log(res.data);
-        });
-        setCurrentMetaReview(responses[0]);
         setQuestions(responses[1].data.results);
       })
       .catch((err) => {
