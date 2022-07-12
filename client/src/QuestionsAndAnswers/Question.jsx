@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 function Question({ question }) {
@@ -8,13 +8,14 @@ function Question({ question }) {
         Q:
         {' '}
         {question.question_body}
-        <div>
-          <a href="/">Helpful?</a>
-          {' '}
-          Yes
-          {' '}
-          {question.question_helpfulness}
-        </div>
+        {' '}
+        <a href="/">Helpful?</a>
+        {' '}
+        Yes
+        {' '}
+        {question.question_helpfulness}
+        {' | '}
+        <a href="/">Add Answer</a>
       </div>
     </li>
   );

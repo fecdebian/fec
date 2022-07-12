@@ -14,6 +14,9 @@ function QuestionsList() {
   const count = useRecoilValue(countAtom);
 
   useEffect(() => {
+    if (!productID.id) {
+      return;
+    }
     axios.get(`/qa/questions?product_id=${productID.id}&page=${page}&count=${count}`)
       .then((res) => {
         console.log('success');
@@ -22,7 +25,7 @@ function QuestionsList() {
       .catch((err) => {
         console.log('error fetching questions:', err);
       });
-  }, [productID]);
+  }, [count, page, productID]);
   return (
     <ul>
       {questions.map((question) => <Question key={question.question_id} question={question} />)}
