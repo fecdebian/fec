@@ -45,6 +45,10 @@ const ProductDetailPage = function WhateverStupidName() {
       });
   }, []);
 
+  if (currentProduct.id === undefined) {
+    return <h1>loading</h1>;
+  }
+
   return (
     <div>
       <h2>Product Name:</h2>
