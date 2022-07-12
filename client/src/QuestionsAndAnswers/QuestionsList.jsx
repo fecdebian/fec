@@ -19,7 +19,7 @@ function QuestionsList() {
     }
     axios.get(`/qa/questions?product_id=${productID.id}&page=${page}&count=${count}`)
       .then((res) => {
-        console.log('success');
+        // console.log('success');
         setQuestions(res.data.results);
       })
       .catch((err) => {
