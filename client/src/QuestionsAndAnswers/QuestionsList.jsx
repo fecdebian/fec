@@ -14,26 +14,10 @@ function QuestionsList() {
   const page = useRecoilValue(pageState);
   const count = useRecoilValue(countState);
 
-  useEffect(() => {
-    if (!productID.id) {
-      return;
-    }
-    axios.get(`/qa/questions?product_id=${productID.id}&page=${page}&count=${count}`)
-      .then((res) => {
-        console.log('success');
-        setQuestions(res.data.results);
-      })
-      .catch((err) => {
-        console.log('error fetching questions:', err);
-      });
-  }, [count, page, productID]);
-
   function quickSort(origArray) {
-    console.log(origArray);
     if (origArray.length <= 1) {
       return origArray;
     }
-
     const left = [];
     const right = [];
     const newArray = [];
@@ -42,24 +26,37 @@ function QuestionsList() {
 
     for (let i = 0; i < length; i += 1) {
       if (origArray[i].question_helpfulness <= pivot.question_helpfulness) {
-        left.push(origArray[i]);
-      } else {
         right.push(origArray[i]);
+      } else {
+        left.push(origArray[i]);
       }
     }
     return newArray.concat(quickSort(left), pivot, quickSort(right));
   }
-  /*
-  useEffect(() => {
-    setSortedQuestions(quickSort(questions));
-  });
-  */
 
+  useEffect(() => {
+    if (!productID.id) {
+      return;
+    }
+    axios.get(`/qa/questions?product_id=${productID.id}&page=${page}&count=${count}`)
+      .then((res) => {
+        console.log('successful GET questions request');
+        setQuestions(res.data.results);
+      })
+      .catch((err) => {
+        console.log('error fetching questions:', err);
+      });
+  }, [count, page, productID]);
+
+  useEffect(() => {
+    const copyQuestions = [...questions];
+    setSortedQuestions(quickSort(copyQuestions));
+  }, [questions]);
 
   return (
     <ul>
       {/* eslint-disable-next-line max-len */}
-      {questions.map((question) => <Question key={question.question_id} question={question} />)}
+      {sortedQuestions.map((question) => <Question key={question.question_id} question={question} />)}
     </ul>
   );
 }
