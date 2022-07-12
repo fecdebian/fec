@@ -2,18 +2,22 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {
-  questions as questionsAtom, page as pageAtom, count as countAtom,
+  questionsState, sortedQuestionsState, pageState, countState,
 } from './atoms';
-import Question from './Question';
 import currentProductState from '../currentProduct';
+import Question from './Question';
 
 function QuestionsList() {
-  const [questions, setQuestions] = useRecoilState(questionsAtom);
+  const [questions, setQuestions] = useRecoilState(questionsState);
+  const [sortedQuestions, setSortedQuestions] = useRecoilState(sortedQuestionsState);
   const productID = useRecoilValue(currentProductState);
-  const page = useRecoilValue(pageAtom);
-  const count = useRecoilValue(countAtom);
+  const page = useRecoilValue(pageState);
+  const count = useRecoilValue(countState);
 
   useEffect(() => {
+    if (!productID.id) {
+      return;
+    }
     axios.get(`/qa/questions?product_id=${productID.id}&page=${page}&count=${count}`)
       .then((res) => {
         console.log('success');
@@ -22,10 +26,39 @@ function QuestionsList() {
       .catch((err) => {
         console.log('error fetching questions:', err);
       });
-  }, []);
+  }, [count, page, productID]);
+
+  function quickSort(origArray) {
+    console.log(origArray);
+    if (origArray.length <= 1) {
+      return origArray;
+    }
+
+    const left = [];
+    const right = [];
+    const newArray = [];
+    const pivot = origArray.pop();
+    const { length } = origArray;
+
+    for (let i = 0; i < length; i += 1) {
+      if (origArray[i].question_helpfulness <= pivot.question_helpfulness) {
+        left.push(origArray[i]);
+      } else {
+        right.push(origArray[i]);
+      }
+    }
+    return newArray.concat(quickSort(left), pivot, quickSort(right));
+  }
+  /*
+  useEffect(() => {
+    setSortedQuestions(quickSort(questions));
+  });
+  */
+
 
   return (
     <ul>
+      {/* eslint-disable-next-line max-len */}
       {questions.map((question) => <Question key={question.question_id} question={question} />)}
     </ul>
   );
