@@ -26,6 +26,7 @@ function QuestionsList() {
         console.log('error fetching questions:', err);
       });
   }, [count, page, productID]);
+
   return (
     <ul>
       {questions.map((question) => <Question key={question.question_id} question={question} />)}

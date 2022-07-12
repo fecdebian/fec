@@ -1,8 +1,4 @@
-import React, { useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import {
-  questions as questionsAtom, productID as productIDAtom, page as pageAtom, count as countAtom,
-} from './atoms';
+import React from 'react';
 import SearchQuestions from './SearchQuestions';
 import QuestionsList from './QuestionsList';
 
