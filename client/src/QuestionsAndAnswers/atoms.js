@@ -5,11 +5,6 @@ export const questionsState = atom({
   default: [],
 });
 
-export const pageState = atom({
-  key: 'pageState',
-  default: '1',
-});
-
 export const countState = atom({
   key: 'countState',
   default: '4',
@@ -18,4 +13,14 @@ export const countState = atom({
 export const sortedQuestionsState = atom({
   key: 'sortedQuestionsState',
   default: [],
+});
+
+export const questionsViewState = atom({
+  key: 'questionsViewState',
+  default: [],
+});
+
+export const moreQuestionsState = atom({
+  key: 'moreQuestionsState',
+  default: 2,
 });

@@ -3,34 +3,54 @@ import { useRecoilValue, useRecoilState } from 'recoil';
 import axios from 'axios';
 
 import ProductCard from './ProductCard';
-import relatedProductIDsState from '../ModelRelatedItems/relatedProductIDsState';
 import currentProductState from '../../currentProduct';
+import relatedProductsState from '../ModelRelatedItems/relatedProductsState';
 
 export default function RelatedProductsCards() {
   const currentProduct = useRecoilValue(currentProductState);
-  const [relatedProductIDs, setRelatedProductIDs] = useRecoilState(relatedProductIDsState);
+  const [relatedProducts, setRelatedProducts] = useRecoilState(relatedProductsState);
 
   useEffect(() => {
     axios({
       method: 'get',
-      url: `/products?product_id=${currentProduct.id}/related`,
+      url: `/products/${currentProduct.id}/related`,
       params: { product_id: currentProduct.id },
     }).then((res) => {
-      setRelatedProductIDs(res.data);
-    })
-      .catch((err) => {
-        console.log('Unable to get related product id from server ', err);
+      const relatedProductsRequests = [];
+      res.data.forEach((id) => {
+        // console.log('id ', id);
+        relatedProductsRequests.push(
+          axios({
+            method: 'get',
+            url: `/products/${id}`,
+          }),
+        );
       });
+      return Promise.all(relatedProductsRequests);
+    }).then((products) => {
+      const relatedProductsCopy = [];
+      products.forEach((product) => {
+        relatedProductsCopy.push(product.data);
+      });
+      setRelatedProducts(relatedProductsCopy);
+    }).catch((err) => {
+      console.log('Unable to get related product id from server ', err);
+    });
   }, []);
 
   useEffect(() => {
-    // console.log('related items are, ', relatedProductIDs);
-  }, [relatedProductIDs]);
+    console.log('2nd related products', relatedProducts);
+  }, [relatedProducts]);
+  if (relatedProducts.length === 0) {
+    return <div>Products Card Loading...</div>;
+  }
 
   return (
     <div>
       RelatedProductsCards
       <ProductCard />
+      {/* {relatedProducts[0].name} */}
+      {relatedProducts.map((product) => <div key={product.id}>{product.name}</div>)}
     </div>
   );
 }
