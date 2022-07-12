@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Answer from './Answer';
 
 function Question({ question }) {
   return (
@@ -17,6 +18,7 @@ function Question({ question }) {
         {' | '}
         <a href="/">Add Answer</a>
       </div>
+      <Answer />
     </li>
   );
 }
