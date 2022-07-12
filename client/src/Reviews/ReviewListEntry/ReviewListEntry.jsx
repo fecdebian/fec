@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import StarReview from '../../SharedComponents/StarReview';
 import FormattedDate from '../../SharedComponents/FormattedDate';
 import ReviewSummary from './ReviewSummary';
+import ReviewBody from './ReviewBody';
+import Response from './Response';
 
 export default function ReviewListEntry({ entry }) {
   // console.log('entry is', entry);
@@ -12,6 +14,10 @@ export default function ReviewListEntry({ entry }) {
       <StarReview num={entry.rating} />
       <FormattedDate dateStr={entry.date} />
       <ReviewSummary summary={entry.summary} />
+      <ReviewBody body={entry.body} photos={entry.photos} />
+      <span>Review by: {entry.reviewer_name} | "Verfied Purchaser"(TODO)</span>
+      {entry.recommend ? 'I recommend this product ✔️' : null}
+      <Response />
     </div>
   );
 }
