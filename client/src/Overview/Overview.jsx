@@ -11,7 +11,8 @@ function Overview() {
   return (
     <div>
       Overview Placeholder
-      {Stars}
+      {/* {Stars} */}
+      <Stars />
     </div>
   );
 }
