@@ -38,9 +38,9 @@ function QuestionsList() {
   }
 
   useEffect(() => { // getting list of questions given product ID
-    axios.get(`/qa/questions?product_id=${productID.id}&page=${1}&count=${100}`)
+    axios.get(`/qa/questions?product_id=${productID.id}&page=${1}&count=${100}`) // does count need to be in state? Not sure yet
       .then((res) => {
-        console.log('successful GET questions request');
+        // console.log('successful GET questions request');
         setQuestions(res.data.results);
       })
       .catch((err) => {
@@ -53,15 +53,11 @@ function QuestionsList() {
     setSortedQuestions(quickSort(copyQuestions));
   }, [questions]);
 
-  useEffect(() => {
+  useEffect(() => { // set state for the More Answered Questions button logic
     const copySortedQuestions = [...sortedQuestions];
     setMoreQuestions((copySortedQuestions.length - 2));
-    setQuestionsView(copySortedQuestions.slice(0, 2));
+    setQuestionsView(copySortedQuestions.slice(0, 2)); // sets displayed questions
   }, [sortedQuestions]);
-
-  if (questionsView.length === 0) {
-    return <h3>Loading...</h3>;
-  }
 
   return (
     <div>

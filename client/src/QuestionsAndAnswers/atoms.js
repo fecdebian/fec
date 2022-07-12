@@ -24,3 +24,8 @@ export const moreQuestionsState = atom({
   key: 'moreQuestionsState',
   default: 2,
 });
+
+export const answersState = atom({
+  key: 'answersState',
+  default: [],
+});

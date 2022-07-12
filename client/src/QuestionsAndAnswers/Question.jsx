@@ -9,16 +9,14 @@ function Question({ question }) {
         Q:
         {' '}
         {question.question_body}
-        {' '}
-        <a href="/">Helpful?</a>
-        {' '}
-        Yes
-        {' '}
+        {' Helpful? '}
+        <a href="/">Yes</a>
+        {' ('}
         {question.question_helpfulness}
-        {' | '}
+        {') | '}
         <a href="/">Add Answer</a>
       </div>
-      <Answer />
+      <Answer question={question} />
     </li>
   );
 }
