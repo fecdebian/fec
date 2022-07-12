@@ -6,17 +6,19 @@ import { answersState } from './atoms';
 
 function Answer({ question }) {
   const [answers, setAnswers] = useRecoilState(answersState);
+
   useEffect(() => {
     axios({
       method: 'get',
       url: `/qa/questions/${question.question_id}/answers`,
       params: { count: 50 },
     }).then((res) => {
-      console.log(res.data.results);
+      setAnswers(res.data.results);
     }).catch((err) => {
       console.log('error getting answers for question: ', err);
     });
-  }, []);
+  }, [question]);
+
   return (
     <div>
       A:
