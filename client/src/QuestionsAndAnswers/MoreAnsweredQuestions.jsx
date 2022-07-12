@@ -15,7 +15,7 @@ function MoreAnsweredQuestions() {
   useEffect(() => {
     if (Array.isArray(sortedQuestions)) {
       const copySortedQuestions = [...sortedQuestions];
-      console.log(moreQuestions);
+      // console.log(moreQuestions);
       if (moreQuestions === -1) {
         setQuestionsView(copySortedQuestions);
       }

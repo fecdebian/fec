@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {
-  questionsState, sortedQuestionsState, countState, questionsViewState, moreQuestionsState
+  questionsState, sortedQuestionsState, countState, questionsViewState, moreQuestionsState,
 } from './atoms';
 import currentProductState from '../currentProduct';
 import Question from './Question';
