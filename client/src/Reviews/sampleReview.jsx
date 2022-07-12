@@ -5,7 +5,8 @@ export default {
   results: [
     {
       review_id: 1135806,
-      rating: 3,
+      // rating: 3,
+      rating: 0,
       summary: "I don't like the model's attitude in the camo picture",
       recommend: false,
       response: null,
@@ -17,7 +18,8 @@ export default {
     },
     {
       review_id: 1275040,
-      rating: 5,
+      // rating: 5,
+      rating: 2.48,
       summary: '',
       recommend: true,
       response: null,
@@ -29,7 +31,8 @@ export default {
     },
     {
       review_id: 1275037,
-      rating: 5,
+      // rating: 5,
+      rating: 3.69,
       summary: '',
       recommend: true,
       response: null,
@@ -41,7 +44,8 @@ export default {
     },
     {
       review_id: 1275034,
-      rating: 5,
+      // rating: 5,
+      rating: 4.99,
       summary: 'love',
       recommend: true,
       response: null,
@@ -53,7 +57,8 @@ export default {
     },
     {
       review_id: 1274982,
-      rating: 4,
+      // rating: 4,
+      rating: 5,
       summary: 'Meh Camo',
       recommend: false,
       response: null,
