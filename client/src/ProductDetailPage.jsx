@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import axios from 'axios';
 
 import Overview from './Overview/Overview';
@@ -7,10 +7,12 @@ import RelatedItems from './RelatedItems/RelatedItems';
 import Reviews from './Reviews/Reviews';
 import QuestionsAndAnswers from './QuestionsAndAnswers/QuestionsAndAnswers';
 import currentProductState from './currentProduct';
+import relatedProductIDsState from './RelatedItems/ModelRelatedItems/relatedProductIDsState';
 
 // Huzzah for jsx!
 const ProductDetailPage = function WhateverStupidName() {
   const [currentProduct, setCurrentProduct] = useRecoilState(currentProductState);
+  const setRelatedProductIDs = useSetRecoilState(relatedProductIDsState);
 
   let id;
 
@@ -33,12 +35,18 @@ const ProductDetailPage = function WhateverStupidName() {
           url: '/qa/questions',
           params: { product_id: id },
         });
-        return Promise.all([getMetaReview, getQuestions]);
+        const getRelatedProducts = axios({
+          method: 'get',
+          url: `/products?product_id=${id}/related`,
+          params: { product_id: id },
+        });
+        return Promise.all([getMetaReview, getQuestions, getRelatedProducts]);
       })
       .then((responses) => {
         responses.forEach((res) => {
           console.log(res.data);
         });
+        setRelatedProductIDs(responses[2].data);
       })
       .catch((err) => {
         console.error('Unable to get product from server ', err);

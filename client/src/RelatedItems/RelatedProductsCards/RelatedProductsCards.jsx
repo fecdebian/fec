@@ -1,16 +1,15 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import ProductCard from './ProductCard';
-import currentProductState from '../../currentProduct';
+import relatedProductIDsState from '../ModelRelatedItems/relatedProductIDsState';
 
 export default function RelatedProductsCards() {
-  const [currentProduct] = useRecoilState(currentProductState);
-  console.log('render');
-  console.log(currentProduct.name);
+  const reladtedProductIDs = useRecoilValue(relatedProductIDsState);
+  console.log(reladtedProductIDs);
+
   return (
     <div>
       RelatedProductsCards
-      {currentProduct.name}
       <ProductCard />
     </div>
   );
