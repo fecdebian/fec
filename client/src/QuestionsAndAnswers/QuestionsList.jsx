@@ -14,18 +14,15 @@ function QuestionsList() {
   const count = useRecoilValue(countAtom);
 
   useEffect(() => {
-    if (!productID.id) {
-      return;
-    }
     axios.get(`/qa/questions?product_id=${productID.id}&page=${page}&count=${count}`)
       .then((res) => {
-        // console.log('success');
+        console.log('success');
         setQuestions(res.data.results);
       })
       .catch((err) => {
         console.log('error fetching questions:', err);
       });
-  }, [count, page, productID]);
+  }, []);
 
   return (
     <ul>
