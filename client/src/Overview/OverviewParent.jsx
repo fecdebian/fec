@@ -1,12 +1,13 @@
 import React from 'react';
 
 import Stars from '../SharedComponents/ReviewStars';
+import CatAndTitle from './categoryAndTitle';
 
 function Overview() {
   return (
     <div>
-      Overview Placeholder
       <Stars />
+      <CatAndTitle />
     </div>
   );
 }
