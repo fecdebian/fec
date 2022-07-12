@@ -5,7 +5,6 @@ import currentProductState from '../currentProduct';
 
 function CatAndTitle() {
   const currentProduct = useRecoilState(currentProductState);
-  console.log('current product', currentProduct);
   const proCat = currentProduct[0].category;
   const proTitle = currentProduct[0].name;
 
