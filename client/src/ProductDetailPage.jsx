@@ -41,7 +41,7 @@ const ProductDetailPage = function WhateverStupidName() {
         });
       })
       .catch((err) => {
-        console.error("Unable to get product from server ", err);
+        console.error('Unable to get product from server ', err);
       });
   }, []);
 
