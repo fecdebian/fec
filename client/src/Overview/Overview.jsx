@@ -5,13 +5,12 @@ import Stars from '../SharedComponents/ReviewStars';
 import currentProductState from '../currentProduct';
 
 function Overview() {
-  // const product = useRecoilValue(currentProductState);
-  // const productID = product.id;
-  // console.log('Overview Product ID: ', productID, 'currentProductState: ', currentProductState);
+  const product = useRecoilValue(currentProductState);
+  const productID = product.id;
   return (
     <div>
       Overview Placeholder
-      {Stars}
+      {Stars(productID)}
     </div>
   );
 }
