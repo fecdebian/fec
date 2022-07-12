@@ -22,7 +22,7 @@ export default function ReviewList({ reviewEntries }) {
     : (
       <div
         css={css`
-        max-height: 70px;
+        max-height: 270px;
         overflow: auto;
         padding: 10px;
         margin: 10px;
