@@ -24,7 +24,7 @@ export default function RelatedProductsCards() {
   }, []);
 
   useEffect(() => {
-    console.log('related items are, ', relatedProductIDs);
+    // console.log('related items are, ', relatedProductIDs);
   }, [relatedProductIDs]);
 
   return (
