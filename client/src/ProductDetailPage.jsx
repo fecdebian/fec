@@ -16,7 +16,7 @@ const ProductDetailPage = function WhateverStupidName() {
 
   useEffect(() => {
     axios
-      .get("./products")
+      .get('./products')
       .then((response) => {
         setCurrentProduct(response.data[0]);
         id = response.data[0].id;
@@ -24,13 +24,13 @@ const ProductDetailPage = function WhateverStupidName() {
       .then(() => {
         console.log('currentProduct.id', id);
         const getMetaReview = axios({
-          method: "get",
-          url: "/reviews/meta",
+          method: 'get',
+          url: '/reviews/meta',
           params: { product_id: id },
         });
         const getQuestions = axios({
-          method: "get",
-          url: "/qa/questions",
+          method: 'get',
+          url: '/qa/questions',
           params: { product_id: id },
         });
         return Promise.all([getMetaReview, getQuestions]);
@@ -44,6 +44,10 @@ const ProductDetailPage = function WhateverStupidName() {
         console.error('Unable to get product from server ', err);
       });
   }, []);
+
+  if (currentProduct.id === undefined) {
+    return <h1>loading</h1>;
+  }
 
   return (
     <div>
