@@ -15,7 +15,7 @@ export default function ReviewListEntry({ entry }) {
       <FormattedDate dateStr={entry.date} />
       <ReviewSummary summary={entry.summary} />
       <ReviewBody body={entry.body} photos={entry.photos} />
-      <span>Review by: {entry.reviewer_name} | "Verfied Purchaser"(TODO)</span>
+      <span>Review by: {entry.reviewer_name || 'Unknown Shopper'} | "Verfied Purchaser"(TODO)</span>
       {entry.recommend ? 'I recommend this product ✔️' : null}
       <Response />
     </div>
