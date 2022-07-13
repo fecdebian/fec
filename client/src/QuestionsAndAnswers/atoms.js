@@ -25,7 +25,17 @@ export const moreQuestionsState = atom({
   default: 2,
 });
 
+export const answersDataState = atom({
+  key: 'answersDataState',
+  default: {},
+});
+
 export const answersState = atom({
   key: 'answersState',
   default: [],
+});
+
+export const questionIDState = atom({
+  key: 'questionIDState',
+  default: 0,
 });

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -62,7 +63,6 @@ function QuestionsList() {
   return (
     <div>
       <ul>
-        {/* eslint-disable-next-line max-len */}
         {questionsView.map((question) => <Question key={question.question_id} question={question} />)}
       </ul>
       <MoreAnsweredQuestions />

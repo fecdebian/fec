@@ -1,40 +1,30 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
-import { useRecoilState } from 'recoil';
-import { answersState } from './atoms';
 
-function Answer({ question }) {
-  const [answers, setAnswers] = useRecoilState(answersState);
-
-  useEffect(() => {
-    axios({
-      method: 'get',
-      url: `/qa/questions/${question.question_id}/answers`,
-      params: { count: 50 },
-    }).then((res) => {
-      setAnswers(res.data.results);
-    }).catch((err) => {
-      console.log('error getting answers for question: ', err);
-    });
-  }, [question]);
-
+function Answer({ answer }) {
   return (
-    <div>
-      A:
-      {' '}
-      {question.question_id}
-    </div>
+    <li>
+      <div>
+        ID:
+        {' '}
+        {answer.answer_id}
+      </div>
+      <div>
+        A:
+        {' '}
+        {answer.body}
+      </div>
+    </li>
   );
 }
 
 Answer.propTypes = {
-  question: PropTypes.shape({
-    question_id: PropTypes.string,
-    question_body: PropTypes.string,
-    question_date: PropTypes.string,
-    question_helpfulness: PropTypes.number,
-    reported: PropTypes.bool,
+  answer: PropTypes.shape({
+    answer_id: PropTypes.number,
+    body: PropTypes.string,
+    date: PropTypes.string,
+    answerer_name: PropTypes.string,
+    helpfulness: PropTypes.number,
   }).isRequired,
 };
 
