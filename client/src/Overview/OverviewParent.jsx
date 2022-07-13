@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Stars from '../SharedComponents/ReviewStars';
-import CatAndTitle from './categoryAndTitle';
+import ReviewWeightedAverage from '../SharedComponents/ReviewWeightedAverage';
+import CatAndTitle from './CategoryAndTitle';
 
 function Overview() {
   return (
     <div>
-      <Stars />
+      <ReviewWeightedAverage />
       <CatAndTitle />
     </div>
   );
