@@ -13,7 +13,6 @@ export default function ProductsCard({ product }) {
         $
         {product.default_price}
       </div>
-      <div>{product.id}</div>
       <AvgStars currentProduct={product} />
     </>
   );
