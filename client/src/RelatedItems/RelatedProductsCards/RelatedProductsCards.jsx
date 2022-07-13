@@ -11,12 +11,12 @@ export default function RelatedProductsCards() {
   const [relatedProducts, setRelatedProducts] = useRecoilState(relatedProductsState);
 
   useEffect(() => {
+    const relatedProductsRequests = [];
     axios({
       method: 'get',
       url: `/products/${currentProduct.id}/related`,
       params: { product_id: currentProduct.id },
     }).then((res) => {
-      const relatedProductsRequests = [];
       res.data.forEach((id) => {
         // console.log('id ', id);
         relatedProductsRequests.push(
