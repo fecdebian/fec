@@ -9,7 +9,6 @@ import {
 import axios from 'axios';
 
 import currentMetaReview from './reviewMeta';
-// import currentProductState from '../currentProduct';
 import StarReview from './StarReview';
 
 const avgStarsState = atom({
@@ -20,7 +19,6 @@ const avgStarsState = atom({
 let totalReviews = 0;
 
 function ReviewWeightedAverage({ currentProduct }) {
-  // const product = useRecoilValue(currentProductState);
   const product = currentProduct;
   const productID = product.id;
   const [avgStars, setAvgStars] = useRecoilState(avgStarsState);

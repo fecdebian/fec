@@ -39,7 +39,7 @@ export default function RelatedProductsCards() {
   }, []);
 
   useEffect(() => {
-    console.log('2nd related products', relatedProducts);
+    // console.log('2nd related products', relatedProducts);
   }, [relatedProducts]);
   if (relatedProducts.length === 0) {
     return <div>Products Card Loading...</div>;
