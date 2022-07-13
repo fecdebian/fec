@@ -1,8 +1,15 @@
 import React, { useEffect } from 'react';
-import { useRecoilValue, atom, useRecoilState } from 'recoil';
+import PropTypes from 'prop-types';
+import {
+  // useRecoilValue,
+  atom,
+  useRecoilState,
+  useSetRecoilState,
+} from 'recoil';
 import axios from 'axios';
 
-import currentProductState from '../currentProduct';
+import currentMetaReview from './reviewMeta';
+// import currentProductState from '../currentProduct';
 import StarReview from './StarReview';
 
 const avgStarsState = atom({
@@ -12,10 +19,12 @@ const avgStarsState = atom({
 
 let totalReviews = 0;
 
-function Stars() {
-  const product = useRecoilValue(currentProductState);
+function ReviewWeightedAverage({ currentProduct }) {
+  // const product = useRecoilValue(currentProductState);
+  const product = currentProduct;
   const productID = product.id;
   const [avgStars, setAvgStars] = useRecoilState(avgStarsState);
+  const setMetaReview = useSetRecoilState(currentMetaReview);
 
   useEffect(() => {
     axios({
@@ -24,6 +33,7 @@ function Stars() {
       params: { product_id: productID },
     })
       .then((reviews) => {
+        setMetaReview(reviews);
         const ratingsObj = reviews.data.ratings;
         const ratingsValues = Object.values(ratingsObj);
         const ratingsWeights = Object.keys(ratingsObj);
@@ -39,7 +49,7 @@ function Stars() {
         }
 
         const avgRating = (Math.round(((sumOfWeightedRatings / sumOfTotalRatings) * 4))
-         / 4).toFixed(2);
+          / 4).toFixed(2);
 
         // If there are no reviews, we need to hide this component.
         // Setting to -1 for conditional rendering below
@@ -56,6 +66,7 @@ function Stars() {
   if (totalReviews < 1) {
     return null;
   }
+
   return (
     <div>
       <StarReview num={averageStarRating} />
@@ -66,4 +77,10 @@ function Stars() {
   );
 }
 
-export default Stars;
+ReviewWeightedAverage.propTypes = {
+  currentProduct: PropTypes.shape({
+    id: PropTypes.number,
+  }).isRequired,
+};
+
+export default ReviewWeightedAverage;

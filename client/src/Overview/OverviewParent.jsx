@@ -1,12 +1,17 @@
 import React from 'react';
+import {
+  useRecoilValue,
+} from 'recoil';
 
-import Stars from '../SharedComponents/ReviewStars';
-import CatAndTitle from './categoryAndTitle';
+import ReviewWeightedAverage from '../SharedComponents/ReviewWeightedAverage';
+import CatAndTitle from './CategoryAndTitle';
+import currentProductState from '../currentProduct';
 
 function Overview() {
+  const product = useRecoilValue(currentProductState);
   return (
     <div>
-      <Stars />
+      <ReviewWeightedAverage currentProduct={product} />
       <CatAndTitle />
     </div>
   );

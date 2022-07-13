@@ -11,12 +11,12 @@ export default function RelatedProductsCards() {
   const [relatedProducts, setRelatedProducts] = useRecoilState(relatedProductsState);
 
   useEffect(() => {
+    const relatedProductsRequests = [];
     axios({
       method: 'get',
       url: `/products/${currentProduct.id}/related`,
       params: { product_id: currentProduct.id },
     }).then((res) => {
-      const relatedProductsRequests = [];
       res.data.forEach((id) => {
         // console.log('id ', id);
         relatedProductsRequests.push(
@@ -48,9 +48,16 @@ export default function RelatedProductsCards() {
   return (
     <div>
       RelatedProductsCards
-      <ProductCard />
-      {/* {relatedProducts[0].name} */}
-      {relatedProducts.map((product) => <div key={product.id}>{product.name}</div>)}
+      <ul>
+        {relatedProducts.map(
+          (product) => (
+            <li key={product.id}>
+              <ProductCard product={product} />
+            </li>
+          ),
+        )}
+      </ul>
+
     </div>
   );
 }
