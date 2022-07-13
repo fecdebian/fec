@@ -4,11 +4,6 @@ import axios from 'axios';
 
 import StarReview from '../../SharedComponents/StarReview';
 
-// const avgStarsState2 = atom({
-//   key: 'avgStars2',
-//   default: 0,
-// });
-
 function AvgStars({ currentProduct }) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);

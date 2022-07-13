@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+/** @jsx jsx */
+import { useEffect } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import axios from 'axios';
+import { css, jsx } from '@emotion/react';
 
 import ProductCard from './ProductCard';
 import currentProductState from '../../currentProduct';
@@ -45,13 +47,31 @@ export default function RelatedProductsCards() {
     return <div>Products Card Loading...</div>;
   }
 
+  //   css={css`
+  //   padding: 10px;
+  //   margin: 10px;
+  //   border: solid black 2px;
+  // `}
+
   return (
     <div>
-      RelatedProductsCards
-      <ul>
+      <h2>More in related products</h2>
+      <ul
+        css={css`
+       padding: 10px;
+       margin: 10px;
+       border: solid black 2px;
+     `}
+      >
         {relatedProducts.map(
           (product) => (
-            <li key={product.id}>
+            <li
+              key={product.id}
+              css={css`
+                display: inline-block;
+                margin-left: 14px;
+              `}
+            >
               <ProductCard product={product} />
             </li>
           ),
