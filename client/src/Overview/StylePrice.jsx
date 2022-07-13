@@ -19,7 +19,6 @@ function StylePrice({ currentProduct, currentStyle }) {
     axios({
       method: 'get',
       url: `/products/${productID}/styles`,
-      params: { product_id: productID },
     })
       .then((response) => {
         const allStyles = {};
