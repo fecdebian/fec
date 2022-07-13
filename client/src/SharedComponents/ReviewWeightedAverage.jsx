@@ -1,7 +1,13 @@
 import React, { useEffect } from 'react';
-import { useRecoilValue, atom, useRecoilState } from 'recoil';
+import {
+  useRecoilValue,
+  atom,
+  useRecoilState,
+  useSetRecoilState,
+} from 'recoil';
 import axios from 'axios';
 
+import currentMetaReview from './reviewMeta';
 import currentProductState from '../currentProduct';
 import StarReview from './StarReview';
 
@@ -12,10 +18,11 @@ const avgStarsState = atom({
 
 let totalReviews = 0;
 
-function Stars() {
+function ReviewWeightedAverage() {
   const product = useRecoilValue(currentProductState);
   const productID = product.id;
   const [avgStars, setAvgStars] = useRecoilState(avgStarsState);
+  const setMetaReview = useSetRecoilState(currentMetaReview);
 
   useEffect(() => {
     axios({
@@ -24,6 +31,7 @@ function Stars() {
       params: { product_id: productID },
     })
       .then((reviews) => {
+        setMetaReview(reviews);
         const ratingsObj = reviews.data.ratings;
         const ratingsValues = Object.values(ratingsObj);
         const ratingsWeights = Object.keys(ratingsObj);
@@ -56,6 +64,7 @@ function Stars() {
   if (totalReviews < 1) {
     return null;
   }
+
   return (
     <div>
       <StarReview num={averageStarRating} />
@@ -66,4 +75,4 @@ function Stars() {
   );
 }
 
-export default Stars;
+export default ReviewWeightedAverage;
