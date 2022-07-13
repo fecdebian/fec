@@ -1,10 +1,11 @@
+/** @jsx jsx */
 import React, { useEffect } from 'react';
 import {
-  useRecoilValue,
   useRecoilState,
 } from 'recoil';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { css, jsx } from '@emotion/react';
 
 import { currentProductStyles, selectedProductStyle } from './overviewAtoms';
 
@@ -43,21 +44,43 @@ function StylePrice({ currentProduct, currentStyle }) {
   if (style.style_id === undefined) {
     return <h1>loading</h1>;
   }
+  const dummyData = {
+    style_id: 221000,
+    name: 'Ocean Blue & Grey',
+    original_price: '140.00',
+    sale_price: '100.00',
+  };
 
-  if (style.sale_price === null) {
-    return (
-      <div>
-        $
-        {style.original_price}
-      </div>
-    );
-  }
+  // if (style.sale_price === null) {
+  //   return (
+  //     <div>
+  //       $
+  //       {style.original_price}
+  //     </div>
+  //   );
+  // }
   return (
     <div>
-      $
-      {style.original_price}
-      $
-      {style.sale_price}
+      <span
+        css={css`
+        color: red;
+        margin: 4px;
+        `}
+      >
+        $
+        {dummyData.sale_price}
+        {/* {style.sale_price} */}
+      </span>
+      <span
+        css={css`
+          text-decoration: line-through;
+          margin: 4px;
+          `}
+      >
+        $
+        {dummyData.original_price}
+        {/* {style.original_price} */}
+      </span>
     </div>
   );
 }
