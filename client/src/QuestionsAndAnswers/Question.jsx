@@ -1,33 +1,37 @@
+/* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Answer from './Answer';
+import Answers from './Answers';
 
 function Question({ question }) {
   return (
     <li>
       <div>
-        Q:
-        {' '}
-        {question.question_body}
-        {' '}
-        <a href="/">Helpful?</a>
-        {' '}
-        Yes
-        {' '}
-        {question.question_helpfulness}
-        {' | '}
-        <a href="/">Add Answer</a>
+        {'Q: '}
+        <span>{question.question_body}</span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span>
+          {' Helpful? '}
+          <a href="/">Yes</a>
+          {' ('}
+          <span>{question.question_helpfulness}</span>
+          {') | '}
+          <a href="/">Add Answer</a>
+        </span>
       </div>
-      <Answer />
+      <Answers key={question.question_id} question={question} />
     </li>
   );
 }
+
 Question.propTypes = {
   question: PropTypes.shape({
+    question_id: PropTypes.number,
     question_body: PropTypes.string,
     question_date: PropTypes.string,
     question_helpfulness: PropTypes.number,
     reported: PropTypes.bool,
+    answers: PropTypes.shape({}),
   }).isRequired,
 };
 export default Question;

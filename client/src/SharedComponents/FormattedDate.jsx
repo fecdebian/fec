@@ -6,7 +6,7 @@ export default function FormattedDate({ dateStr }) {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
 
-  return <div>{formattedDate}</div>;
+  return <span>{formattedDate}</span>;
 }
 
 FormattedDate.propTypes = {
