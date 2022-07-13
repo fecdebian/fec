@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import {
-  useRecoilValue,
+  // useRecoilValue,
   atom,
   useRecoilState,
   useSetRecoilState,
@@ -8,7 +9,7 @@ import {
 import axios from 'axios';
 
 import currentMetaReview from './reviewMeta';
-import currentProductState from '../currentProduct';
+// import currentProductState from '../currentProduct';
 import StarReview from './StarReview';
 
 const avgStarsState = atom({
@@ -18,8 +19,9 @@ const avgStarsState = atom({
 
 let totalReviews = 0;
 
-function ReviewWeightedAverage() {
-  const product = useRecoilValue(currentProductState);
+function ReviewWeightedAverage({ currentProduct }) {
+  // const product = useRecoilValue(currentProductState);
+  const product = currentProduct;
   const productID = product.id;
   const [avgStars, setAvgStars] = useRecoilState(avgStarsState);
   const setMetaReview = useSetRecoilState(currentMetaReview);
@@ -47,7 +49,7 @@ function ReviewWeightedAverage() {
         }
 
         const avgRating = (Math.round(((sumOfWeightedRatings / sumOfTotalRatings) * 4))
-         / 4).toFixed(2);
+          / 4).toFixed(2);
 
         // If there are no reviews, we need to hide this component.
         // Setting to -1 for conditional rendering below
@@ -74,5 +76,11 @@ function ReviewWeightedAverage() {
     </div>
   );
 }
+
+ReviewWeightedAverage.propTypes = {
+  currentProduct: PropTypes.shape({
+    id: PropTypes.number,
+  }).isRequired,
+};
 
 export default ReviewWeightedAverage;
