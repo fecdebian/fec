@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import AvgStars from './AvgStars';
 
 export default function ProductsCard({ product }) {
   // console.log('product ', product);
@@ -12,7 +13,7 @@ export default function ProductsCard({ product }) {
         {product.default_price}
       </div>
       <div>{product.id}</div>
-      {/* <ReviewWeightedAverage currentProduct={product} /> */}
+      <AvgStars currentProduct={product} />
     </>
   );
 }
