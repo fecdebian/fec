@@ -39,15 +39,21 @@ function QuestionsList() {
   }
 
   useEffect(() => { // getting list of questions given product ID
+    let ignore = false;
     axios.get(`/qa/questions?product_id=${productID.id}&page=${1}&count=${100}`) // does count need to be in state? Not sure yet
       .then((res) => {
-        // console.log('successful GET questions request');
-        setQuestions(res.data.results);
+        console.log('successful GET questions request');
+        if (!ignore) {
+          setQuestions(res.data.results);
+        }
       })
       .catch((err) => {
         console.log('error fetching questions:', err);
       });
-  }, [count, productID]);
+    return () => {
+      ignore = true;
+    };
+  }, [productID]);
 
   useEffect(() => { // sort list of questions by most to least helpful
     const copyQuestions = [...questions];

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function Answer({ answer }) {
   return (
-    <li>
+    <li key={answer.answer_id}>
       <div>
         ID:
         {' '}

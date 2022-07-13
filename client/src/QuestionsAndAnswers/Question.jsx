@@ -11,30 +11,40 @@ function Question({ question }) {
   const [answers, setAnswers] = useRecoilState(answersState);
   const [questionID, setQuestionID] = useRecoilState(questionIDState);
 
+  function getCurrentAnswer() {
+    const ans = [];
+    answersData.forEach((answerObj) => {
+      if (answerObj[question.question_id]) {
+        ans.push(answerObj[question.question_id]);
+      }
+    });
+    setAnswers(ans);
+  }
+
   useEffect(() => {
     setQuestionID(question.question_id);
   }, [question]);
 
   useEffect(() => {
-    console.log(answersData);
-    if (!answersData[questionID]) {
-      axios({
-        method: 'get',
-        url: `/qa/questions/${questionID}/answers`,
-        params: { count: 50 },
-      }).then((res) => {
-        const copyAnswersData = { ...answersData };
-        copyAnswersData[questionID] = res.data.results;
-        setAnswersData(copyAnswersData);
-      }).catch((err) => {
-        console.log('error getting answers for question: ', err);
-      });
-    }
-  }, [questionID]);
-
-  useEffect(() => {
-    setAnswers(answersData[questionID]);
-  }, [answersData]);
+    let ignore = false;
+    axios({
+      method: 'get',
+      url: `/qa/questions/${question.question_id}/answers`,
+      params: { count: 50 },
+    }).then((res) => {
+      if (!ignore) {
+        setAnswersData({
+          ...answersData,
+          [question.question_id]: res.data.results,
+        });
+      }
+    }).catch((err) => {
+      console.log('error getting answers for question: ', err);
+    });
+    return () => {
+      ignore = true;
+    };
+  }, [question]);
 
   if (questionID === 0) {
     return (<h3>Loading</h3>);
@@ -59,6 +69,7 @@ function Question({ question }) {
     </li>
   );
 }
+
 Question.propTypes = {
   question: PropTypes.shape({
     question_id: PropTypes.number,
