@@ -6,6 +6,7 @@ import {
 import ReviewWeightedAverage from '../SharedComponents/ReviewWeightedAverage';
 import CatAndTitle from './CategoryAndTitle';
 import currentProductState from '../currentProduct';
+import StylePrice from './StylePrice';
 
 function Overview() {
   const product = useRecoilValue(currentProductState);
@@ -13,6 +14,7 @@ function Overview() {
     <div>
       <ReviewWeightedAverage currentProduct={product} />
       <CatAndTitle />
+      <StylePrice currentProduct={product} />
     </div>
   );
 }
