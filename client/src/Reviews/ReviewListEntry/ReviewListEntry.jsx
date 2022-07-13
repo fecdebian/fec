@@ -8,7 +8,6 @@ import ReviewBody from './ReviewBody';
 import Response from './Response';
 
 export default function ReviewListEntry({ entry }) {
-  // console.log('entry is', entry);
   return (
     <div>
       <StarReview num={entry.rating} />
