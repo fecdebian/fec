@@ -1,71 +1,25 @@
 /* eslint-disable max-len */
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
-import { useRecoilState } from 'recoil';
-import { answersDataState, answersState, questionIDState } from './atoms';
-import Answer from './Answer';
+import Answers from './Answers';
 
 function Question({ question }) {
-  const [answersData, setAnswersData] = useRecoilState(answersDataState);
-  const [answers, setAnswers] = useRecoilState(answersState);
-  const [questionID, setQuestionID] = useRecoilState(questionIDState);
-
-  function getCurrentAnswer() {
-    const ans = [];
-    answersData.forEach((answerObj) => {
-      if (answerObj[question.question_id]) {
-        ans.push(answerObj[question.question_id]);
-      }
-    });
-    setAnswers(ans);
-  }
-
-  useEffect(() => {
-    setQuestionID(question.question_id);
-  }, [question]);
-
-  useEffect(() => {
-    let ignore = false;
-    axios({
-      method: 'get',
-      url: `/qa/questions/${question.question_id}/answers`,
-      params: { count: 50 },
-    }).then((res) => {
-      if (!ignore) {
-        setAnswersData({
-          ...answersData,
-          [question.question_id]: res.data.results,
-        });
-      }
-    }).catch((err) => {
-      console.log('error getting answers for question: ', err);
-    });
-    return () => {
-      ignore = true;
-    };
-  }, [question]);
-
-  if (questionID === 0) {
-    return (<h3>Loading</h3>);
-  }
-
   return (
     <li>
       <div>
-        Q:
-        {' '}
-        {question.question_body}
-        {' Helpful? '}
-        <a href="/">Yes</a>
-        {' ('}
-        {question.question_helpfulness}
-        {') | '}
-        <a href="/">Add Answer</a>
+        {'Q: '}
+        <span>{question.question_body}</span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span>
+          {' Helpful? '}
+          <a href="/">Yes</a>
+          {' ('}
+          <span>{question.question_helpfulness}</span>
+          {') | '}
+          <a href="/">Add Answer</a>
+        </span>
       </div>
-      <ul>
-        {answers ? answers.map((answer) => <Answer key={answer.answer_id} answer={answer} />) : null}
-      </ul>
+      <Answers key={question.question_id} question={question} />
     </li>
   );
 }
@@ -77,6 +31,7 @@ Question.propTypes = {
     question_date: PropTypes.string,
     question_helpfulness: PropTypes.number,
     reported: PropTypes.bool,
+    answers: PropTypes.shape({}),
   }).isRequired,
 };
 export default Question;

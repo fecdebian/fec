@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {
-  questionsState, sortedQuestionsState, countState, questionsViewState, moreQuestionsState,
+  questionsState, sortedQuestionsState, questionsViewState, moreQuestionsState,
 } from './atoms';
 import currentProductState from '../currentProduct';
 import Question from './Question';
@@ -14,11 +14,9 @@ function QuestionsList() {
   const [sortedQuestions, setSortedQuestions] = useRecoilState(sortedQuestionsState);
   const [questionsView, setQuestionsView] = useRecoilState(questionsViewState);
   const [moreQuestions, setMoreQuestions] = useRecoilState(moreQuestionsState);
-
   const productID = useRecoilValue(currentProductState);
-  const count = useRecoilValue(countState);
 
-  function quickSort(origArray) { // sorting function
+  function quickSort(origArray) { // sorting questions from most to least helpful
     if (origArray.length <= 1) {
       return origArray;
     }
@@ -39,20 +37,14 @@ function QuestionsList() {
   }
 
   useEffect(() => { // getting list of questions given product ID
-    let ignore = false;
     axios.get(`/qa/questions?product_id=${productID.id}&page=${1}&count=${100}`) // does count need to be in state? Not sure yet
       .then((res) => {
         console.log('successful GET questions request');
-        if (!ignore) {
-          setQuestions(res.data.results);
-        }
+        setQuestions(res.data.results);
       })
       .catch((err) => {
-        console.log('error fetching questions:', err);
+        console.error('error fetching questions:', err);
       });
-    return () => {
-      ignore = true;
-    };
   }, [productID]);
 
   useEffect(() => { // sort list of questions by most to least helpful
@@ -63,10 +55,10 @@ function QuestionsList() {
   useEffect(() => { // set state for the More Answered Questions button logic
     const copySortedQuestions = [...sortedQuestions];
     setMoreQuestions((copySortedQuestions.length - 2));
-    setQuestionsView(copySortedQuestions.slice(0, 2)); // sets displayed questions
+    setQuestionsView(copySortedQuestions.slice(0, 2)); // sets default displayed questions
   }, [sortedQuestions]);
 
-  return (
+  return ( // returns mapped list of all viewed questions, + more answered questions button
     <div>
       <ul>
         {questionsView.map((question) => <Question key={question.question_id} question={question} />)}
