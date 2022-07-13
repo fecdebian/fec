@@ -23,7 +23,7 @@ function StylePrice({ currentProduct }) {
       .then((response) => {
         const allStyles = {};
         const defaultStyle = {};
-        response.results.forEach((result) => {
+        response.data.results.forEach((result) => {
           allStyles[result.style_id] = result;
           if (result['default?'] === true) {
             defaultStyle[result.style_id] = result;
@@ -33,34 +33,28 @@ function StylePrice({ currentProduct }) {
         setSelectedStyle(defaultStyle);
       })
       .catch((err) => console.log('error getting product styles: ', err));
-  }, [currentProduct]);
+  }, [product]);
   // Use effect for if selected style changes
   if (selectedStyle.style_id === undefined) {
     return <h1>loading</h1>;
   }
+  console.log('selectedStyle: ', selectedStyle);
 
-  useEffect(() => {
-    const orgPrice = selectedStyle.original_price;
-    const salePrice = selectedStyle.sale_price;
-
-    if (orgPrice === salePrice) {
-      return (
-        <div>
-          {orgPrice}
-        </div>
-      );
-    }
+  const orgPrice = selectedStyle.original_price;
+  const salePrice = selectedStyle.sale_price;
+  if (orgPrice === salePrice) {
     return (
       <div>
         {orgPrice}
-        {salePrice}
       </div>
     );
-  }, [selectedStyle]);
-
-  // return (
-  //   <div />
-  // );
+  }
+  return (
+    <div>
+      {orgPrice}
+      {salePrice}
+    </div>
+  );
 }
 
 StylePrice.propTypes = {
