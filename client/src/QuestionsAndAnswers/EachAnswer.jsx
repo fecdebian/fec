@@ -5,6 +5,7 @@ import FormattedDate from '../SharedComponents/FormattedDate';
 
 function EachAnswer({ answer }) {
   const [helpfulClicked, setHelpfulClicked] = useState(false);
+  const [reportClicked, setReportClicked] = useState(false);
   function handleHelpfulClick(e) {
     e.preventDefault();
     if (!helpfulClicked) {
@@ -15,6 +16,17 @@ function EachAnswer({ answer }) {
         });
     }
   }
+  function handleReportClick(e) {
+    e.preventDefault();
+    if (!reportClicked) {
+      setReportClicked(true);
+      axios.put(`/qa/answers/${answer.id}/report`)
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }
+
   return (
     <li>
       <div>
@@ -30,7 +42,7 @@ function EachAnswer({ answer }) {
         {' ( '}
         <span>{helpfulClicked ? answer.helpfulness + 1 : answer.helpfulness}</span>
         {') | '}
-        <button type="button">Report</button>
+        <button onClick={handleReportClick} type="button">{reportClicked ? 'Reported' : 'Report'}</button>
       </div>
     </li>
   );
