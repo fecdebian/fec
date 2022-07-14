@@ -9,7 +9,6 @@ function Question({ question }) {
       <div>
         {'Q: '}
         <span>{question.question_body}</span>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <span>
           {' Helpful? '}
           <a href="/">Yes</a>

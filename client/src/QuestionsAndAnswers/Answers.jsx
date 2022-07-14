@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import EachAnswer from './EachAnswer';
 
@@ -46,13 +46,30 @@ function Answers({ question }) {
   sellerAnswers = quickSort(sellerAnswers);
   otherAnswers = quickSort(otherAnswers); // sort seller and other answers independently by helpfulness
   answerList = sellerAnswers.concat(otherAnswers); // add sorted other answers following seller answers
+  const firstTwo = answerList.slice(0, 2);
+  const [selectedView, setSelectedView] = useState(firstTwo); // by default will only show first two answers
+  const [showAll, setShowAll] = useState(false);
 
-  if (answerList.length === 0) {
+  function handleClick(e) { // changes view from 2 to all answers when See More Answers is clicked
+    e.preventDefault();
+    if (!showAll) {
+      setShowAll(true);
+      setSelectedView(answerList);
+    } else {
+      setShowAll(false);
+      setSelectedView(firstTwo);
+    }
+  }
+
+  if (selectedView.length === 0) {
     return (null);
   }
 
   return (
-    <ul key={question.question_id}>{answerList.map((answer) => <EachAnswer key={answer.id} answer={answer} />)}</ul>
+    <span>
+      <ul key={question.question_id}>{selectedView.map((answer) => <EachAnswer key={answer.id} answer={answer} />)}</ul>
+      {answerList.length > 2 ? <button onClick={handleClick} type="button">{showAll ? 'Collapse Answers' : 'See More Answers'}</button> : null}
+    </span>
   );
 }
 
