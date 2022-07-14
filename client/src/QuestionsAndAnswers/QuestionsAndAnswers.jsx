@@ -4,10 +4,11 @@ import axios from 'axios';
 import { useRecoilValue, useSetRecoilState, useRecoilState } from 'recoil';
 import currentProductState from '../currentProduct';
 import {
-  questionsState, anyResultsState, sortedQuestionsState, questionsViewState, moreQuestionsState,
+  questionsState, anyResultsState, sortedQuestionsState, questionsViewState, moreQuestionsState, questionFormState,
 } from './atoms';
 import QuestionsList from './QuestionsList';
 import SearchQuestions from './SearchQuestions';
+import AddQuestion from './AddQuestion';
 
 function QuestionsAndAnswers() {
   const anyResults = useRecoilValue(anyResultsState);
@@ -16,6 +17,7 @@ function QuestionsAndAnswers() {
   const [sortedQuestions, setSortedQuestions] = useRecoilState(sortedQuestionsState);
   const setQuestionsView = useSetRecoilState(questionsViewState);
   const setMoreQuestions = useSetRecoilState(moreQuestionsState);
+  const [questionForm, setQuestionForm] = useRecoilState(questionFormState);
 
   // sorting questions from most to least helpful
   function quickSort(origArray) {
@@ -65,11 +67,20 @@ function QuestionsAndAnswers() {
     setQuestionsView(copySortedQuestions.slice(0, 2));
   }, [sortedQuestions]);
 
+  function handleClick(e) {
+    e.preventDefault();
+    console.log(questionForm);
+    setQuestionForm(!questionForm);
+  }
+
   return (
     <div>
       <h3>Questions And Answers</h3>
       <SearchQuestions />
       <div>{anyResults ? <QuestionsList /> : 'No questions found...'}</div>
+      <br />
+      <button onClick={handleClick} type="button">Add Question</button>
+      {questionForm ? <AddQuestion /> : null}
     </div>
   );
 }

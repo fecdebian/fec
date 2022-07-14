@@ -2,7 +2,7 @@
 import React from 'react';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import {
-  anyResultsState, sortedQuestionsState, questionsViewState, searchedLengthState,
+  anyResultsState, sortedQuestionsState, questionsViewState, searchedLengthState, moreQuestionsState,
 } from './atoms';
 
 function SearchQuestions() {
@@ -10,6 +10,7 @@ function SearchQuestions() {
   const setAnyResults = useSetRecoilState(anyResultsState);
   const setQuestionsView = useSetRecoilState(questionsViewState);
   const setSearchedLength = useSetRecoilState(searchedLengthState);
+  const setMoreQuestions = useSetRecoilState(moreQuestionsState);
 
   function handleChange(e) {
     e.preventDefault();
@@ -29,6 +30,7 @@ function SearchQuestions() {
       if (arr.length === 0) {
         const sortedCopy = [...sortedQuestions];
         const sliced = sortedCopy.slice(0, 2);
+        setMoreQuestions((sortedCopy.length - 2));
         setQuestionsView(sliced);
         setAnyResults(false);
       } else {
