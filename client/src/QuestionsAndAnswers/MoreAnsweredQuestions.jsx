@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { moreQuestionsState, questionsViewState, sortedQuestionsState } from './atoms';
 
 function MoreAnsweredQuestions() {
   const [moreQuestions, setMoreQuestions] = useRecoilState(moreQuestionsState);
-  const [questionsView, setQuestionsView] = useRecoilState(questionsViewState);
+  const setQuestionsView = useSetRecoilState(questionsViewState);
   const sortedQuestions = useRecoilValue(sortedQuestionsState);
 
   function handleClick(e) {

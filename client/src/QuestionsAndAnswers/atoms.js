@@ -19,3 +19,13 @@ export const moreQuestionsState = atom({ // more answered questions button, +2 w
   key: 'moreQuestionsState',
   default: 2,
 });
+
+export const anyResultsState = atom({
+  key: 'anyResultsState',
+  default: true,
+});
+
+export const searchedLengthState = atom({
+  key: 'searchedLengthState',
+  default: 0,
+});
