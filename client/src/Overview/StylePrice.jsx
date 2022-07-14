@@ -1,10 +1,11 @@
+/** @jsx jsx */
 import React, { useEffect } from 'react';
 import {
-  useRecoilValue,
   useRecoilState,
 } from 'recoil';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { css, jsx } from '@emotion/react';
 
 import { currentProductStyles, selectedProductStyle } from './overviewAtoms';
 
@@ -19,7 +20,6 @@ function StylePrice({ currentProduct, currentStyle }) {
     axios({
       method: 'get',
       url: `/products/${productID}/styles`,
-      params: { product_id: productID },
     })
       .then((response) => {
         const allStyles = {};
@@ -55,10 +55,24 @@ function StylePrice({ currentProduct, currentStyle }) {
   }
   return (
     <div>
-      $
-      {style.original_price}
-      $
-      {style.sale_price}
+      <span
+        css={css`
+        color: red;
+        margin: 4px;
+        `}
+      >
+        $
+        {style.sale_price}
+      </span>
+      <span
+        css={css`
+          text-decoration: line-through;
+          margin: 4px;
+          `}
+      >
+        $
+        {style.original_price}
+      </span>
     </div>
   );
 }
