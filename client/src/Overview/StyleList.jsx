@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useRecoilValue } from 'recoil';
 import PropTypes from 'prop-types';
 import { css, jsx } from '@emotion/react';
@@ -20,18 +20,14 @@ function StyleList({ productStyles }) {
         {currentStyle.name}
       </span>
       <ul>
-        { productStyles.map((style) => {return( <StyleThumbnail styleThumb={style} />)}) }
+        {productStyles.map((style) => <StyleThumbnail key={style.style_id} styleThumb={style} />)}
       </ul>
     </div>
   );
 }
 
 // StyleList.propTypes = {
-//   productStyles: PropTypes.shape({
-//     id: PropTypes.number,
-//   }).isRequired,
+//   productStyles: PropTypes.array
 // };
 
 export default StyleList;
-
-

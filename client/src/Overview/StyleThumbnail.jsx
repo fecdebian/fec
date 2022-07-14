@@ -18,10 +18,7 @@ function StyleThumbnail({ styleThumb }) {
 }
 
 // StyleThumbnail.propTypes = {
-//   style: PropTypes.shape({
-//     id: PropTypes.number,
-//     photos: PropTypes.object,
-//   }).isRequired,
+//   styleThumb: PropTypes.object
 // };
 
 export default StyleThumbnail;
