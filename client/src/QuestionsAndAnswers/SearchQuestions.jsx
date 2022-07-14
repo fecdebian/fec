@@ -1,9 +1,49 @@
-import React, { useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { questionsViewState } from './atoms';
+/* eslint-disable max-len */
+import React from 'react';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
+import {
+  anyResultsState, sortedQuestionsState, questionsViewState, searchedLengthState,
+} from './atoms';
 
 function SearchQuestions() {
-  return (<input name="questionSearch" type="text" size="40" placeholder="Have a question? Search for answers..." />);
+  const sortedQuestions = useRecoilValue(sortedQuestionsState);
+  const setAnyResults = useSetRecoilState(anyResultsState);
+  const setQuestionsView = useSetRecoilState(questionsViewState);
+  const setSearchedLength = useSetRecoilState(searchedLengthState);
+
+  function handleChange(e) {
+    e.preventDefault();
+    const searched = e.target.value;
+    setSearchedLength(searched.length);
+
+    if (searched.length >= 3) {
+      const arr = [];
+
+      sortedQuestions.forEach((question) => {
+        const slicedQuestion = question.question_body.slice(0, searched.length);
+        if (slicedQuestion === searched) {
+          arr.push(question);
+        }
+      });
+
+      if (arr.length === 0) {
+        const sortedCopy = [...sortedQuestions];
+        const sliced = sortedCopy.slice(0, 2);
+        setQuestionsView(sliced);
+        setAnyResults(false);
+      } else {
+        setQuestionsView(arr);
+        setAnyResults(true);
+      }
+    } else {
+      const sortedCopy = [...sortedQuestions];
+      const sliced = sortedCopy.slice(0, 2);
+      setQuestionsView(sliced);
+      setAnyResults(true);
+    }
+  }
+
+  return (<input onChange={handleChange} name="questionSearch" type="text" size="50" placeholder="Have a question? Search for answers... (case-sensitive)" />);
 }
 
 export default SearchQuestions;
