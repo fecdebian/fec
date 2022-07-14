@@ -15,14 +15,17 @@ function SearchQuestions() {
     e.preventDefault();
     const searched = e.target.value;
     setSearchedLength(searched.length);
+
     if (searched.length >= 3) {
       const arr = [];
+
       sortedQuestions.forEach((question) => {
         const slicedQuestion = question.question_body.slice(0, searched.length);
         if (slicedQuestion === searched) {
           arr.push(question);
         }
       });
+
       if (arr.length === 0) {
         const sortedCopy = [...sortedQuestions];
         const sliced = sortedCopy.slice(0, 2);

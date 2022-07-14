@@ -6,6 +6,7 @@ import Answers from './Answers';
 
 function Question({ question }) {
   const [clicked, setClicked] = useState(false);
+
   function handleClick(e) {
     e.preventDefault();
     if (!clicked) {

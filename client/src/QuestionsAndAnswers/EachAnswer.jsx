@@ -6,6 +6,7 @@ import FormattedDate from '../SharedComponents/FormattedDate';
 function EachAnswer({ answer }) {
   const [helpfulClicked, setHelpfulClicked] = useState(false);
   const [reportClicked, setReportClicked] = useState(false);
+
   function handleHelpfulClick(e) {
     e.preventDefault();
     if (!helpfulClicked) {
@@ -16,6 +17,7 @@ function EachAnswer({ answer }) {
         });
     }
   }
+
   function handleReportClick(e) {
     e.preventDefault();
     if (!reportClicked) {

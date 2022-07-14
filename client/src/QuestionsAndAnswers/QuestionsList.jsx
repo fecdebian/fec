@@ -13,7 +13,8 @@ function QuestionsList() {
     return <div>No Questions Found...</div>;
   }
 
-  return ( // returns mapped list of all viewed questions, + more answered questions button
+  // returns mapped list of all viewed questions, + more answered questions button
+  return (
     <div>
       <ul>
         {questionsView.map((question) => <Question key={question.question_id} question={question} />)}

@@ -10,14 +10,15 @@ import QuestionsList from './QuestionsList';
 import SearchQuestions from './SearchQuestions';
 
 function QuestionsAndAnswers() {
-  const anyResults = useRecoilValue(anyResultsState); // setting up Recoil hooks
+  const anyResults = useRecoilValue(anyResultsState);
   const productID = useRecoilValue(currentProductState);
   const [questions, setQuestions] = useRecoilState(questionsState);
   const [sortedQuestions, setSortedQuestions] = useRecoilState(sortedQuestionsState);
   const setQuestionsView = useSetRecoilState(questionsViewState);
   const setMoreQuestions = useSetRecoilState(moreQuestionsState);
 
-  function quickSort(origArray) { // sorting questions from most to least helpful
+  // sorting questions from most to least helpful
+  function quickSort(origArray) {
     if (origArray.length <= 1) {
       return origArray;
     }
@@ -37,7 +38,8 @@ function QuestionsAndAnswers() {
     return newArray.concat(quickSort(left), pivot, quickSort(right));
   }
 
-  useEffect(() => { // getting list of questions given product ID
+  // getting list of questions given product ID
+  useEffect(() => {
     axios.get(`/qa/questions?product_id=${productID.id}&page=${1}&count=${100}`) // does count need to be in state? Not sure yet
       .then((res) => {
         console.log('successful GET questions request');
@@ -48,15 +50,19 @@ function QuestionsAndAnswers() {
       });
   }, [productID]);
 
-  useEffect(() => { // sort list of questions by most to least helpful
+  // sort list of questions by most to least helpful
+  useEffect(() => {
     const copyQuestions = [...questions];
     setSortedQuestions(quickSort(copyQuestions));
   }, [questions]);
 
-  useEffect(() => { // set state for the More Answered Questions button logic
+  // set state for the More Answered Questions button logic
+  useEffect(() => {
     const copySortedQuestions = [...sortedQuestions];
     setMoreQuestions((copySortedQuestions.length - 2));
-    setQuestionsView(copySortedQuestions.slice(0, 2)); // sets default displayed questions
+
+    // sets default displayed questions
+    setQuestionsView(copySortedQuestions.slice(0, 2));
   }, [sortedQuestions]);
 
   return (
