@@ -1,22 +1,35 @@
 /* eslint-disable max-len */
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import Answers from './Answers';
 
 function Question({ question }) {
+  const [clicked, setClicked] = useState(false);
+
+  function handleClick(e) {
+    e.preventDefault();
+    if (!clicked) {
+      setClicked(true);
+      axios.put(`/qa/questions/${question.question_id}/helpful`)
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }
+
   return (
     <li>
       <div>
         {'Q: '}
         <span>{question.question_body}</span>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <span>
           {' Helpful? '}
-          <a href="/">Yes</a>
+          <button type="button" onClick={handleClick}>Yes</button>
           {' ('}
-          <span>{question.question_helpfulness}</span>
+          <span>{clicked ? question.question_helpfulness + 1 : question.question_helpfulness}</span>
           {') | '}
-          <a href="/">Add Answer</a>
+          <button type="button">Add Answer</button>
         </span>
       </div>
       <Answers key={question.question_id} question={question} />
