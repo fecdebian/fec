@@ -1,5 +1,4 @@
 /** @jsx jsx */
-import React from 'react';
 import { useRecoilValue } from 'recoil';
 import PropTypes from 'prop-types';
 import { css, jsx } from '@emotion/react';
