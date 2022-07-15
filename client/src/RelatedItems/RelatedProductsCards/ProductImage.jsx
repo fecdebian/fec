@@ -47,7 +47,8 @@ function ProductImage({ currentProduct }) {
   }
   return (
     <div>
-      <img alt={product.name} src={productImage} width="160" height="160" />
+      <img alt={product.name} src={productImage} width="100%" height="160" />
+      {/* <img alt={product.name} src={productImage} /> */}
     </div>
   );
 }
