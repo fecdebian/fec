@@ -6,10 +6,11 @@ import { css, jsx } from '@emotion/react';
 
 import ReviewList from './ReviewList';
 import SubmitReview from './SubmitReview';
+import { ReviewsProvider } from './ReviewsContext';
+// import MovingDot from './MovingDot';
 
 // Only in production
 // import currentProduct from '../currentProduct';
-import sampleReviews from './sampleReviews';
 
 export default function Reviews() {
   // Only in production
@@ -35,8 +36,10 @@ export default function Reviews() {
         border: solid black 2px;
       `}
     >
-      <ReviewList reviewEntries={sampleReviews.results} />
-      <SubmitReview />
+      <ReviewsProvider>
+        <ReviewList />
+        <SubmitReview />
+      </ReviewsProvider>
     </div>
   );
 }
