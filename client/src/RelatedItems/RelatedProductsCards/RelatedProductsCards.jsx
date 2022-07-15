@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import axios from 'axios';
 import { css, jsx } from '@emotion/react';
@@ -11,12 +11,29 @@ import relatedProductsState from '../ModelRelatedItems/relatedProductsState';
 export default function RelatedProductsCards() {
   const currentProduct = useRecoilValue(currentProductState);
   const [relatedProducts, setRelatedProducts] = useRecoilState(relatedProductsState);
-  const myRef = useRef(null);
+  const scrollRef = useRef(null);
+  const [rightButtonOpacity, setRightButtonOpacity] = useState({});
+  const [leftButtonOpacity, setLeftButtonOpacity] = useState({});
 
   const scrollRightHandler = (e) => {
     e.preventDefault();
-    console.log(myRef.current.scrollLeft);
-    myRef.current.scrollLeft += 200;
+    scrollRef.current.scrollLeft += 200;
+    const maxScrollLeft = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
+    if (maxScrollLeft === scrollRef.current.scrollLeft) {
+      setRightButtonOpacity({ opacity: '0' });
+    } else {
+      setLeftButtonOpacity({ });
+    }
+  };
+
+  const scrollLeftHandler = (e) => {
+    e.preventDefault();
+    scrollRef.current.scrollLeft -= 200;
+    if (scrollRef.current.scrollLeft === 0) {
+      setLeftButtonOpacity({ opacity: '0' });
+    } else {
+      setRightButtonOpacity({ });
+    }
   };
 
   useEffect(() => {
@@ -45,15 +62,6 @@ export default function RelatedProductsCards() {
     }).catch((err) => {
       console.log('Unable to get related product id from server ', err);
     });
-
-    // const container = document.querySelector('#related-Products-slider');
-    // const container = document.getElementById('related-Products-slider');
-
-    // console.log(container);
-    // container.addEventListener('scroll', scrollRightHandler);
-    // return () => {
-    //   container.removeEventListener('scroll', scrollRightHandler);
-    // };
   }, []);
 
   if (relatedProducts.length === 0) {
@@ -73,6 +81,8 @@ export default function RelatedProductsCards() {
     `}>
         <button
           type="button"
+          onClick={scrollLeftHandler}
+          style={leftButtonOpacity}
           css={css`
           border-sizing: border-box;
           width:5%;
@@ -88,7 +98,7 @@ export default function RelatedProductsCards() {
           &#8249;
         </button>
         <div
-          ref={myRef}
+          ref={scrollRef}
           id="related-Products-slider"
           css={css`
           border-sizing: border-box;
@@ -148,8 +158,9 @@ export default function RelatedProductsCards() {
         </div>
         {/* left handler */}
         <button
-          onClick={scrollRightHandler}
           type="button"
+          onClick={scrollRightHandler}
+          style={rightButtonOpacity}
           css={css`
             border-sizing: border-box;
             width:5%;
