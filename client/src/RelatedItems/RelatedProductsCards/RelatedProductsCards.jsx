@@ -13,7 +13,7 @@ export default function RelatedProductsCards() {
   const [relatedProducts, setRelatedProducts] = useRecoilState(relatedProductsState);
   const scrollRef = useRef(null);
   const [rightButtonOpacity, setRightButtonOpacity] = useState({});
-  const [leftButtonOpacity, setLeftButtonOpacity] = useState({});
+  const [leftButtonOpacity, setLeftButtonOpacity] = useState({ opacity: '0' });
 
   const scrollRightHandler = (e) => {
     e.preventDefault();
@@ -22,7 +22,7 @@ export default function RelatedProductsCards() {
     if (maxScrollLeft === scrollRef.current.scrollLeft) {
       setRightButtonOpacity({ opacity: '0' });
     } else {
-      setLeftButtonOpacity({ });
+      setLeftButtonOpacity({});
     }
   };
 
@@ -32,7 +32,7 @@ export default function RelatedProductsCards() {
     if (scrollRef.current.scrollLeft === 0) {
       setLeftButtonOpacity({ opacity: '0' });
     } else {
-      setRightButtonOpacity({ });
+      setRightButtonOpacity({});
     }
   };
 
@@ -59,6 +59,9 @@ export default function RelatedProductsCards() {
         relatedProductsCopy.push(product.data);
       });
       setRelatedProducts(relatedProductsCopy);
+      if (products.length < 7) {
+        setRightButtonOpacity({ opacity: '0' });
+      }
     }).catch((err) => {
       console.log('Unable to get related product id from server ', err);
     });
@@ -105,7 +108,7 @@ export default function RelatedProductsCards() {
           display:flex;
           width:90%;
           border:dotted;
-          overflow:scroll;
+          overflow-x:scroll;
         `}
         >
           {relatedProducts.map(
@@ -135,7 +138,7 @@ export default function RelatedProductsCards() {
                   padding:0.25rem;
                   border:solid;
             `}>
-                <ProductCard product={product} />
+                PlaceHolder
               </div>
             ),
           )}
@@ -150,11 +153,10 @@ export default function RelatedProductsCards() {
                   padding:0.25rem;
                   border:solid;
             `}>
-                <ProductCard product={product} />
+                PlaceHolder
               </div>
             ),
           )}
-
         </div>
         {/* left handler */}
         <button
