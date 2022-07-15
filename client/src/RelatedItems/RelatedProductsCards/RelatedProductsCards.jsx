@@ -1,8 +1,8 @@
 /** @jsx jsx */
+import { css, jsx } from '@emotion/react';
 import { useEffect, useRef, useState } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import axios from 'axios';
-import { css, jsx } from '@emotion/react';
 
 import ProductCard from './ProductCard';
 import currentProductState from '../../currentProduct';
@@ -80,7 +80,7 @@ export default function RelatedProductsCards() {
           display:flex;
           justify-content:center;
           width:100%;
-          // border:solid;
+          border:solid;
     `}>
         <button
           type="button"
@@ -95,7 +95,8 @@ export default function RelatedProductsCards() {
           justify-content:center;
           align-items:center;
           color:white;
-          font-size:5rem;`}
+          font-size:5rem;
+          border:solid;`}
         >
           &#8249;
         </button>
@@ -106,7 +107,7 @@ export default function RelatedProductsCards() {
           border-sizing: border-box;
           display:flex;
           width:90%;
-          // border:dotted;
+          border:dotted;
           overflow-x:scroll;
         `}
         >
@@ -119,14 +120,14 @@ export default function RelatedProductsCards() {
                   border-sizing: border-box;
                   width:14%;
                   padding:0.25rem;
-                  // border:solid;
+                  border:solid;
             `}>
                 <ProductCard product={product} />
               </div>
             ),
           )}
           {/* test css */}
-          {relatedProducts.map(
+          {/* {relatedProducts.map(
             (product) => (
               <div
                 key={product.id}
@@ -135,7 +136,7 @@ export default function RelatedProductsCards() {
                   border-sizing: border-box;
                   width:14%;
                   padding:0.25rem;
-                  // border:solid;
+                  border:solid;
             `}>
                 PlaceHolder
               </div>
@@ -150,12 +151,12 @@ export default function RelatedProductsCards() {
                   border-sizing: border-box;
                   width:14%;
                   padding:0.25rem;
-                  // border:solid;
+                  border:solid;
             `}>
                 PlaceHolder
               </div>
             ),
-          )}
+          )} */}
         </div>
         {/* left handler */}
         <button
@@ -171,7 +172,8 @@ export default function RelatedProductsCards() {
             justify-content:center;
             align-items:center;
             color:white;
-            font-size:5rem;`}
+            font-size:5rem;
+            border:solid;`}
         >
           &#8250;
         </button>
