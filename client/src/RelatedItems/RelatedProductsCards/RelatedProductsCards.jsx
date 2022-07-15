@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import axios from 'axios';
 import { css, jsx } from '@emotion/react';
@@ -11,6 +11,13 @@ import relatedProductsState from '../ModelRelatedItems/relatedProductsState';
 export default function RelatedProductsCards() {
   const currentProduct = useRecoilValue(currentProductState);
   const [relatedProducts, setRelatedProducts] = useRecoilState(relatedProductsState);
+  const myRef = useRef(null);
+
+  const scrollRightHandler = (e) => {
+    e.preventDefault();
+    console.log(myRef.current.scrollLeft);
+    myRef.current.scrollLeft += 200;
+  };
 
   useEffect(() => {
     const relatedProductsRequests = [];
@@ -38,6 +45,15 @@ export default function RelatedProductsCards() {
     }).catch((err) => {
       console.log('Unable to get related product id from server ', err);
     });
+
+    // const container = document.querySelector('#related-Products-slider');
+    // const container = document.getElementById('related-Products-slider');
+
+    // console.log(container);
+    // container.addEventListener('scroll', scrollRightHandler);
+    // return () => {
+    //   container.removeEventListener('scroll', scrollRightHandler);
+    // };
   }, []);
 
   if (relatedProducts.length === 0) {
@@ -47,12 +63,13 @@ export default function RelatedProductsCards() {
   return (
     <div>
       <h2>More in related products</h2>
-      <div css={css`
-    border-sizing: border-box;
-    display:flex;
-    justify-content:center;
-    width:100%;
-    border:solid;
+      <div
+        css={css`
+          border-sizing: border-box;
+          display:flex;
+          justify-content:center;
+          width:100%;
+          border:solid;
     `}>
         <button
           type="button"
@@ -71,13 +88,14 @@ export default function RelatedProductsCards() {
           &#8249;
         </button>
         <div
+          ref={myRef}
+          id="related-Products-slider"
           css={css`
           border-sizing: border-box;
           display:flex;
           width:90%;
-          // transform:translate(-100%);
           border:dotted;
-          overflow:auto;
+          overflow:scroll;
         `}
         >
           {relatedProducts.map(
@@ -85,11 +103,11 @@ export default function RelatedProductsCards() {
               <div
                 key={product.id}
                 css={css`
-                flex: 0 0 14%;
-            border-sizing: border-box;
-            width:14%;
-            padding:0.25rem;
-            border:solid;
+                  flex: 0 0 14%;
+                  border-sizing: border-box;
+                  width:14%;
+                  padding:0.25rem;
+                  border:solid;
             `}>
                 <ProductCard product={product} />
               </div>
@@ -101,11 +119,11 @@ export default function RelatedProductsCards() {
               <div
                 key={product.id}
                 css={css`
-                flex: 0 0 14%;
-            border-sizing: border-box;
-            width:14%;
-            padding:0.25rem;
-            border:solid;
+                  flex: 0 0 14%;
+                  border-sizing: border-box;
+                  width:14%;
+                  padding:0.25rem;
+                  border:solid;
             `}>
                 <ProductCard product={product} />
               </div>
@@ -116,21 +134,21 @@ export default function RelatedProductsCards() {
               <div
                 key={product.id}
                 css={css`
-                flex: 0 0 14%;
-            border-sizing: border-box;
-            width:14%;
-            padding:0.25rem;
-            border:solid;
+                  flex: 0 0 14%;
+                  border-sizing: border-box;
+                  width:14%;
+                  padding:0.25rem;
+                  border:solid;
             `}>
                 <ProductCard product={product} />
               </div>
             ),
           )}
 
-
         </div>
         {/* left handler */}
         <button
+          onClick={scrollRightHandler}
           type="button"
           css={css`
             border-sizing: border-box;
