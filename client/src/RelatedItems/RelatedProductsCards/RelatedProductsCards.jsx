@@ -40,44 +40,113 @@ export default function RelatedProductsCards() {
     });
   }, []);
 
-  useEffect(() => {
-    // console.log('2nd related products', relatedProducts);
-  }, [relatedProducts]);
   if (relatedProducts.length === 0) {
     return <div>Products Card Loading...</div>;
   }
 
-  //   css={css`
-  //   padding: 10px;
-  //   margin: 10px;
-  //   border: solid black 2px;
-  // `}
-
   return (
     <div>
       <h2>More in related products</h2>
-      <ul
-        css={css`
-       padding: 10px;
-       margin: 10px;
-       border: solid black 2px;
-     `}
-      >
-        {relatedProducts.map(
-          (product) => (
-            <li
-              key={product.id}
-              css={css`
-                display: inline-block;
-                margin-left: 14px;
-              `}
-            >
-              <ProductCard product={product} />
-            </li>
-          ),
-        )}
-      </ul>
+      <div css={css`
+    border-sizing: border-box;
+    display:flex;
+    justify-content:center;
+    width:100%;
+    border:solid;
+    `}>
+        <button
+          type="button"
+          css={css`
+          border-sizing: border-box;
+          width:5%;
+          z-index:10;
+          background-color: rgba(0,0,0,0.25);
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          color:white;
+          font-size:5rem;
+          border:solid;`}
+        >
+          &#8249;
+        </button>
+        <div
+          css={css`
+          border-sizing: border-box;
+          display:flex;
+          width:90%;
+          // transform:translate(-100%);
+          border:dotted;
+          overflow:auto;
+        `}
+        >
+          {relatedProducts.map(
+            (product) => (
+              <div
+                key={product.id}
+                css={css`
+                flex: 0 0 14%;
+            border-sizing: border-box;
+            width:14%;
+            padding:0.25rem;
+            border:solid;
+            `}>
+                <ProductCard product={product} />
+              </div>
+            ),
+          )}
+          {/* test css */}
+          {relatedProducts.map(
+            (product) => (
+              <div
+                key={product.id}
+                css={css`
+                flex: 0 0 14%;
+            border-sizing: border-box;
+            width:14%;
+            padding:0.25rem;
+            border:solid;
+            `}>
+                <ProductCard product={product} />
+              </div>
+            ),
+          )}
+          {relatedProducts.map(
+            (product) => (
+              <div
+                key={product.id}
+                css={css`
+                flex: 0 0 14%;
+            border-sizing: border-box;
+            width:14%;
+            padding:0.25rem;
+            border:solid;
+            `}>
+                <ProductCard product={product} />
+              </div>
+            ),
+          )}
 
+
+        </div>
+        {/* left handler */}
+        <button
+          type="button"
+          css={css`
+            border-sizing: border-box;
+            width:5%;
+            z-index:10;
+            background-color: rgba(0,0,0,0.25);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            color:white;
+            font-size:5rem;
+            border:solid;`}
+        >
+          &#8250;
+        </button>
+      </div>
     </div>
   );
 }

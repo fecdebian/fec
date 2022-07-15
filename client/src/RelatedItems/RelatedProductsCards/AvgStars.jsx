@@ -55,9 +55,7 @@ function AvgStars({ currentProduct }) {
     return <div>Loading...</div>;
   }
   return (
-    <div>
-      <StarReview num={Number(avgStars)} />
-    </div>
+    <StarReview num={Number(avgStars)} />
   );
 }
 
