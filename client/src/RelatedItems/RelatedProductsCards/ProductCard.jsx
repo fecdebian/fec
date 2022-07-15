@@ -1,9 +1,9 @@
+/** @jsx jsx */
+import { css, jsx } from '@emotion/react';
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useRecoilValue } from 'recoil';
 import axios from 'axios';
-/** @jsx jsx */
-import { css, jsx } from '@emotion/react';
 
 import AvgStars from './AvgStars';
 import ProductImage from './ProductImage';
@@ -11,8 +11,6 @@ import currentMetaReview from '../../SharedComponents/reviewMeta';
 
 export default function ProductsCard({ product }) {
   const currentProductMetaReview = useRecoilValue(currentMetaReview);
-
-  // const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [avgStars, setAvgStars] = useState(0);
   const [characteristics, setCharacteristics] = useState({});
@@ -53,7 +51,6 @@ export default function ProductsCard({ product }) {
       .catch((err) => {
         setIsLoaded(true);
         console.log(err);
-        // setError(err);
       });
   }, []);
 
