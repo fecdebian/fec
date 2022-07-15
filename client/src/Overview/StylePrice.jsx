@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import {
   useRecoilState,
 } from 'recoil';
@@ -34,7 +34,7 @@ function StylePrice({ currentProduct, currentStyle }) {
       })
       .catch((err) => console.log('error getting product styles: ', err));
   }
-  console.log('productStyles:', productStyles);
+
   useEffect(() => {
     getStyles();
   }, [product]);
