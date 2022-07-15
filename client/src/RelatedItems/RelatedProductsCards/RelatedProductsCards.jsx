@@ -80,7 +80,7 @@ export default function RelatedProductsCards() {
           display:flex;
           justify-content:center;
           width:100%;
-          border:solid;
+          // border:solid;
     `}>
         <button
           type="button"
@@ -95,8 +95,7 @@ export default function RelatedProductsCards() {
           justify-content:center;
           align-items:center;
           color:white;
-          font-size:5rem;
-          border:solid;`}
+          font-size:5rem;`}
         >
           &#8249;
         </button>
@@ -107,7 +106,7 @@ export default function RelatedProductsCards() {
           border-sizing: border-box;
           display:flex;
           width:90%;
-          border:dotted;
+          // border:dotted;
           overflow-x:scroll;
         `}
         >
@@ -120,7 +119,7 @@ export default function RelatedProductsCards() {
                   border-sizing: border-box;
                   width:14%;
                   padding:0.25rem;
-                  border:solid;
+                  // border:solid;
             `}>
                 <ProductCard product={product} />
               </div>
@@ -136,7 +135,7 @@ export default function RelatedProductsCards() {
                   border-sizing: border-box;
                   width:14%;
                   padding:0.25rem;
-                  border:solid;
+                  // border:solid;
             `}>
                 PlaceHolder
               </div>
@@ -151,7 +150,7 @@ export default function RelatedProductsCards() {
                   border-sizing: border-box;
                   width:14%;
                   padding:0.25rem;
-                  border:solid;
+                  // border:solid;
             `}>
                 PlaceHolder
               </div>
@@ -172,8 +171,7 @@ export default function RelatedProductsCards() {
             justify-content:center;
             align-items:center;
             color:white;
-            font-size:5rem;
-            border:solid;`}
+            font-size:5rem;`}
         >
           &#8250;
         </button>
