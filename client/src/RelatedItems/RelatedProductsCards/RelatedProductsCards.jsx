@@ -1,8 +1,8 @@
 /** @jsx jsx */
+import { css, jsx } from '@emotion/react';
 import { useEffect, useRef, useState } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import axios from 'axios';
-import { css, jsx } from '@emotion/react';
 
 import ProductCard from './ProductCard';
 import currentProductState from '../../currentProduct';
@@ -126,7 +126,7 @@ export default function RelatedProductsCards() {
             ),
           )}
           {/* test css */}
-          {relatedProducts.map(
+          {/* {relatedProducts.map(
             (product) => (
               <div
                 key={product.id}
@@ -155,7 +155,7 @@ export default function RelatedProductsCards() {
                 PlaceHolder
               </div>
             ),
-          )}
+          )} */}
         </div>
         {/* left handler */}
         <button
