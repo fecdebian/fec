@@ -6,10 +6,10 @@ import { css, jsx } from '@emotion/react';
 import StyleThumbnail from './StyleThumbnail';
 import { selectedProductStyle } from './overviewAtoms';
 
-function StyleList({ productStyles }) {
+function AddToCart() {
   const currentStyle = useRecoilValue(selectedProductStyle);
 
-  if (productStyles[0] === undefined) {
+  if (currentStyle.style_id === undefined) {
     return <div>Styles Loading...</div>;
   }
 
@@ -18,9 +18,6 @@ function StyleList({ productStyles }) {
       <span>
         {currentStyle.name}
       </span>
-      <ul>
-        {productStyles.map((style) => <StyleThumbnail key={style.style_id} styleThumb={style} />)}
-      </ul>
     </div>
   );
 }
@@ -29,4 +26,4 @@ function StyleList({ productStyles }) {
 //   productStyles: PropTypes.array
 // };
 
-export default StyleList;
+export default AddToCart;
