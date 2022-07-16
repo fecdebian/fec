@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import {
   useRecoilState,
 } from 'recoil';
@@ -22,10 +22,9 @@ function StylePrice({ currentProduct, currentStyle }) {
       url: `/products/${productID}/styles`,
     })
       .then((response) => {
-        const allStyles = {};
+        const allStyles = response.data.results;
         let defaultStyle = {};
         response.data.results.forEach((result) => {
-          allStyles[result.style_id] = result;
           if (result['default?'] === true) {
             defaultStyle = result;
           }

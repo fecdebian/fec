@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import AvgStars from './AvgStars';
 import ProductImage from './ProductImage';
 
 export default function ProductsCard({ product }) {
   return (
     <>
+      <button type="submit">Button</button>
       <ProductImage currentProduct={product} />
       <div>{product.category}</div>
       <div>{product.name}</div>
