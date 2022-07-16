@@ -7,6 +7,7 @@ import axios from 'axios';
 import ProductCard from './ProductCard';
 import currentProductState from '../../currentProduct';
 import relatedProductsState from '../ModelRelatedItems/relatedProductsState';
+// import Modal from './Modal/Modal';
 
 export default function RelatedProductsCards() {
   const currentProduct = useRecoilValue(currentProductState);
@@ -14,6 +15,8 @@ export default function RelatedProductsCards() {
   const scrollRef = useRef(null);
   const [rightButtonOpacity, setRightButtonOpacity] = useState({});
   const [leftButtonOpacity, setLeftButtonOpacity] = useState({ opacity: '0' });
+  const [currentProductDetail, setCurrentProductDetail] = useState({});
+  // const [show, setShow] = useState(false);
 
   const scrollRightHandler = (e) => {
     e.preventDefault();
@@ -43,6 +46,12 @@ export default function RelatedProductsCards() {
       url: `/products/${currentProduct.id}/related`,
       params: { product_id: currentProduct.id },
     }).then((res) => {
+      relatedProductsRequests.push(
+        axios({
+          method: 'get',
+          url: `/products/${currentProduct.id}`,
+        }),
+      );
       res.data.forEach((id) => {
         // console.log('id ', id);
         relatedProductsRequests.push(
@@ -54,8 +63,9 @@ export default function RelatedProductsCards() {
       });
       return Promise.all(relatedProductsRequests);
     }).then((products) => {
+      setCurrentProductDetail(products[0].data);
       const relatedProductsCopy = [];
-      products.forEach((product) => {
+      products.slice(1).forEach((product) => {
         relatedProductsCopy.push(product.data);
       });
       setRelatedProducts(relatedProductsCopy);
@@ -79,9 +89,9 @@ export default function RelatedProductsCards() {
           border-sizing: border-box;
           display:flex;
           justify-content:center;
-          width:100%;
-          border:solid;
-    `}>
+          width:100;
+          `}
+      >
         <button
           type="button"
           onClick={scrollLeftHandler}
@@ -90,13 +100,13 @@ export default function RelatedProductsCards() {
           border-sizing: border-box;
           width:5%;
           z-index:10;
-          background-color: rgba(0,0,0,0.25);
           display:flex;
           justify-content:center;
           align-items:center;
-          color:white;
-          font-size:5rem;
-          border:solid;`}
+          color:black;
+          background-color:transparent;
+          border:none;
+          font-size:5rem;`}
         >
           &#8249;
         </button>
@@ -107,7 +117,6 @@ export default function RelatedProductsCards() {
           border-sizing: border-box;
           display:flex;
           width:90%;
-          border:dotted;
           overflow-x:scroll;
         `}
         >
@@ -120,14 +129,18 @@ export default function RelatedProductsCards() {
                   border-sizing: border-box;
                   width:14%;
                   padding:0.25rem;
-                  border:solid;
+                  position:relative;
             `}>
-                <ProductCard product={product} />
+                <ProductCard
+                  selectedProduct={product}
+                  mainProduct={currentProductDetail}
+                // showModalHandler={showModalHandler}
+                />
               </div>
             ),
           )}
           {/* test css */}
-          {/* {relatedProducts.map(
+          {relatedProducts.map(
             (product) => (
               <div
                 key={product.id}
@@ -136,7 +149,6 @@ export default function RelatedProductsCards() {
                   border-sizing: border-box;
                   width:14%;
                   padding:0.25rem;
-                  border:solid;
             `}>
                 PlaceHolder
               </div>
@@ -151,14 +163,13 @@ export default function RelatedProductsCards() {
                   border-sizing: border-box;
                   width:14%;
                   padding:0.25rem;
-                  border:solid;
             `}>
                 PlaceHolder
               </div>
             ),
-          )} */}
+          )}
         </div>
-        {/* left handler */}
+        {/* right handler */}
         <button
           type="button"
           onClick={scrollRightHandler}
@@ -167,17 +178,18 @@ export default function RelatedProductsCards() {
             border-sizing: border-box;
             width:5%;
             z-index:10;
-            background-color: rgba(0,0,0,0.25);
             display:flex;
             justify-content:center;
             align-items:center;
-            color:white;
-            font-size:5rem;
-            border:solid;`}
+            color:black;
+            background-color:transparent;
+            border:none;
+            font-size:5rem;`}
         >
           &#8250;
         </button>
       </div>
+      {/* <Modal show={show} /> */}
     </div>
   );
 }

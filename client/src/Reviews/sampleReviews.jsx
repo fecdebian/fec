@@ -26,7 +26,7 @@ export default {
       body: 'The region borders Russia and is near the Ural Mountains. The Ural River is the border between Asia and Europe and flows from Russia to the Caspian Sea through the region, meaning western West Kazakhstan is in Eastern Europe. West Kazakhstan region borders Aktobe Region to the east and Atyrau Region to the south, in addition to the following Russian Oblasts: Astrakhan Oblast to the south-west, Volgograd Oblast to the west, Saratov Oblast to the north-west, Samara Oblast to the north and Orenburg Oblast to the north-east.',
       date: '2022-06-02T00:00:00.000Z',
       reviewer_name: '',
-      helpfulness: 1,
+      helpfulness: 3,
       photos: [],
     },
     {
@@ -39,7 +39,7 @@ export default {
       body: '',
       date: '2022-06-02T00:00:00.000Z',
       reviewer_name: '',
-      helpfulness: 1,
+      helpfulness: 2,
       photos: [],
     },
     {
@@ -52,7 +52,7 @@ export default {
       body: 'love',
       date: '2022-06-02T00:00:00.000Z',
       reviewer_name: 'amy',
-      helpfulness: 0,
+      helpfulness: 1,
       photos: [],
     },
     {

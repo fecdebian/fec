@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
+// import NoImage from '../../../asset/image/NoImage.png';
+
 function ProductImage({ currentProduct }) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -20,11 +22,22 @@ function ProductImage({ currentProduct }) {
         styleResults.forEach((result) => {
           if (result['default?'] === true) {
             hasDefault = true;
-            setProductImage(result.photos[0].thumbnail_url);
+            if (result.photos[0].thumbnail_url !== null) {
+              setProductImage(result.photos[0].thumbnail_url);
+            } else {
+              // setProductImage('__dirname + ../../../asset/image/NoImage.png');
+              // setProductImage(NoImage);
+              // setProductImage('client/asset/image/NoImage.png');
+              setProductImage('https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg');
+            }
           }
         });
         if (hasDefault === false) {
-          setProductImage(styleResults[0].photos[0].thumbnail_url);
+          if (styleResults[0].photos[0].thumbnail_url !== null) {
+            setProductImage(styleResults[0].photos[0].thumbnail_url);
+          } else {
+            setProductImage('https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg');
+          }
         }
         setIsLoaded(true);
       })
@@ -46,10 +59,10 @@ function ProductImage({ currentProduct }) {
     return <div>Loading...</div>;
   }
   return (
-    <div>
-      <img alt={product.name} src={productImage} width="100%" height="160" />
-      {/* <img alt={product.name} src={productImage} /> */}
-    </div>
+    // <div>
+    <img alt={product.name} src={productImage} width="100%" height="160" />
+    // <img alt={product.name} src="../../../asset/image/NoImage.png" width="100%" height="160" />
+    // </div>
   );
 }
 
