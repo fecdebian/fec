@@ -4,12 +4,13 @@ import { useState } from 'react';
 import { css, jsx } from '@emotion/react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import axios from 'axios';
-import { questionFormState } from './atoms';
+import { questionFormState, updateQuestionsState } from './atoms';
 import currentProductState from '../currentProduct';
 
 function AddQuestion() {
   const [questionForm, setQuestionForm] = useRecoilState(questionFormState);
   const product = useRecoilValue(currentProductState);
+  const [updateQuestions, setUpdateQuestions] = useRecoilState(updateQuestionsState);
   const [invalidInput, setInvalidInput] = useState('');
 
   function handleCloseForm(e) {
@@ -35,14 +36,14 @@ function AddQuestion() {
     axios({
       method: 'post',
       url: '/qa/questions',
-      params: {
+      data: {
         body: e.target.body.value,
         name: e.target.nickname.value,
         email: e.target.email.value,
         product_id: product.id,
       },
-    }).then((res) => {
-      console.log(res.status);
+    }).then(() => {
+      setUpdateQuestions(updateQuestions + 1);
     }).catch((err) => {
       console.error('error posting question: ', err);
     });
@@ -116,7 +117,7 @@ function AddQuestion() {
         For authentication reasons, you will not be emailed.
         <br />
         <br />
-        <input type="submit" value="Submit Form" />
+        <input type="submit" value="Submit Question" />
         <br />
         <br />
         <div className="error">

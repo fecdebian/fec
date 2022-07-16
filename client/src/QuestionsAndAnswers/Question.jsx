@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import Answers from './Answers';
+import AddAnswer from './AddAnswer';
 
 function Question({ question }) {
   const [clicked, setClicked] = useState(false);
@@ -29,7 +30,7 @@ function Question({ question }) {
           {' ('}
           <span>{clicked ? question.question_helpfulness + 1 : question.question_helpfulness}</span>
           {') | '}
-          <button type="button">Add Answer</button>
+          <AddAnswer key={question.question_id} question={question} />
         </span>
       </div>
       <Answers key={question.question_id} question={question} />

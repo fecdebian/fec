@@ -1,5 +1,7 @@
 /* eslint-disable max-len */
-import React, { useState } from 'react';
+/** @jsx jsx */
+import { useState } from 'react';
+import { css, jsx } from '@emotion/react';
 import PropTypes from 'prop-types';
 import EachAnswer from './EachAnswer';
 
@@ -78,7 +80,18 @@ function Answers({ question }) {
 
   return (
     <span>
-      <ul key={question.question_id}>{selectedView.map((answer) => <EachAnswer key={answer.id} answer={answer} />)}</ul>
+      <ul
+        key={question.question_id}
+        css={css`
+        max-height: 200px;
+        overflow: auto;
+        padding: 8px;
+        margin: 10px;
+        border: solid black 1px;
+      `}
+      >
+        {selectedView.map((answer) => <EachAnswer key={answer.id} answer={answer} />)}
+      </ul>
       {answerList.length > 2 ? <button onClick={handleClick} type="button">{showAll ? 'Collapse Answers' : 'See More Answers'}</button> : null}
     </span>
   );

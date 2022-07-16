@@ -9,6 +9,7 @@ function MoreAnsweredQuestions() {
 
   function handleClick(e) {
     e.preventDefault();
+    console.log(moreQuestions);
     setMoreQuestions(moreQuestions - 2);
   }
 

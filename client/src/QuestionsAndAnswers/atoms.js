@@ -40,3 +40,8 @@ export const questionFormState = atom({
   key: 'questionFormState',
   default: false,
 });
+
+export const updateQuestionsState = atom({
+  key: 'updateQuestionsState',
+  default: 0,
+});
