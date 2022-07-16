@@ -34,24 +34,6 @@ export default function Modal({
   }
   const comparingTable = {};
 
-  const testLoop = [];
-  const table = (
-    <tbody>
-      {Object
-        .keys(comparingTable)
-        .map((key) => (
-          <tr key={key}>
-            <td>{comparingTable[key][1]}</td>
-            <td>{key}</td>
-            <td>{comparingTable[key][0]}</td>
-          </tr>
-        ))}
-    </tbody>
-  );
-  for (let i = 0; i < 5; i += 1) {
-    testLoop.push(table);
-  }
-
   if (show) {
     selectedProduct.features.forEach((item) => {
       comparingTable[item.feature] = [];
@@ -125,8 +107,11 @@ export default function Modal({
           padding:10px;
           border-top: 1px solid #eee;
           border-bottom: 1px solid #eee;
-          overflow: scroll;
+          overflow-y: auto;
+          height: 500px;
           position:relative;
+          display:flex;
+          justify-content:center;
         `}
         >
           <table>
@@ -134,6 +119,7 @@ export default function Modal({
               css={css`
                 position: -webkit-sticky;
                 position: sticky;
+                top:0;
               `}
             >
               <tr>
@@ -153,11 +139,6 @@ export default function Modal({
                   </tr>
                 ))}
             </tbody>
-            {/* overflow test */}
-            {testLoop.map((item) => {
-              return item;
-            })}
-            {/*  */}
           </table>
         </div>
         <div
