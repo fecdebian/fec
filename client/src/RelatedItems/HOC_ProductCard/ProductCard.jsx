@@ -3,9 +3,9 @@ import { css, jsx } from '@emotion/react';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import AvgStars from './RelatedProductsCards/AvgStars';
-import ProductImage from './RelatedProductsCards/ProductImage';
-import Modal from './RelatedProductsCards/Modal/Modal';
+import AvgStars from './AvgStars';
+import ProductImage from './ProductImage';
+import Modal from '../RelatedProductsCards/Modal/Modal';
 
 export default function ProductsCard({ selectedProduct, mainProduct }) {
   const [show, setShow] = useState(false);
@@ -33,7 +33,7 @@ export default function ProductsCard({ selectedProduct, mainProduct }) {
           font-weight:bold;
         `}
       >
-        &#10030;
+        <span>&#10030;</span>
       </button>
       <div>{selectedProduct.category}</div>
       <div>{selectedProduct.name}</div>

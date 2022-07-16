@@ -12,6 +12,7 @@ function AvgStars({ currentProduct }) {
   const productID = product.id;
   let avgRating = 0;
 
+  /* ===========    Gat rating from API and Calculate Average Rating    =========== */
   useEffect(() => {
     axios({
       method: 'get',
