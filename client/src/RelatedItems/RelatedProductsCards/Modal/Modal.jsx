@@ -29,7 +29,29 @@ export default function Modal({
   //     document.body.removeEventListener('keydown', closeOnEscapeKeyDown);
   //   };
   // }, []);
+  if (!show) {
+    return null;
+  }
   const comparingTable = {};
+
+  const testLoop = [];
+  const table = (
+    <tbody>
+      {Object
+        .keys(comparingTable)
+        .map((key) => (
+          <tr key={key}>
+            <td>{comparingTable[key][1]}</td>
+            <td>{key}</td>
+            <td>{comparingTable[key][0]}</td>
+          </tr>
+        ))}
+    </tbody>
+  );
+  for (let i = 0; i < 5; i += 1) {
+    testLoop.push(table);
+  }
+
   if (show) {
     selectedProduct.features.forEach((item) => {
       comparingTable[item.feature] = [];
@@ -48,9 +70,6 @@ export default function Modal({
     });
   }
 
-  if (!show) {
-    return null;
-  }
   return (
     <div
       className="modal"
@@ -107,11 +126,17 @@ export default function Modal({
           padding:10px;
           border-top: 1px solid #eee;
           border-bottom: 1px solid #eee;
-          overflow: auto;
+          overflow: scroll;
+          position:relative;
         `}
         >
           <table>
-            <thead>
+            <thead
+              css={css`
+                position: -webkit-sticky;
+                position: sticky;
+              `}
+            >
               <tr>
                 <th>{mainProduct.name}</th>
                 <th>Characteristic</th>
@@ -129,6 +154,11 @@ export default function Modal({
                   </tr>
                 ))}
             </tbody>
+            {/* overflow test */}
+            {testLoop.map((item) => {
+              return item;
+            })}
+            {/*  */}
           </table>
         </div>
         <div
