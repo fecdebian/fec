@@ -1,11 +1,12 @@
 /** @jsx jsx */
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import { css, jsx } from '@emotion/react';
 
-import { selectedProductStyle } from './overviewAtoms';
+import { selectedProductStyle, selectedSize } from './overviewAtoms';
 
 function SizeSelect() {
   const currentProductStyle = useRecoilValue(selectedProductStyle);
+  const [size, setSize] = useRecoilState(selectedSize);
   let sizesList = [];
 
   if (currentProductStyle.style_id === undefined) {
@@ -24,14 +25,24 @@ function SizeSelect() {
     }
   }
   sizesList = styleSizes;
-  console.log('allSizes', sizesList);
+  if (sizesList.length < 1) {
+    setSize('OUT OF STOCK');
+  }
+
+  const setNewSize = (e) => {
+    setSize(e.target.value);
+  };
 
   return (
-    <div>
-      <span>
-        {currentProductStyle.name}
-      </span>
-    </div>
+    <form>
+      <select value={size} onChange={setNewSize}>
+        {sizesList.map((oneSize) => (
+          <option value={Object.keys(oneSize)}>
+            {Object.keys(oneSize)}
+          </option>
+        ))}
+      </select>
+    </form>
   );
 }
 
