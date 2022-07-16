@@ -20,11 +20,19 @@ function ProductImage({ currentProduct }) {
         styleResults.forEach((result) => {
           if (result['default?'] === true) {
             hasDefault = true;
-            setProductImage(result.photos[0].thumbnail_url);
+            if (result.photos[0].thumbnail_url !== null) {
+              setProductImage(result.photos[0].thumbnail_url);
+            } else {
+              setProductImage('https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png');
+            }
           }
         });
         if (hasDefault === false) {
-          setProductImage(styleResults[0].photos[0].thumbnail_url);
+          if (styleResults[0].photos[0].thumbnail_url !== null) {
+            setProductImage(styleResults[0].photos[0].thumbnail_url);
+          } else {
+            setProductImage('https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png');
+          }
         }
         setIsLoaded(true);
       })
@@ -46,10 +54,9 @@ function ProductImage({ currentProduct }) {
     return <div>Loading...</div>;
   }
   return (
-    <div>
-      <img alt={product.name} src={productImage} width="100%" height="160" />
-      {/* <img alt={product.name} src={productImage} /> */}
-    </div>
+    // <div>
+    <img alt={product.name} src={productImage} width="100%" height="160" />
+    // </div>
   );
 }
 
