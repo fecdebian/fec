@@ -2,13 +2,11 @@
 import { useRecoilValue } from 'recoil';
 import { css, jsx } from '@emotion/react';
 
-import { selectedProductStyle, currentProductStyles } from './overviewAtoms';
+import { selectedProductStyle } from './overviewAtoms';
 
 function SizeSelect() {
-  const currentProductStyleshere = useRecoilValue(currentProductStyles);
   const currentProductStyle = useRecoilValue(selectedProductStyle);
   let sizesList = [];
-  console.log('currentproductstyles:', currentProductStyleshere);
 
   if (currentProductStyle.style_id === undefined) {
     return <div>Sizes Loading...</div>;
