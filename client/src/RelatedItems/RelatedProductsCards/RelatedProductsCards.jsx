@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import axios from 'axios';
 
-import ProductCard from './ProductCard';
+import ProductCard from '../ProductCard';
 import currentProductState from '../../currentProduct';
 import relatedProductsState from '../ModelRelatedItems/relatedProductsState';
 // import Modal from './Modal/Modal';

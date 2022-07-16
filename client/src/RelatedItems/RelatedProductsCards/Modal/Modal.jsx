@@ -15,20 +15,6 @@ const saveCheckmarkOrValue = (table, character) => {
 export default function Modal({
   show, closeModalHandler, selectedProduct, mainProduct,
 }) {
-  // //escape key button functionality
-  // const closeOnEscapeKeyDown = (e) => {
-  //   console.log((e.charCode || e.keyCode) === 27);
-  //   if ((e.charCode || e.keyCoode) === 27) {
-  //     closeModalHandler();
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   document.body.addEventListener('keydown', closeOnEscapeKeyDown);
-  //   return function cleanUp() {
-  //     document.body.removeEventListener('keydown', closeOnEscapeKeyDown);
-  //   };
-  // }, []);
   if (!show) {
     return null;
   }
@@ -108,10 +94,11 @@ export default function Modal({
           border-top: 1px solid #eee;
           border-bottom: 1px solid #eee;
           overflow-y: auto;
-          height: 500px;
+          height: 20rem;
           position:relative;
           display:flex;
           justify-content:center;
+          align-items: flex-start;
         `}
         >
           <table>
@@ -139,6 +126,8 @@ export default function Modal({
                   </tr>
                 ))}
             </tbody>
+            {/*  */}
+            {/*  */}
           </table>
         </div>
         <div
