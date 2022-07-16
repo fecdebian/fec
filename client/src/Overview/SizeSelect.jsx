@@ -1,38 +1,40 @@
 /** @jsx jsx */
-import { useRecoilValue, useRecoilState } from 'recoil';
-import PropTypes from 'prop-types';
+import { useRecoilValue } from 'recoil';
 import { css, jsx } from '@emotion/react';
 
-import StyleThumbnail from './StyleThumbnail';
-import { selectedProductStyle } from './overviewAtoms';
+import { selectedProductStyle, currentProductStyles } from './overviewAtoms';
 
 function SizeSelect() {
-  const currentStyle = useRecoilValue(selectedProductStyle);
-  const [allSizes, setAllSizes] = useRecoilState(selectedProductSizes);
+  const currentProductStyleshere = useRecoilValue(currentProductStyles);
+  const currentProductStyle = useRecoilValue(selectedProductStyle);
+  let sizesList = [];
+  console.log('currentproductstyles:', currentProductStyleshere);
 
-  if (currentStyle.style_id === undefined) {
+  if (currentProductStyle.style_id === undefined) {
     return <div>Sizes Loading...</div>;
   }
 
-  const styleSKUs = Object.keys(currentStyle.skus);
+  const styleSKUs = Object.values(currentProductStyle.skus);
   const styleSizes = [];
   for (let i = 0; i < styleSKUs.length; i += 1) {
     if (styleSKUs[i].quantity > 0) {
-     styleSizes.push({styleSKUs[i].size: styleSKUs[i].quantity})
+      const currentSize = styleSKUs[i].size;
+      const currentQuant = styleSKUs[i].quantity;
+      const sizeAdd = {};
+      sizeAdd[currentSize] = currentQuant;
+      styleSizes.push(sizeAdd);
     }
   }
+  sizesList = styleSizes;
+  console.log('allSizes', sizesList);
 
   return (
     <div>
       <span>
-        {currentStyle.name}
+        {currentProductStyle.name}
       </span>
     </div>
   );
 }
-
-// SizeSelect.propTypes = {
-//   productStyles: PropTypes.array
-// };
 
 export default SizeSelect;

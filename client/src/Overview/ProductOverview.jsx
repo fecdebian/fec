@@ -1,7 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useRecoilValue } from 'recoil';
 
-function ProductOverview({ slogan, description }) {
+import currentProductState from '../currentProduct';
+
+function ProductOverview() {
+  const product = useRecoilValue(currentProductState);
+  const slogan = product.slogan;
+  const description = product.description;
   return (
     <div>
       <h2>{slogan}</h2>
@@ -10,8 +15,4 @@ function ProductOverview({ slogan, description }) {
   );
 }
 
-ProductOverview.propTypes = {
-  slogan: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-};
 export default ProductOverview;

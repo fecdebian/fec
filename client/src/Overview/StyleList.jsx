@@ -1,13 +1,13 @@
 /** @jsx jsx */
 import { useRecoilValue } from 'recoil';
-import PropTypes from 'prop-types';
 import { css, jsx } from '@emotion/react';
 
 import StyleThumbnail from './StyleThumbnail';
-import { selectedProductStyle } from './overviewAtoms';
+import { currentProductStyles, selectedProductStyle } from './overviewAtoms';
 
-function StyleList({ productStyles }) {
+function StyleList() {
   const currentStyle = useRecoilValue(selectedProductStyle);
+  const productStyles = useRecoilValue(currentProductStyles);
 
   if (productStyles[0] === undefined) {
     return <div>Styles Loading...</div>;
@@ -24,9 +24,5 @@ function StyleList({ productStyles }) {
     </div>
   );
 }
-
-// StyleList.propTypes = {
-//   productStyles: PropTypes.array
-// };
 
 export default StyleList;
