@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import {
-  // useRecoilValue,
   atom,
   useRecoilState,
+  useRecoilValue,
   useSetRecoilState,
 } from 'recoil';
 import axios from 'axios';
 
 import currentMetaReview from './reviewMeta';
+import currentProductState from '../currentProduct';
 import StarReview from './StarReview';
 
 const avgStarsState = atom({
@@ -18,8 +18,8 @@ const avgStarsState = atom({
 
 let totalReviews = 0;
 
-function ReviewWeightedAverage({ currentProduct }) {
-  const product = currentProduct;
+function ReviewWeightedAverage() {
+  const product = useRecoilValue(currentProductState);
   const productID = product.id;
   const [avgStars, setAvgStars] = useRecoilState(avgStarsState);
   const setMetaReview = useSetRecoilState(currentMetaReview);
@@ -69,16 +69,12 @@ function ReviewWeightedAverage({ currentProduct }) {
     <div>
       <StarReview num={averageStarRating} />
       <button>
-        Read all {totalReviews} reviews
+        Read all
+        {totalReviews}
+        reviews
       </button>
     </div>
   );
 }
-
-ReviewWeightedAverage.propTypes = {
-  currentProduct: PropTypes.shape({
-    id: PropTypes.number,
-  }).isRequired,
-};
 
 export default ReviewWeightedAverage;

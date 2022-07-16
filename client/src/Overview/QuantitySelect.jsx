@@ -1,15 +1,15 @@
 /** @jsx jsx */
 import { useRecoilValue } from 'recoil';
+import PropTypes from 'prop-types';
 import { css, jsx } from '@emotion/react';
 
 import StyleThumbnail from './StyleThumbnail';
-import { currentProductStyles, selectedProductStyle } from './overviewAtoms';
+import { selectedProductStyle } from './overviewAtoms';
 
-function StyleList() {
+function QuantitySelect() {
   const currentStyle = useRecoilValue(selectedProductStyle);
-  const productStyles = useRecoilValue(currentProductStyles);
 
-  if (productStyles[0] === undefined) {
+  if (currentStyle.style_id === undefined) {
     return <div>Styles Loading...</div>;
   }
 
@@ -18,11 +18,13 @@ function StyleList() {
       <span>
         {currentStyle.name}
       </span>
-      <ul>
-        {productStyles.map((style) => <StyleThumbnail key={style.style_id} styleThumb={style} />)}
-      </ul>
+
     </div>
   );
 }
 
-export default StyleList;
+// QuantitySelect.propTypes = {
+//   productStyles: PropTypes.array
+// };
+
+export default QuantitySelect;
