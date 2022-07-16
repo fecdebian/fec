@@ -58,6 +58,7 @@ export default function Modal({
         display:flex;
         align-items:center;
         justify-content:center;
+        z-index:10;
           `}
     >
       <div
