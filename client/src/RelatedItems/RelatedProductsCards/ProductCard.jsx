@@ -9,11 +9,11 @@ import Modal from './Modal/Modal';
 
 export default function ProductsCard({ selectedProduct, mainProduct }) {
   const [show, setShow] = useState(false);
-  const openModalHandler = (e) => {
+  const openModalHandler = () => {
     setShow(true);
   };
 
-  const closeModalHandler = (e) => {
+  const closeModalHandler = () => {
     setShow(false);
   };
 
