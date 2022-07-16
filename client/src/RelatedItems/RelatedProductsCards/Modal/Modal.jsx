@@ -38,8 +38,7 @@ export default function Modal({
 
     mainProduct.features.forEach((item) => {
       if (comparingTable[item.feature] === undefined) {
-        comparingTable[item.feature] = [];
-        comparingTable[item.feature].push(null);
+        comparingTable[item.feature] = [null];
         saveCheckmarkOrValue(comparingTable, item);
       } else {
         comparingTable[item.feature].push(item.value);
