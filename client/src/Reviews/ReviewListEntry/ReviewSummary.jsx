@@ -3,7 +3,7 @@ import { css, jsx } from '@emotion/react';
 import PropTypes from 'prop-types';
 
 export default function ReviewSummary({ summary }) {
-  const sum = summary.length > 50 ? `${summary.slice(0, 60)}...` : summary;
+  const sum = summary.length > 50 ? `${summary.slice(0, 50)}...` : summary;
 
   return (
     <div
