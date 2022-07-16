@@ -6,6 +6,7 @@ import { css, jsx } from '@emotion/react';
 
 import ReviewList from './ReviewList';
 import SubmitReview from './SubmitReview';
+import SortBy from './SortBy';
 import { ReviewsProvider } from './ReviewsContext';
 // import MovingDot from './MovingDot';
 
@@ -45,6 +46,7 @@ export default function Reviews() {
       `}
     >
       <ReviewsProvider>
+        <SortBy />
         <ReviewList />
         <SubmitReview />
       </ReviewsProvider>
