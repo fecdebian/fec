@@ -11,6 +11,6 @@ export const selectedProductStyle = atom({
 });
 
 export const selectedProductSizes = atom({
-  key: 'selectedProductStyle',
+  key: 'selectedProductSizes',
   default: [],
 });
