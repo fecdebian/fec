@@ -42,7 +42,12 @@ export default function ProductsCard({ selectedProduct, mainProduct }) {
         $
         {selectedProduct.default_price}
       </div>
-      <Modal show={show} closeModalHandler={closeModalHandler} />
+      <Modal
+        show={show}
+        closeModalHandler={closeModalHandler}
+        selectedProduct={selectedProduct}
+        mainProduct={mainProduct}
+      />
     </>
   );
 }

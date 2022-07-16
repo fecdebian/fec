@@ -3,23 +3,40 @@ import React, { useEffect } from 'react';
 import { css, jsx } from '@emotion/react';
 import PropTypes from 'prop-types';
 
-export default function Modal({ show, closeModalHandler }) {
-  const closeOnEscapeKeyDown = (e) => {
-    console.log('close');
-    console.log(e.charCode);
-    console.log(e.keyCode);
-    console.log((e.charCode || e.keyCode) === 27);
-    if ((e.charCode || e.keyCoode) === 27) {
-      closeModalHandler();
-    }
-  };
+export default function Modal({
+  show, closeModalHandler, selectedProduct, mainProduct,
+}) {
+  // //escape key button functionality
+  // const closeOnEscapeKeyDown = (e) => {
+  //   console.log((e.charCode || e.keyCode) === 27);
+  //   if ((e.charCode || e.keyCoode) === 27) {
+  //     closeModalHandler();
+  //   }
+  // };
 
-  useEffect(() => {
-    document.body.addEventListener('keydown', closeOnEscapeKeyDown);
-    return function cleanUp() {
-      document.body.removeEventListener('keydown', closeOnEscapeKeyDown);
-    };
-  }, []);
+  // useEffect(() => {
+  //   document.body.addEventListener('keydown', closeOnEscapeKeyDown);
+  //   return function cleanUp() {
+  //     document.body.removeEventListener('keydown', closeOnEscapeKeyDown);
+  //   };
+  // }, []);
+  const comparingTable = {};
+  if (show) {
+    selectedProduct.features.forEach((item) => {
+      comparingTable[item.feature] = [];
+      comparingTable[item.feature].push(item.value);
+    });
+
+    mainProduct.features.forEach((item) => {
+      if (comparingTable[item.feature] === undefined) {
+        comparingTable[item.feature] = [];
+        comparingTable[item.feature].push(null);
+        comparingTable[item.feature].push(item.value);
+      } else {
+        comparingTable[item.feature].push(item.value);
+      }
+    });
+  }
 
   if (!show) {
     return null;
@@ -70,7 +87,7 @@ export default function Modal({ show, closeModalHandler }) {
             margin: 0;
           `}
           >
-            Modal title
+            COMPARING
           </h4>
         </div>
         <div
@@ -79,9 +96,29 @@ export default function Modal({ show, closeModalHandler }) {
           padding:10px;
           border-top: 1px solid #eee;
           border-bottom: 1px solid #eee;
+          overflow: auto;
         `}
         >
-          This is modal content
+          <table>
+            <thead>
+              <tr>
+                <th>{mainProduct.name}</th>
+                <th>Comparing</th>
+                <th>{selectedProduct.name}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object
+                .keys(comparingTable)
+                .map((key) => (
+                  <tr key={key}>
+                    <td>{comparingTable[key][0]}</td>
+                    <td>{key}</td>
+                    <td>{comparingTable[key][1]}</td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
         </div>
         <div
           className="modal-footer"
@@ -105,4 +142,18 @@ export default function Modal({ show, closeModalHandler }) {
 Modal.propTypes = {
   show: PropTypes.bool.isRequired,
   closeModalHandler: PropTypes.func.isRequired,
+  selectedProduct: PropTypes.shape({
+    name: PropTypes.string,
+    features: PropTypes.arrayOf(PropTypes.shape({
+      feature: PropTypes.string,
+      value: PropTypes.string,
+    })),
+  }).isRequired,
+  mainProduct: PropTypes.shape({
+    name: PropTypes.string,
+    features: PropTypes.arrayOf(PropTypes.shape({
+      feature: PropTypes.string,
+      value: PropTypes.string,
+    })),
+  }).isRequired,
 };

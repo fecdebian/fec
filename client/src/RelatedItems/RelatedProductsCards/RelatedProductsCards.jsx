@@ -134,7 +134,7 @@ export default function RelatedProductsCards() {
                 <ProductCard
                   selectedProduct={product}
                   mainProduct={currentProductDetail}
-                  // showModalHandler={showModalHandler}
+                // showModalHandler={showModalHandler}
                 />
               </div>
             ),
