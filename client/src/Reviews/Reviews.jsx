@@ -19,11 +19,19 @@ export default function Reviews() {
 
   // Only in production
   // useEffect(() => {
+  //   let ignore = false;
+
   //   axios.get(`/reviews?product_id=${prod.id}`)
   //     .then((res) => {
-  //       setReviews(res.data.results);
+  //       if (!ignore) {
+  //         setReviews(res.data.results);
+  //       }
   //     })
   //     .catch((err) => console.error(err));
+
+  //   return () => {
+  //     ignore = true;
+  //   };
   // }, [prod]);
 
   // Only in production

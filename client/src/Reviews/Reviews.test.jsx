@@ -5,7 +5,7 @@ import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 
 import ReviewSummary from './ReviewListEntry/ReviewSummary';
-import sampleReviews from './sampleReview';
+import sampleReviews from './sampleReviews';
 
 let container = null;
 beforeEach(() => {
@@ -23,17 +23,17 @@ afterEach(() => {
 
 it('renders with or without a name', () => {
   act(() => {
-    render(<ReviewSummary summary={sampleReviews[0].summary} />, container);
+    render(<ReviewSummary summary={sampleReviews.results[0].summary} />, container);
   });
-  expect(container.textContent).toBe("I don't like the model's attitude in the camo picture");
+  expect(container.textContent).toBe("I don't like the model's attitude in the camo pict...");
 
   act(() => {
-    render(<ReviewSummary summary={sampleReviews[1].summary} />, container);
+    render(<ReviewSummary summary={sampleReviews.results[1].summary} />, container);
   });
-  expect(container.textContent).toBe('');
+  expect(container.textContent).toBe('Wikipedia summary');
 
   act(() => {
-    render(<ReviewSummary summary={sampleReviews[4].summary} />, container);
+    render(<ReviewSummary summary={sampleReviews.results[4].summary} />, container);
   });
   expect(container.textContent).toBe('Meh Camo');
 });
