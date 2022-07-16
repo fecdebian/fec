@@ -3,9 +3,9 @@ import { css, jsx } from '@emotion/react';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import AvgStars from './AvgStars';
-import ProductImage from './ProductImage';
-import Modal from '../RelatedProductsCards/Modal/Modal';
+import AvgStars from '../Template_ProductCard/AvgStars';
+import ProductImage from '../Template_ProductCard/ProductImage';
+import Modal from './Modal/Modal';
 
 export default function ProductsCard({ selectedProduct, mainProduct }) {
   const [show, setShow] = useState(false);

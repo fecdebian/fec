@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import axios from 'axios';
 
-import ProductCard from './ProductCard';
 import currentProductState from '../../currentProduct';
 import relatedProductsState from '../ModelRelatedItems/relatedProductsState';
 // import Modal from './Modal/Modal';
@@ -73,7 +72,8 @@ export default function RelatedProductsCards() {
         setRightButtonOpacity({ opacity: '0' });
       }
     }).catch((err) => {
-      console.log('Unable to get related product id from server ', err);
+      throw err;
+      // console.log('Unable to get related product id from server ', err);
     });
   }, []);
 
@@ -120,56 +120,10 @@ export default function RelatedProductsCards() {
           overflow-x:scroll;
         `}
         >
-          {relatedProducts.map(
-            (product) => (
-              <div
-                key={product.id}
-                css={css`
-                  flex: 0 0 14%;
-                  border-sizing: border-box;
-                  width:14%;
-                  padding:0.25rem;
-                  position:relative;
-            `}>
-                <ProductCard
-                  selectedProduct={product}
-                  mainProduct={currentProductDetail}
-                // showModalHandler={showModalHandler}
-                />
-              </div>
-            ),
-          )}
+
+          PlaceHolder
           {/* test css */}
-          {relatedProducts.map(
-            (product) => (
-              <div
-                key={product.id}
-                css={css`
-                  flex: 0 0 14%;
-                  border-sizing: border-box;
-                  width:14%;
-                  padding:0.25rem;
-            `}>
-                PlaceHolder
-              </div>
-            ),
-          )}
-          {relatedProducts.map(
-            (product) => (
-              <div
-                key={product.id}
-                css={css`
-                  flex: 0 0 14%;
-                  border-sizing: border-box;
-                  width:14%;
-                  padding:0.25rem;
-            `}>
-                PlaceHolder
-              </div>
-            ),
-          )}
         </div>
-        {/* right handler */}
         <button
           type="button"
           onClick={scrollRightHandler}
