@@ -18,13 +18,21 @@ export default function Reviews() {
   // const [reviews, setReviews] = useState([]);
 
   // Only in production
-  // useEffect(() => {
-  //   axios.get(`/reviews?product_id=${prod.id}`)
-  //     .then((res) => {
-  //       setReviews(res.data.results);
-  //     })
-  //     .catch((err) => console.error(err));
-  // }, [prod]);
+  useEffect(() => {
+    let ignore = false;
+
+    axios.get(`/reviews?product_id=${prod.id}`)
+      .then((res) => {
+        if (!ignore) {
+          setReviews(res.data.results);
+        }
+      })
+      .catch((err) => console.error(err));
+
+    return () => {
+      ignore = true;
+    };
+  }, [prod]);
 
   // Only in production
   // return reviews && (
