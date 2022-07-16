@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import axios from 'axios';
 
-import ProductCard from '../HOC_ProductCard/ProductCard';
+import ProductCard from '../Template_ProductCard/ProductCard';
 import currentProductState from '../../currentProduct';
 import relatedProductsState from '../ModelRelatedItems/relatedProductsState';
 // import Modal from './Modal/Modal';
@@ -12,10 +12,10 @@ import relatedProductsState from '../ModelRelatedItems/relatedProductsState';
 export default function RelatedProductsCards() {
   const currentProduct = useRecoilValue(currentProductState);
   const [relatedProducts, setRelatedProducts] = useRecoilState(relatedProductsState);
+  const [currentProductDetail, setCurrentProductDetail] = useState({});
   const scrollRef = useRef(null);
   const [rightButtonOpacity, setRightButtonOpacity] = useState({});
   const [leftButtonOpacity, setLeftButtonOpacity] = useState({ opacity: '0' });
-  const [currentProductDetail, setCurrentProductDetail] = useState({});
   // const [show, setShow] = useState(false);
 
   const scrollRightHandler = (e) => {
