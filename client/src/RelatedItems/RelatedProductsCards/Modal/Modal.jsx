@@ -3,6 +3,15 @@ import React, { useEffect } from 'react';
 import { css, jsx } from '@emotion/react';
 import PropTypes from 'prop-types';
 
+const checkMark = <span>&#10003;</span>;
+const saveCheckmarkOrValue = (table, character) => {
+  if (character.value === true) {
+    table[character.feature].push(checkMark);
+  } else {
+    table[character.feature].push(character.value);
+  }
+};
+
 export default function Modal({
   show, closeModalHandler, selectedProduct, mainProduct,
 }) {
@@ -24,16 +33,17 @@ export default function Modal({
   if (show) {
     selectedProduct.features.forEach((item) => {
       comparingTable[item.feature] = [];
-      comparingTable[item.feature].push(item.value);
+      saveCheckmarkOrValue(comparingTable, item);
     });
 
     mainProduct.features.forEach((item) => {
       if (comparingTable[item.feature] === undefined) {
         comparingTable[item.feature] = [];
         comparingTable[item.feature].push(null);
-        comparingTable[item.feature].push(item.value);
+        saveCheckmarkOrValue(comparingTable, item);
       } else {
         comparingTable[item.feature].push(item.value);
+        saveCheckmarkOrValue(comparingTable, item);
       }
     });
   }
@@ -104,7 +114,7 @@ export default function Modal({
             <thead>
               <tr>
                 <th>{mainProduct.name}</th>
-                <th>Comparing</th>
+                <th>Characteristic</th>
                 <th>{selectedProduct.name}</th>
               </tr>
             </thead>
@@ -113,9 +123,9 @@ export default function Modal({
                 .keys(comparingTable)
                 .map((key) => (
                   <tr key={key}>
-                    <td>{comparingTable[key][0]}</td>
-                    <td>{key}</td>
                     <td>{comparingTable[key][1]}</td>
+                    <td>{key}</td>
+                    <td>{comparingTable[key][0]}</td>
                   </tr>
                 ))}
             </tbody>
