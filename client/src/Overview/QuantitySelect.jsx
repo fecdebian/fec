@@ -1,30 +1,45 @@
 /** @jsx jsx */
-import { useRecoilValue } from 'recoil';
-import PropTypes from 'prop-types';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import { css, jsx } from '@emotion/react';
 
-import StyleThumbnail from './StyleThumbnail';
-import { selectedProductStyle } from './overviewAtoms';
+import { selectedProductStyle, selectedQuant, totalQuant } from './overviewAtoms';
 
 function QuantitySelect() {
-  const currentStyle = useRecoilValue(selectedProductStyle);
+  const currentProductStyle = useRecoilValue(selectedProductStyle);
+  const totalStyleQuant = useRecoilValue(totalQuant);
+  const [currentSelectedQuant, setCurrentSelectedQuant] = useRecoilState(selectedQuant);
+  let quantsList = ['-'];
 
-  if (currentStyle.style_id === undefined) {
-    return <div>Styles Loading...</div>;
+  if (currentProductStyle.style_id === undefined) {
+    return <div>Quants Loading...</div>;
   }
 
-  return (
-    <div>
-      <span>
-        {currentStyle.name}
-      </span>
+  let quantAvailable = totalStyleQuant;
+  if (quantAvailable > 15) {
+    quantAvailable = 15;
+  }
 
-    </div>
+  for (let i = 1; i < quantAvailable; i += 1) {
+    quantsList.push(i);
+  }
+
+  const setNewQuant = (e) => {
+    setCurrentSelectedQuant(e.target.value);
+  };
+
+  let keys = 0;
+  return (
+    <form>
+      <select value={currentSelectedQuant} onChange={setNewQuant}>
+        {quantsList.map((oneSize) => (
+          // eslint-disable-next-line no-plusplus
+          <option value={oneSize} key={keys++}>
+            {oneSize}
+          </option>
+        ))}
+      </select>
+    </form>
   );
 }
-
-// QuantitySelect.propTypes = {
-//   productStyles: PropTypes.array
-// };
 
 export default QuantitySelect;

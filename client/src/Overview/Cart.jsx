@@ -9,7 +9,7 @@ function Cart() {
     <div>
       <SizeSelect />
       <QuantitySelect />
-      <AddToCart />
+      {/* <AddToCart /> */}
     </div>
   );
 }
