@@ -7,19 +7,23 @@ import ReviewSummary from './ReviewSummary';
 import ReviewBody from './ReviewBody';
 import Response from './Response';
 
-export default function ReviewListEntry({ entry }) {
-  return (
-    <div>
-      <StarReview num={entry.rating} />
-      <FormattedDate dateStr={entry.date} />
-      <ReviewSummary summary={entry.summary} />
-      <ReviewBody body={entry.body} photos={entry.photos} />
-      <span>Review by: {entry.reviewer_name || 'Unknown Shopper'} | "Verfied Purchaser"(TODO)</span>
-      {entry.recommend ? 'I recommend this product ✔️' : null}
-      <Response />
-    </div>
-  );
-}
+const ReviewListEntry = React.forwardRef(({ entry }, ref) => (
+  <li ref={ref}>
+    <StarReview num={entry.rating} />
+    <FormattedDate dateStr={entry.date} />
+    <ReviewSummary summary={entry.summary} />
+    <ReviewBody body={entry.body} photos={entry.photos} />
+    <span>
+      Review by:
+      {' '}
+      {entry.reviewer_name || 'Unknown Shopper'}
+      {' '}
+      | &quotVerfied Purchaser&quot(TODO)
+    </span>
+    {entry.recommend ? 'I recommend this product ✔️' : null}
+    <Response />
+  </li>
+));
 
 ReviewListEntry.propTypes = {
   entry: PropTypes.shape({
@@ -38,3 +42,5 @@ ReviewListEntry.propTypes = {
     })),
   }).isRequired,
 };
+
+export default ReviewListEntry;
