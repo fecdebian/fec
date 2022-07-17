@@ -8,7 +8,7 @@ export default function RelatedItems() {
       <h2>More in Related Items</h2>
       <RelatedProductsCards />
       <h2>Your Outfit</h2>
-      <Outfit />
+      {/* <Outfit /> */}
     </div>
   );
 }
