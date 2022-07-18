@@ -6,6 +6,7 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'airbnb',
+    'plugin:jest-dom/recommended',
   ],
   parser: '@babel/eslint-parser',
   parserOptions: {
@@ -16,8 +17,12 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: [
-    'react',
+    ['react', 'jest-dom'],
   ],
   rules: {
-  },
+    "jest-dom/prefer-checked": "error",
+    "jest-dom/prefer-enabled-disabled": "error",
+    "jest-dom/prefer-required": "error",
+    "jest-dom/prefer-to-have-attribute": "error",
+  },,
 };
