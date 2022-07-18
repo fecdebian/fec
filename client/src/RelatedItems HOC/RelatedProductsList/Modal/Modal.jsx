@@ -15,21 +15,11 @@ const saveCheckmarkOrValue = (table, character) => {
 export default function Modal({
   show, closeModalHandler, selectedProduct, mainProduct,
 }) {
-  // //escape key button functionality
-  // const closeOnEscapeKeyDown = (e) => {
-  //   console.log((e.charCode || e.keyCode) === 27);
-  //   if ((e.charCode || e.keyCoode) === 27) {
-  //     closeModalHandler();
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   document.body.addEventListener('keydown', closeOnEscapeKeyDown);
-  //   return function cleanUp() {
-  //     document.body.removeEventListener('keydown', closeOnEscapeKeyDown);
-  //   };
-  // }, []);
+  if (!show) {
+    return null;
+  }
   const comparingTable = {};
+
   if (show) {
     selectedProduct.features.forEach((item) => {
       comparingTable[item.feature] = [];
@@ -47,9 +37,6 @@ export default function Modal({
     });
   }
 
-  if (!show) {
-    return null;
-  }
   return (
     <div
       className="modal"
@@ -106,11 +93,22 @@ export default function Modal({
           padding:10px;
           border-top: 1px solid #eee;
           border-bottom: 1px solid #eee;
-          overflow: auto;
+          overflow-y: auto;
+          height: 20rem;
+          position:relative;
+          display:flex;
+          justify-content:center;
+          align-items: flex-start;
         `}
         >
           <table>
-            <thead>
+            <thead
+              css={css`
+                position: -webkit-sticky;
+                position: sticky;
+                top:0;
+              `}
+            >
               <tr>
                 <th>{mainProduct.name}</th>
                 <th>Characteristic</th>

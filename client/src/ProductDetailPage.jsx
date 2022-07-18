@@ -3,10 +3,11 @@ import { useRecoilState } from 'recoil';
 import axios from 'axios';
 
 import Overview from './Overview/OverviewParent';
-import RelatedItems from './RelatedItems/RelatedItems';
+// import RelatedItems from './RelatedItems/RelatedItems';
 import Reviews from './Reviews/Reviews';
 import QuestionsAndAnswers from './QuestionsAndAnswers/QuestionsAndAnswers';
 import currentProductState from './currentProduct';
+import RelatedItems from './RelatedItems HOC/RelatedItems';
 
 // Huzzah for jsx!
 const ProductDetailPage = function WhateverStupidName() {
