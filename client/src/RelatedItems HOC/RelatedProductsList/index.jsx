@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import currentProductState from '../../currentProduct';
 import relatedProductsState from '../ModelRelatedItems/relatedProductsState';
-import withCard from '../HOC/ProductCard/WithCard';
+import withCard from '../HOC/WithCard';
 import StarButton from './StarButton';
 
 export default function RelatedProductsCards() {
