@@ -29,7 +29,6 @@ export default function RelatedProductsCards() {
         }),
       );
       res.data.forEach((id) => {
-        // console.log('id ', id);
         relatedProductsRequests.push(
           axios({
             method: 'get',
@@ -45,9 +44,6 @@ export default function RelatedProductsCards() {
         relatedProductsCopy.push(product.data);
       });
       setRelatedProducts(relatedProductsCopy);
-      // if (products.length < 7) {
-      //   setRightButtonOpacity({ opacity: '0' });
-      // }
     }).catch((err) => {
       console.log('Unable to get related product id from server ', err);
     });
@@ -82,6 +78,7 @@ export default function RelatedProductsCards() {
           );
         },
       )}
+      {/* placeholders */}
       {relatedProducts.map(
         (product) => {
           return (
