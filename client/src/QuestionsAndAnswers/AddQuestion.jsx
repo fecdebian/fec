@@ -50,6 +50,13 @@ function AddQuestion() {
     setQuestionForm(!questionForm);
     console.log(questionForm);
   }
+
+  function handleExit(e) {
+    e.preventDefault();
+    setQuestionForm(!questionForm);
+    console.log(questionForm);
+  }
+
   return (
     <div
       className={questionForm ? 'modal display-block' : 'modal display-none'}
@@ -71,8 +78,10 @@ function AddQuestion() {
       top:50%;
       left:50%;
       transform: translate(-50%,-50%);
-      border: solid red 2px;
+      border: solid black 2px;
       text-align: center;
+      white-space: normal;
+      word-wrap: break-word;
     }
 
     .display-block {
@@ -83,11 +92,31 @@ function AddQuestion() {
       color: red;
     }
 
+    input[type="text"] {
+      width: 80%;
+    }
+
+    textarea {
+      width: 80%;
+    }
+
+    input[type="submit"] {
+      white-space: normal;
+      word-wrap: break-word;
+    }
+
+    .exit {
+      float: right;
+      margin: 5px;
+    }
+
     .display-none {
       display: none;
     }`}
     >
       <form onSubmit={handleCloseForm} className="modal-main">
+        <button onClick={handleExit} className="exit" type="button">X</button>
+        <br />
         <h3>Ask Your Question</h3>
         {`About The ${product.name}`}
         <br />
@@ -102,7 +131,7 @@ function AddQuestion() {
         <label>
           {'What is your nickname* '}
           <br />
-          <input name="nickname" type="text" size="60" maxLength="60" placeholder="Example: jackson11!" />
+          <input name="nickname" type="text" maxLength="60" placeholder="Example: jackson11!" />
         </label>
         <br />
         For privacy reasons, do not use your full name or email address.
@@ -111,7 +140,7 @@ function AddQuestion() {
         <label>
           {'Your email* '}
           <br />
-          <input name="email" type="text" size="60" maxLength="60" placeholder="Why did you like the product or not?" />
+          <input name="email" type="text" maxLength="60" placeholder="Why did you like the product or not?" />
         </label>
         <br />
         For authentication reasons, you will not be emailed.

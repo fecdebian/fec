@@ -92,7 +92,14 @@ function Answers({ question }) {
       >
         {selectedView.map((answer) => <EachAnswer key={answer.id} answer={answer} />)}
       </ul>
-      {answerList.length > 2 ? <button onClick={handleClick} type="button">{showAll ? 'Collapse Answers' : 'See More Answers'}</button> : null}
+      {answerList.length > 2 ? (
+        <button
+          onClick={handleClick}
+          type="button"
+        >
+          {showAll ? 'Collapse Answers' : 'See More Answers'}
+        </button>
+      ) : null}
     </span>
   );
 }

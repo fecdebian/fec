@@ -161,8 +161,10 @@ function AddAnswer({ question }) {
         top:50%;
         left:50%;
         transform: translate(-50%,-50%);
-        border: solid red 2px;
+        border: solid black 2px;
         text-align: center;
+        white-space: normal;
+        word-wrap: break-word;
       }
 
       .display-block {
@@ -186,12 +188,26 @@ function AddAnswer({ question }) {
         height: 50px;
       }
 
+      input[type="text"] {
+        width: 80%;
+      }
+
+      textarea {
+        width: 80%;
+      }
+
+      input[type="submit"] {
+        white-space: normal;
+        word-wrap: break-word;
+      }
+
       .display-none {
         display: none;
       }`}
       >
         <form onSubmit={handleCloseForm} className={answerForm ? 'display-block modal-main' : 'display-none modal-main'}>
           <button onClick={handleAddAnswer} className="exit" type="button">X</button>
+          <br />
           <h3>Submit Your Answer</h3>
           {`${product.name}: ${question.question_body}`}
           <br />
@@ -206,7 +222,7 @@ function AddAnswer({ question }) {
           <label>
             {'What is your nickname* '}
             <br />
-            <input name="nickname" type="text" size="60" maxLength="60" placeholder="Example: jackson11!" />
+            <input name="nickname" type="text" maxLength="60" placeholder="Example: jackson11!" />
           </label>
           <br />
           For privacy reasons, do not use your full name or email address.
@@ -215,13 +231,17 @@ function AddAnswer({ question }) {
           <label>
             {'Your email* '}
             <br />
-            <input name="email" type="text" size="60" maxLength="60" placeholder="Why did you like the product or not?" />
+            <input name="email" type="text" maxLength="60" placeholder="Why did you like the product or not?" />
           </label>
           <br />
           For authentication reasons, you will not be emailed.
           <br />
           <br />
-          <input type="file" onChange={handleImageUpload} name="filename" accept="image/*" multiple />
+          <label>
+            Upload your photos:
+            <br />
+            <input type="file" onChange={handleImageUpload} name="filename" accept="image/*" multiple />
+          </label>
           <br />
           {'Hold shift to select multiple photos (up to 5) '}
           <br />

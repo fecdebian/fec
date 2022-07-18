@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+/** @jsx jsx */
+import { useState } from 'react';
+import { css, jsx } from '@emotion/react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import FormattedDate from '../SharedComponents/FormattedDate';
@@ -30,20 +32,34 @@ function EachAnswer({ answer }) {
   }
 
   return (
-    <li>
-      <div>
-        {`A: ${answer.body}`}
+    <li css={css`
+    padding: 3px;
+    `}
+    >
+      <div css={css`
+      padding-bottom: 2px;
+      `}
+      >
+        <strong>A: </strong>
+        {answer.body}
       </div>
       <div>
         {'by '}
         <span>{answer.answerer_name === 'Seller' ? <strong>{answer.answerer_name}</strong> : answer.answerer_name}</span>
         {', '}
         <FormattedDate dateStr={answer.date} />
-        {' | Helpful? '}
+        &nbsp;
+        {' | '}
+        &nbsp;
+        {'Helpful? '}
+        &nbsp;
         <button onClick={handleHelpfulClick} type="button">Yes</button>
-        {' ( '}
+        {' ('}
         <span>{helpfulClicked ? answer.helpfulness + 1 : answer.helpfulness}</span>
-        {') | '}
+        {') '}
+        &nbsp;
+        {'| '}
+        &nbsp;
         <button onClick={handleReportClick} type="button">{reportClicked ? 'Reported' : 'Report'}</button>
       </div>
     </li>

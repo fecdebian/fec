@@ -17,19 +17,19 @@ function QuestionsList() {
 
   // returns mapped list of all viewed questions, + more answered questions button
   return (
-    <div>
+    <span>
       <ul css={css`
         max-height: 270px;
         overflow: auto;
         padding: 8px;
         margin: 10px;
-        border: solid red 1px;
+        border: solid black 2px;
       `}
       >
         {questionsView.map((question) => <Question key={question.question_id} question={question} />)}
       </ul>
       {searchedLength < 3 ? <MoreAnsweredQuestions /> : null}
-    </div>
+    </span>
   );
 }
 export default QuestionsList;

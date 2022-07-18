@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react';
+/** @jsx jsx */
+import { useEffect } from 'react';
+import { css, jsx } from '@emotion/react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { moreQuestionsState, questionsViewState, sortedQuestionsState } from './atoms';
 
@@ -33,7 +35,15 @@ function MoreAnsweredQuestions() {
 
   // button only appears if there are remaining unseen questions
   return (
-    moreQuestions > 0 ? <button onClick={handleClick} type="button">More Answered Questions</button> : null
+    moreQuestions > 0 ? (
+      <span css={css`
+        display: inline;
+        margin: 5px;
+      `}
+      >
+        <button onClick={handleClick} type="button">More Answered Questions</button>
+      </span>
+    ) : null
   );
 }
 
