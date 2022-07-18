@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil';
 import PropTypes from 'prop-types';
 import { css, jsx } from '@emotion/react';
 
-import { selectedProductStyle } from './overviewAtoms';
+import { selectedProductStyle, selectedSize } from './overviewAtoms';
 
 function StyleThumbnail({ styleThumb }) {
   const [currentStyle, setCurrentStyle] = useRecoilState(selectedProductStyle);

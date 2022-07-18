@@ -1,21 +1,19 @@
 /** @jsx jsx */
 import { useEffect } from 'react';
-import {
-  useRecoilState,
-} from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import axios from 'axios';
-import PropTypes from 'prop-types';
 import { css, jsx } from '@emotion/react';
 
 import { currentProductStyles, selectedProductStyle } from './overviewAtoms';
+import currentProductState from '../currentProduct';
 
-function StylePrice({ currentProduct, currentStyle }) {
-  const product = currentProduct;
+function StylePrice() {
+  const product = useRecoilValue(currentProductState);
   const productID = product.id;
-  const style = currentStyle;
+
   const [productStyles, setProductStyles] = useRecoilState(currentProductStyles);
   const [selectedStyle, setSelectedStyle] = useRecoilState(selectedProductStyle);
-  // Use effect for initial render and if productID changes
+
   function getStyles() {
     axios({
       method: 'get',
@@ -40,15 +38,15 @@ function StylePrice({ currentProduct, currentStyle }) {
   }, [product]);
 
   // Use effect for if selected style changes
-  if (style.style_id === undefined) {
+  if (selectedStyle.style_id === undefined) {
     return <h1>loading</h1>;
   }
 
-  if (style.sale_price === null) {
+  if (selectedStyle.sale_price === null) {
     return (
       <div>
         $
-        {style.original_price}
+        {selectedStyle.original_price}
       </div>
     );
   }
@@ -61,7 +59,7 @@ function StylePrice({ currentProduct, currentStyle }) {
         `}
       >
         $
-        {style.sale_price}
+        {selectedStyle.sale_price}
       </span>
       <span
         css={css`
@@ -70,19 +68,10 @@ function StylePrice({ currentProduct, currentStyle }) {
           `}
       >
         $
-        {style.original_price}
+        {selectedStyle.original_price}
       </span>
     </div>
   );
 }
-
-StylePrice.propTypes = {
-  currentProduct: PropTypes.shape({
-    id: PropTypes.number,
-  }).isRequired,
-  currentStyle: PropTypes.shape({
-    style_id: PropTypes.number,
-  }).isRequired,
-};
 
 export default StylePrice;

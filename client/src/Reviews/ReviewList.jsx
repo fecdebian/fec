@@ -1,23 +1,41 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
-// import PropTypes from 'prop-types';
+import { useRef } from 'react';
 
 import ReviewListEntry from './ReviewListEntry/ReviewListEntry';
 import MoreReviewsButton from './MoreReviewsButton';
 import {
   useReviews,
   useReviewsDispatch,
-  useReviewsTotalLengthContext
+  useReviewsTotalLengthContext,
 } from './ReviewsContext';
 
 export default function ReviewList() {
-  // const [currentEntryLen, setCurrentEntryLen] = useState(2);
-  // const [displayButton, setDisplayButton] = useState(true);
   const reviewEntries = useReviews();
   const dispatch = useReviewsDispatch();
   const totalLength = useReviewsTotalLengthContext();
   const entriesLen = reviewEntries.length;
   const displayButton = entriesLen < totalLength;
+  const firstReviewId = reviewEntries[0].review_id;
+
+  const reviewRef = useRef(null);
+
+  function getMap() {
+    if (!reviewRef.current) {
+      reviewRef.current = new Map();
+    }
+    return reviewRef.current;
+  }
+
+  function scrollToId(reviewId) {
+    const map = getMap();
+    const node = map.get(reviewId);
+    node.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center',
+    });
+  }
 
   return entriesLen !== 0
   && (
@@ -35,6 +53,14 @@ export default function ReviewList() {
         <ReviewListEntry
           entry={entry}
           key={entry.review_id}
+          ref={(node) => {
+            const map = getMap();
+            if (node) {
+              map.set(entry.review_id, node);
+            } else {
+              map.delete(entry.review_id);
+            }
+          }}
         />
       ))}
     {displayButton
@@ -47,6 +73,12 @@ export default function ReviewList() {
           }}
         />
         )}
+    <button
+      onClick={() => scrollToId(firstReviewId)}
+      type="button"
+    >
+      Back to Top
+    </button>
   </div>
   );
 }
