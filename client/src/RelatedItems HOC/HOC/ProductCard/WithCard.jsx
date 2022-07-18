@@ -1,15 +1,15 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import AvgStars from './AvgStars';
 import ProductImage from './ProductImage';
-import Modal from '../../RelatedProductsList/Modal/Modal';
+// import Modal from '../../RelatedProductsList/Modal/Modal';
 
 export default function withCard(WrappedActionButtonComponent, { selectedProduct, mainProduct }) {
   function WithCard() {
-    const [show, setShow] = useState(false);
+    // const [show, setShow] = useState(false);
     // const openModalHandler = () => {
     //   setShow(true);
     // };

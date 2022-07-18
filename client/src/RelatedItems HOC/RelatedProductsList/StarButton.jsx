@@ -62,4 +62,3 @@ StarButton.propTypes = {
     })),
   }).isRequired,
 };
-

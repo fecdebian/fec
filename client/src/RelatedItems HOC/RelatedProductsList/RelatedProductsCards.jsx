@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import currentProductState from '../../currentProduct';
 import relatedProductsState from '../ModelRelatedItems/relatedProductsState';
-import withCard from '../HOC/ProductCard/ProductCard';
+import withCard from '../HOC/ProductCard/WithCard';
 import StarButton from './StarButton';
 
 export default function RelatedProductsCards() {
@@ -77,10 +77,58 @@ export default function RelatedProductsCards() {
                   position:relative;
                 `}
             >
-              <ProductCard
-              // selectedProduct={product}
-              // mainProduct={currentProductDetail}
-              />
+              <ProductCard />
+            </div>
+          );
+        },
+      )}
+      {relatedProducts.map(
+        (product) => {
+          return (
+            <div
+              css={css`
+                  flex: 0 0 14%;
+                  border-sizing: border-box;
+                  width:14%;
+                  padding:0.25rem;
+                  position:relative;
+                `}
+            >
+              PlaceHolder
+            </div>
+          );
+        },
+      )}
+            {relatedProducts.map(
+        (product) => {
+          return (
+            <div
+              css={css`
+                  flex: 0 0 14%;
+                  border-sizing: border-box;
+                  width:14%;
+                  padding:0.25rem;
+                  position:relative;
+                `}
+            >
+              PlaceHolder
+            </div>
+          );
+        },
+      )}
+            {relatedProducts.map(
+        (product) => {
+          return (
+            <div
+              css={css`
+                  flex: 0 0 14%;
+                  border-sizing: border-box;
+                  width:14%;
+                  padding:0.25rem;
+                  position:relative;
+                `}
+            >
+              PlaceHolder
             </div>
           );
         },
