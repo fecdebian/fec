@@ -100,7 +100,7 @@ export default function withList(WrappedComponent) {
   const wrappedComponentName = WrappedComponent.displayName
   || WrappedComponent.name
   || 'Component';
-  WithList.displayName = `withFoo(${wrappedComponentName})`;
+  WithList.displayName = `withList(${wrappedComponentName})`;
 
   return WithList;
 }
