@@ -1,8 +1,8 @@
 /** @jsx jsx */
-// import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { css, jsx } from '@emotion/react';
-// import { useRecoilValue } from 'recoil';
-// import axios from 'axios';
+import { useRecoilValue } from 'recoil';
+import axios from 'axios';
 
 import ReviewList from './ReviewList';
 import SubmitReview from './SubmitReview';
@@ -10,34 +10,29 @@ import SortBy from './SortBy';
 import { ReviewsProvider } from './ReviewsContext';
 // import MovingDot from './MovingDot';
 
-// Only in production
-// import currentProduct from '../currentProduct';
+import currentProduct from '../currentProduct';
 
 export default function Reviews() {
-  // Only in production
-  // const prod = useRecoilValue(currentProduct);
-  // const [reviews, setReviews] = useState([]);
+  const prod = useRecoilValue(currentProduct);
+  const [reviews, setReviews] = useState();
 
-  // Only in production
-  // useEffect(() => {
-  //   let ignore = false;
+  useEffect(() => {
+    let ignore = false;
 
-  //   axios.get(`/reviews?product_id=${prod.id}`)
-  //     .then((res) => {
-  //       if (!ignore) {
-  //         setReviews(res.data.results);
-  //       }
-  //     })
-  //     .catch((err) => console.error(err));
+    axios.get(`/reviews?product_id=${prod.id}`)
+      .then((res) => {
+        if (!ignore) {
+          setReviews(res.data.results);
+        }
+      })
+      .catch((err) => console.error(err));
 
-  //   return () => {
-  //     ignore = true;
-  //   };
-  // }, [prod]);
+    return () => {
+      ignore = true;
+    };
+  }, [prod]);
 
-  // Only in production
-  // return reviews && (
-  return (
+  return reviews && (
     <div
       css={css`
         padding: 10px;
@@ -45,7 +40,7 @@ export default function Reviews() {
         border: solid black 2px;
       `}
     >
-      <ReviewsProvider>
+      <ReviewsProvider productReviews={reviews}>
         <SortBy />
         <ReviewList />
         <SubmitReview />

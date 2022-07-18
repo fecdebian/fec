@@ -1,14 +1,13 @@
 import React, { createContext, useContext, useReducer } from 'react';
 import Proptypes from 'prop-types';
 
-import sampleReviews from './sampleReviews';
-
 /*  ==========       Initialize           ==========  */
 
-const totalReviews = sampleReviews.results;
-let sortedReviews = totalReviews.slice();
-let displayedReviews = totalReviews.slice(0, 2);
-let reviewsLen = 0;
+let totalReviews;
+let sortedReviews;
+let displayedReviews;
+let reviewsLen;
+let ignore = false;
 
 /*  ==========       Utilities           ==========  */
 
@@ -18,6 +17,26 @@ function reInitializeReviews(rawReviews) {
   return displayedReviews;
 }
 
+// Fisher-Yates Shuffle from https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+function shuffle(arr) {
+  const array = arr.slice();
+  let currentIndex = array.length;
+  let randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex !== 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+}
+
 function sortReviewsBy(category) {
   const newReviews = totalReviews.slice();
   if (category === 'helpfulness') {
@@ -25,7 +44,7 @@ function sortReviewsBy(category) {
   } if (category === 'newest') {
     return newReviews.sort((a, b) => new Date(b.date) - new Date(a.date));
   } if (category === 'relevance') {
-    return newReviews;
+    return shuffle(newReviews);
   }
   throw Error('Unknown category');
 }
@@ -75,14 +94,24 @@ function reviewsReducer(reviews, action) {
 
 /*  ==========       Context Provider           ==========  */
 
-export function ReviewsProvider({ children }) {
+export function ReviewsProvider({ productReviews, children }) {
+  totalReviews = productReviews;
+
+  // Maybe use useRef hooks??
+  if (!ignore) {
+    sortedReviews = shuffle(totalReviews.slice());
+    displayedReviews = sortedReviews.slice(0, 2);
+    reviewsLen = 0;
+    ignore = true;
+  }
+
   const [reviews, dispatch] = useReducer(
     reviewsReducer,
     displayedReviews,
   );
 
   return (
-    <ReviewsContext.Provider value={reviews}>
+    <ReviewsContext.Provider value={reviews} key={productReviews}>
       <ReviewsDispatchContext.Provider value={dispatch}>
         <ReviewsTotalLengthContext.Provider value={totalReviews.length}>
           {children}
@@ -93,6 +122,9 @@ export function ReviewsProvider({ children }) {
 }
 
 ReviewsProvider.propTypes = {
+  productReviews: Proptypes.oneOfType([
+    Proptypes.array,
+  ]).isRequired,
   children: Proptypes.oneOfType([
     Proptypes.element,
     Proptypes.array,
