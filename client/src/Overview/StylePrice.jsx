@@ -44,14 +44,30 @@ function StylePrice() {
 
   if (selectedStyle.sale_price === null) {
     return (
-      <div>
+      <div css={css`
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      overflow: auto;
+      padding: 10px;
+      margin: 10px;
+      `}
+      >
         $
         {selectedStyle.original_price}
       </div>
     );
   }
   return (
-    <div>
+    <div css={css`
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    overflow: auto;
+    padding: 10px;
+    margin: 10px;
+    `}
+    >
       <span
         css={css`
         color: red;

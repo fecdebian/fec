@@ -24,6 +24,7 @@ function QuantitySelect() {
   }
 
   const setNewQuant = (e) => {
+    e.preventDefault();
     setCurrentSelectedQuant(e.target.value);
   };
 
