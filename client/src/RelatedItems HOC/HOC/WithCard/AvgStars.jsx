@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-import StarReview from '../../SharedComponents/StarReview';
+import StarReview from '../../../SharedComponents/StarReview';
 
 function AvgStars({ currentProduct }) {
   const [error, setError] = useState(null);
@@ -12,6 +12,7 @@ function AvgStars({ currentProduct }) {
   const productID = product.id;
   let avgRating = 0;
 
+  /* ===========    Gat rating from API and Calculate Average Rating    =========== */
   useEffect(() => {
     axios({
       method: 'get',
