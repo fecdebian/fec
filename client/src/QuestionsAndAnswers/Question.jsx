@@ -1,8 +1,11 @@
 /* eslint-disable max-len */
-import React, { useState } from 'react';
+/** @jsx jsx */
+import { useState } from 'react';
+import { css, jsx } from '@emotion/react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import Answers from './Answers';
+import AddAnswer from './AddAnswer';
 
 function Question({ question }) {
   const [clicked, setClicked] = useState(false);
@@ -19,17 +22,33 @@ function Question({ question }) {
   }
 
   return (
-    <li>
-      <div>
-        {'Q: '}
-        <span>{question.question_body}</span>
+    <li css={css`
+    padding: 4px;
+    `}
+    >
+      <div css={css`
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      `}
+      >
+        <span css={css`
+        font-size: 18px;
+        `}
+        >
+          <strong>{`Q: ${question.question_body}`}</strong>
+        </span>
         <span>
           {' Helpful? '}
+          &nbsp;
           <button type="button" onClick={handleClick}>Yes</button>
           {' ('}
           <span>{clicked ? question.question_helpfulness + 1 : question.question_helpfulness}</span>
-          {') | '}
-          <button type="button">Add Answer</button>
+          {') '}
+          &nbsp;
+          {'| '}
+          &nbsp;
+          <AddAnswer key={question.question_id} question={question} />
         </span>
       </div>
       <Answers key={question.question_id} question={question} />
