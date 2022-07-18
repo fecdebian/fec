@@ -93,5 +93,8 @@ export function ReviewsProvider({ children }) {
 }
 
 ReviewsProvider.propTypes = {
-  children: Proptypes.element.isRequired,
+  children: Proptypes.oneOfType([
+    Proptypes.element,
+    Proptypes.array,
+  ]).isRequired,
 };

@@ -15,7 +15,17 @@ export const selectedSize = atom({
   default: 'Select Size',
 });
 
+export const totalQuant = atom({
+  key: 'totalQuant',
+  default: '1',
+});
+
 export const selectedQuant = atom({
   key: 'selectedQuant',
-  default: 1,
+  default: '-',
+});
+
+export const selectedSKU = atom({
+  key: 'selectedSKU',
+  default: '',
 });
