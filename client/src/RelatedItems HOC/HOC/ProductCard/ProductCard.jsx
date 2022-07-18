@@ -75,8 +75,8 @@ export default function withCard(WrappedActionButtonComponent, WrappedAdditional
   };
 
   const wrappedComponentName = WrappedActionButtonComponent.displayName
-  || WrappedActionButtonComponent.name
-  || 'Component';
+    || WrappedActionButtonComponent.name
+    || 'Component';
   WithCard.displayName = `withCard(${wrappedComponentName})`;
 
   return WithCard;
