@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 import PropTypes from 'prop-types';
