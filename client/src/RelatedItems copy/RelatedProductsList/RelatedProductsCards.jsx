@@ -6,13 +6,17 @@ import axios from 'axios';
 
 import currentProductState from '../../currentProduct';
 import relatedProductsState from '../ModelRelatedItems/relatedProductsState';
-import ProductCard from '../HOC/ProductCard/ProductCard';
+import withCard from '../HOC/ProductCard/ProductCard';
+import withStarButton from './WithStarButton';
 
 export default function RelatedProductsCards() {
   const currentProduct = useRecoilValue(currentProductState);
   const [relatedProducts, setRelatedProducts] = useRecoilState(relatedProductsState);
   const [currentProductDetail, setCurrentProductDetail] = useState({});
   // const [show, setShow] = useState(false);
+
+  const WithStarButton = withStarButton();
+  const ProductCard = withCard(WithStarButton);
 
   useEffect(() => {
     const relatedProductsRequests = [];

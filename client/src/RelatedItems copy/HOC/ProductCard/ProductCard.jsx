@@ -7,21 +7,21 @@ import AvgStars from './AvgStars';
 import ProductImage from './ProductImage';
 import Modal from '../../RelatedProductsList/Modal/Modal';
 
-export default function withCard(Data, WrappedActionButtonComponent, WrappedAdditionalComponent) {
+export default function withCard(WrappedActionButtonComponent, WrappedAdditionalComponent) {
   function WithCard({ selectedProduct, mainProduct }) {
     const [show, setShow] = useState(false);
-    const openModalHandler = () => {
-      setShow(true);
-    };
+    // const openModalHandler = () => {
+    //   setShow(true);
+    // };
 
-    const closeModalHandler = () => {
-      setShow(false);
-    };
+    // const closeModalHandler = () => {
+    //   setShow(false);
+    // };
 
     return (
       <>
         <ProductImage currentProduct={selectedProduct} />
-        <button
+        {/* <button
           onClick={openModalHandler}
           type="button"
           css={css`
@@ -35,7 +35,8 @@ export default function withCard(Data, WrappedActionButtonComponent, WrappedAddi
           `}
         >
           <span>&#10030;</span>
-        </button>
+        </button> */}
+        <WrappedActionButtonComponent />
         <div>{selectedProduct.category}</div>
         <div>{selectedProduct.name}</div>
         <AvgStars currentProduct={selectedProduct} />
@@ -43,12 +44,12 @@ export default function withCard(Data, WrappedActionButtonComponent, WrappedAddi
           $
           {selectedProduct.default_price}
         </div>
-        <Modal
+        {/* <Modal
           show={show}
           closeModalHandler={closeModalHandler}
           selectedProduct={selectedProduct}
           mainProduct={mainProduct}
-        />
+        /> */}
       </>
     );
   }
@@ -77,11 +78,6 @@ export default function withCard(Data, WrappedActionButtonComponent, WrappedAddi
   || WrappedActionButtonComponent.name
   || 'Component';
   WithCard.displayName = `withCard(${wrappedComponentName})`;
-
-  const wrappedAdditionalComponent = WrappedAdditionalComponent.displayName
-  || WrappedAdditionalComponent.name
-  || 'Component';
-  WithCard.displayName = `withCard(${wrappedAdditionalComponent})`;
 
   return WithCard;
 }

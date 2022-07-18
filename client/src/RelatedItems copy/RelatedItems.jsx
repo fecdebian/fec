@@ -1,6 +1,6 @@
 import React from 'react';
 import withList from './HOC/WithList/withList';
-import RelatedProductsCards from './HOCRelatedProductsList/RelatedProductsCards';
+import RelatedProductsCards from './RelatedProductsList/RelatedProductsCards';
 
 const RelatedProductList = withList(RelatedProductsCards);
 
