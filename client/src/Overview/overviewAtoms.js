@@ -24,3 +24,8 @@ export const selectedQuant = atom({
   key: 'selectedQuant',
   default: '-',
 });
+
+export const selectedSKU = atom({
+  key: 'selectedSKU',
+  default: '',
+});

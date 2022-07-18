@@ -1,8 +1,13 @@
 /** @jsx jsx */
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { css, jsx } from '@emotion/react';
+import React from 'react';
 
-import { selectedProductStyle, selectedSize, totalQuant } from './overviewAtoms';
+import {
+  selectedProductStyle,
+  selectedSize,
+  totalQuant,
+} from './overviewAtoms';
 
 function SizeSelect() {
   const currentProductStyle = useRecoilValue(selectedProductStyle);
