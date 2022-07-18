@@ -1,6 +1,10 @@
 import '@testing-library/jest-dom';
 import React from 'react';
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import {
+  cleanup,
+  render,
+  screen,
+} from '@testing-library/react';
 
 import ReviewSummary from '../ReviewListEntry/ReviewSummary';
 import sampleReviews from '../sampleReviews';
