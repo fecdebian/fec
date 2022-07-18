@@ -126,8 +126,6 @@ export default function Modal({
                   </tr>
                 ))}
             </tbody>
-            {/*  */}
-            {/*  */}
           </table>
         </div>
         <div

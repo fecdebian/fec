@@ -1,16 +1,10 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
-import { useRef, useState } from 'react';
-
-// import Modal from './Modal/Modal';
+import { useRef } from 'react';
 
 export default function withList(WrappedComponent) {
   function WithList() {
     const scrollRef = useRef(null);
-    // const [rightButtonOpacity, setRightButtonOpacity] = useState({});
-    // const [leftButtonOpacity, setLeftButtonOpacity] = useState({});
-    let rightButtonOpacity = {};
-    let leftButtonOpacity = {};
 
     const scrollRightHandler = (e) => {
       e.preventDefault();
@@ -20,8 +14,10 @@ export default function withList(WrappedComponent) {
       if (maxScrollLeft === scrollRef.current.scrollLeft) {
         e.target.setAttribute('style', 'opacity: 0');
       } else {
-        leftButtonOpacity = ({});
-        leftButtonElement[0].setAttribute('style', 'opacity: 100');
+        const leftButtonStyle = leftButtonElement[0].getAttribute('style');
+        if (leftButtonStyle !== 'opacity: 100') {
+          leftButtonElement[0].setAttribute('style', 'opacity: 100');
+        }
       }
     };
 
@@ -30,10 +26,12 @@ export default function withList(WrappedComponent) {
       scrollRef.current.scrollLeft -= 200;
       const rightButtonElement = document.getElementsByClassName('scrollRightButton');
       if (scrollRef.current.scrollLeft === 0) {
-        leftButtonOpacity = ({ opacity: '0' });
         e.target.setAttribute('style', 'opacity: 0');
       } else {
-        rightButtonElement[0].setAttribute('style', 'opacity: 100');
+        const rightButtonStyle = rightButtonElement[0].getAttribute('style');
+        if (rightButtonStyle !== 'opacity: 100') {
+          rightButtonElement[0].setAttribute('style', 'opacity: 100');
+        }
       }
     };
 
@@ -54,7 +52,6 @@ export default function withList(WrappedComponent) {
             className="scrollLeftButton"
             type="button"
             onClick={scrollLeftHandler}
-            style={leftButtonOpacity}
             css={css`
               border-sizing: border-box;
               width:5%;
@@ -87,7 +84,6 @@ export default function withList(WrappedComponent) {
             className="scrollRightButton"
             type="button"
             onClick={scrollRightHandler}
-            style={rightButtonOpacity}
             css={css`
                 border-sizing: border-box;
                 width:5%;

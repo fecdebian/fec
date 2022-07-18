@@ -79,57 +79,6 @@ export default function RelatedProductsCards() {
         },
       )}
       {/* placeholders */}
-      {relatedProducts.map(
-        (product) => {
-          return (
-            <div
-              css={css`
-                  flex: 0 0 14%;
-                  border-sizing: border-box;
-                  width:14%;
-                  padding:0.25rem;
-                  position:relative;
-                `}
-            >
-              PlaceHolder
-            </div>
-          );
-        },
-      )}
-            {relatedProducts.map(
-        (product) => {
-          return (
-            <div
-              css={css`
-                  flex: 0 0 14%;
-                  border-sizing: border-box;
-                  width:14%;
-                  padding:0.25rem;
-                  position:relative;
-                `}
-            >
-              PlaceHolder
-            </div>
-          );
-        },
-      )}
-            {relatedProducts.map(
-        (product) => {
-          return (
-            <div
-              css={css`
-                  flex: 0 0 14%;
-                  border-sizing: border-box;
-                  width:14%;
-                  padding:0.25rem;
-                  position:relative;
-                `}
-            >
-              PlaceHolder
-            </div>
-          );
-        },
-      )}
     </>
   );
 }
