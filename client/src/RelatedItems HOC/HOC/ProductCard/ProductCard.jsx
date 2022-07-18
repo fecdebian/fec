@@ -7,8 +7,8 @@ import AvgStars from './AvgStars';
 import ProductImage from './ProductImage';
 import Modal from '../../RelatedProductsList/Modal/Modal';
 
-export default function withCard(WrappedActionButtonComponent, WrappedAdditionalComponent) {
-  function WithCard({ selectedProduct, mainProduct }) {
+export default function withCard(WrappedActionButtonComponent, { selectedProduct, mainProduct }) {
+  function WithCard() {
     const [show, setShow] = useState(false);
     // const openModalHandler = () => {
     //   setShow(true);
@@ -36,7 +36,7 @@ export default function withCard(WrappedActionButtonComponent, WrappedAdditional
         >
           <span>&#10030;</span>
         </button> */}
-        <WrappedActionButtonComponent />
+        <WrappedActionButtonComponent selectedProduct={selectedProduct} mainProduct={mainProduct} />
         <div>{selectedProduct.category}</div>
         <div>{selectedProduct.name}</div>
         <AvgStars currentProduct={selectedProduct} />
@@ -54,25 +54,25 @@ export default function withCard(WrappedActionButtonComponent, WrappedAdditional
     );
   }
 
-  WithCard.propTypes = {
-    selectedProduct: PropTypes.shape({
-      id: PropTypes.number,
-      category: PropTypes.string,
-      name: PropTypes.string,
-      default_price: PropTypes.string,
-      features: PropTypes.arrayOf(PropTypes.shape({
-        feature: PropTypes.string,
-        value: PropTypes.string,
-      })),
-    }).isRequired,
+  // WithCard.propTypes = {
+  //   selectedProduct: PropTypes.shape({
+  //     id: PropTypes.number,
+  //     category: PropTypes.string,
+  //     name: PropTypes.string,
+  //     default_price: PropTypes.string,
+  //     features: PropTypes.arrayOf(PropTypes.shape({
+  //       feature: PropTypes.string,
+  //       value: PropTypes.string,
+  //     })),
+  //   }).isRequired,
 
-    mainProduct: PropTypes.shape({
-      features: PropTypes.arrayOf(PropTypes.shape({
-        feature: PropTypes.string,
-        value: PropTypes.string,
-      })),
-    }).isRequired,
-  };
+  //   mainProduct: PropTypes.shape({
+  //     features: PropTypes.arrayOf(PropTypes.shape({
+  //       feature: PropTypes.string,
+  //       value: PropTypes.string,
+  //     })),
+  //   }).isRequired,
+  // };
 
   const wrappedComponentName = WrappedActionButtonComponent.displayName
     || WrappedActionButtonComponent.name

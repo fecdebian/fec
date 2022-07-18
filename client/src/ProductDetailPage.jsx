@@ -7,7 +7,7 @@ import Overview from './Overview/OverviewParent';
 import Reviews from './Reviews/Reviews';
 import QuestionsAndAnswers from './QuestionsAndAnswers/QuestionsAndAnswers';
 import currentProductState from './currentProduct';
-import RelatedItems from './RelatedItems copy/RelatedItems';
+import RelatedItems from './RelatedItems HOC/RelatedItems';
 
 // Huzzah for jsx!
 const ProductDetailPage = function WhateverStupidName() {

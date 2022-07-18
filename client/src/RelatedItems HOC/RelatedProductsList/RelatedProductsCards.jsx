@@ -7,16 +7,13 @@ import axios from 'axios';
 import currentProductState from '../../currentProduct';
 import relatedProductsState from '../ModelRelatedItems/relatedProductsState';
 import withCard from '../HOC/ProductCard/ProductCard';
-import withStarButton from './WithStarButton';
+import StarButton from './StarButton';
 
 export default function RelatedProductsCards() {
   const currentProduct = useRecoilValue(currentProductState);
   const [relatedProducts, setRelatedProducts] = useRecoilState(relatedProductsState);
   const [currentProductDetail, setCurrentProductDetail] = useState({});
   // const [show, setShow] = useState(false);
-
-  const WithStarButton = withStarButton();
-  const ProductCard = withCard(WithStarButton);
 
   useEffect(() => {
     const relatedProductsRequests = [];
@@ -60,26 +57,33 @@ export default function RelatedProductsCards() {
     return <div>Products Card Loading...</div>;
   }
 
+  console.log('related Products Cards render');
+
   return (
     <>
       {relatedProducts.map(
-        (product) => (
-          <div
-            key={product.id}
-            css={css`
+        (product) => {
+          const selectedProduct = product;
+          const mainProduct = currentProductDetail;
+          const ProductCard = withCard(StarButton, { selectedProduct, mainProduct });
+          return (
+            <div
+              key={product.id}
+              css={css`
                   flex: 0 0 14%;
                   border-sizing: border-box;
                   width:14%;
                   padding:0.25rem;
                   position:relative;
                 `}
-          >
-            <ProductCard
-              selectedProduct={product}
-              mainProduct={currentProductDetail}
-            />
-          </div>
-        ),
+            >
+              <ProductCard
+              // selectedProduct={product}
+              // mainProduct={currentProductDetail}
+              />
+            </div>
+          );
+        },
       )}
     </>
   );
