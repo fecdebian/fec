@@ -1,5 +1,7 @@
 /* eslint-disable max-len */
-import React from 'react';
+/** @jsx jsx */
+import { useState } from 'react';
+import { css, jsx } from '@emotion/react';
 import { useRecoilValue } from 'recoil';
 import { questionsViewState, searchedLengthState } from './atoms';
 import Question from './Question';
@@ -15,12 +17,19 @@ function QuestionsList() {
 
   // returns mapped list of all viewed questions, + more answered questions button
   return (
-    <div>
-      <ul>
+    <span>
+      <ul css={css`
+        max-height: 270px;
+        overflow: auto;
+        padding: 8px;
+        margin: 10px;
+        border: solid black 2px;
+      `}
+      >
         {questionsView.map((question) => <Question key={question.question_id} question={question} />)}
       </ul>
       {searchedLength < 3 ? <MoreAnsweredQuestions /> : null}
-    </div>
+    </span>
   );
 }
 export default QuestionsList;

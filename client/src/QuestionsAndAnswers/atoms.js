@@ -35,3 +35,13 @@ export const searchedLengthState = atom({
   key: 'searchedLengthState',
   default: 0,
 });
+
+export const questionFormState = atom({
+  key: 'questionFormState',
+  default: false,
+});
+
+export const updateQuestionsState = atom({
+  key: 'updateQuestionsState',
+  default: 0,
+});

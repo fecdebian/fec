@@ -1,8 +1,9 @@
 /* eslint-disable max-len */
-import React from 'react';
+/** @jsx jsx */
+import { css, jsx } from '@emotion/react';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import {
-  anyResultsState, sortedQuestionsState, questionsViewState, searchedLengthState,
+  anyResultsState, sortedQuestionsState, questionsViewState, searchedLengthState, moreQuestionsState,
 } from './atoms';
 
 function SearchQuestions() {
@@ -10,6 +11,7 @@ function SearchQuestions() {
   const setAnyResults = useSetRecoilState(anyResultsState);
   const setQuestionsView = useSetRecoilState(questionsViewState);
   const setSearchedLength = useSetRecoilState(searchedLengthState);
+  const setMoreQuestions = useSetRecoilState(moreQuestionsState);
 
   function handleChange(e) {
     e.preventDefault();
@@ -29,6 +31,7 @@ function SearchQuestions() {
       if (arr.length === 0) {
         const sortedCopy = [...sortedQuestions];
         const sliced = sortedCopy.slice(0, 2);
+        setMoreQuestions((sortedCopy.length - 2));
         setQuestionsView(sliced);
         setAnyResults(false);
       } else {
@@ -43,7 +46,21 @@ function SearchQuestions() {
     }
   }
 
-  return (<input onChange={handleChange} name="questionSearch" type="text" size="50" placeholder="Have a question? Search for answers... (case-sensitive)" />);
+  return (
+    <input
+      onChange={handleChange}
+      name="questionSearch"
+      type="text"
+      placeholder="Have a question? Search for answers... (case-sensitive)"
+      css={css`
+      display: block;
+      margin: 0 auto;
+      width: 95%;
+      padding: 7px;
+      font-size: 17px;
+      `}
+    />
+  );
 }
 
 export default SearchQuestions;
