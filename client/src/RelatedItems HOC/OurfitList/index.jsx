@@ -10,8 +10,7 @@ import DeleteButton from './DeleteButton';
 export default function Outfit({ currentProductDetail }) {
   const [outfits, setOutfits] = useState({});
   const AddToOutfitHandler = () => {
-    localStorage.clear();
-    // console.log('add to outfit', localStorage.getItem('outfits'));
+    // localStorage.clear();
 
     if (localStorage.getItem('outfits') === null) {
       const tmpOutfit = {};
@@ -27,8 +26,6 @@ export default function Outfit({ currentProductDetail }) {
       localStorage.setItem('outfits', outfitString);
       setOutfits(tmpOutfit);
     }
-
-    // console.log('add to outfit', localStorage.getItem('outfits'));
   };
 
   const deleteOutfitHandler = (OutfitList) => {
@@ -37,10 +34,8 @@ export default function Outfit({ currentProductDetail }) {
 
   useEffect(() => {
     const tmpOutfitString = localStorage.getItem('outfits');
-    // console.log('add to outfit', localStorage.getItem('outfits'));
     if (tmpOutfitString !== null) {
       const tmpOutfit = JSON.parse(tmpOutfitString);
-      // console.log('add to outfit', tmpOutfit);
       setOutfits(tmpOutfit);
     }
   }, []);

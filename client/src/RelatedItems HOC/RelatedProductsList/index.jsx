@@ -13,7 +13,7 @@ import StarButton from './StarButton';
 export default function RelatedProductsCards({ currentProductDetail }) {
   const currentProduct = useRecoilValue(currentProductState);
   const [relatedProducts, setRelatedProducts] = useRecoilState(relatedProductsState);
-  // const [currentProductDetail, setCurrentProductDetail] = useState({});
+
   useEffect(() => {
     const relatedProductsRequests = [];
     axios({
@@ -21,12 +21,6 @@ export default function RelatedProductsCards({ currentProductDetail }) {
       url: `/products/${currentProduct.id}/related`,
       params: { product_id: currentProduct.id },
     }).then((res) => {
-      // relatedProductsRequests.push(
-      //   axios({
-      //     method: 'get',
-      //     url: `/products/${currentProduct.id}`,
-      //   }),
-      // );
       res.data.forEach((id) => {
         relatedProductsRequests.push(
           axios({
@@ -37,11 +31,7 @@ export default function RelatedProductsCards({ currentProductDetail }) {
       });
       return Promise.all(relatedProductsRequests);
     }).then((products) => {
-      // setCurrentProductDetail(products[0].data);
       const relatedProductsCopy = [];
-      // products.slice(1).forEach((product) => {
-      //   relatedProductsCopy.push(product.data);
-      // });
       products.forEach((product) => {
         relatedProductsCopy.push(product.data);
       });
