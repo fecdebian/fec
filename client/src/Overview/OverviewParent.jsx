@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ReviewWeightedAverage from '../SharedComponents/ReviewWeightedAverage';
+import { ReviewWeightedAverage } from '../SharedComponents/ReviewWeightedAverage';
 import CatAndTitle from './CategoryAndTitle';
 import StylePrice from './StylePrice';
 import StyleList from './StyleList';

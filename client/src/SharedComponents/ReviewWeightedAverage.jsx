@@ -16,12 +16,17 @@ const avgStarsState = atom({
   default: 0,
 });
 
-let totalReviews = 0;
+// let totalReviews = 0;
+const totalReviewsState = atom({
+  key: 'totalReviews',
+  default: 0,
+});
 
 function ReviewWeightedAverage() {
   const product = useRecoilValue(currentProductState);
   const productID = product.id;
   const [avgStars, setAvgStars] = useRecoilState(avgStarsState);
+  const [totalReviews, setTotalReviews] = useRecoilState(totalReviewsState);
   const setMetaReview = useSetRecoilState(currentMetaReview);
 
   useEffect(() => {
@@ -33,21 +38,17 @@ function ReviewWeightedAverage() {
       .then((reviews) => {
         setMetaReview(reviews);
         const ratingsObj = reviews.data.ratings;
-        const ratingsValues = Object.values(ratingsObj);
-        const ratingsWeights = Object.keys(ratingsObj);
         let sumOfTotalRatings = 0;
         let sumOfWeightedRatings = 0;
 
-        for (let i = 0; i < ratingsValues.length; i += 1) {
-          sumOfTotalRatings += Number(ratingsValues[i]);
-          totalReviews += Number(ratingsValues[i]);
-        }
-        for (let i = 0; i < ratingsWeights.length; i += 1) {
-          sumOfWeightedRatings += (ratingsValues[i] * ratingsWeights[i]);
+        // eslint-disable-next-line no-restricted-syntax
+        for (const [rate, entries] of Object.entries(ratingsObj)) {
+          sumOfTotalRatings += Number(entries);
+          setTotalReviews((prev) => prev + Number(entries));
+          sumOfWeightedRatings += rate * entries;
         }
 
-        const avgRating = (Math.round(((sumOfWeightedRatings / sumOfTotalRatings) * 4))
-          / 4).toFixed(2);
+        const avgRating = (sumOfWeightedRatings / sumOfTotalRatings).toFixed(2);
 
         // If there are no reviews, we need to hide this component.
         // Setting to -1 for conditional rendering below
@@ -77,4 +78,4 @@ function ReviewWeightedAverage() {
   );
 }
 
-export default ReviewWeightedAverage;
+export { ReviewWeightedAverage, avgStarsState, totalReviewsState };
