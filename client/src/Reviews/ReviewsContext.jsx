@@ -3,6 +3,7 @@ import Proptypes from 'prop-types';
 
 /*  ==========       Initialize           ==========  */
 
+// Can these be dangerous?
 let totalReviews;
 let sortedReviews;
 let displayedReviews;
