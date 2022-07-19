@@ -57,10 +57,7 @@ function ProductImage({ currentProduct }) {
     return <div>Loading...</div>;
   }
   return (
-    // <div>
     <img alt={product.name} src={productImage} width="100%" height="160" />
-    // <img alt={product.name} src="../../../asset/image/NoImage.png" width="100%" height="160" />
-    // </div>
   );
 }
 
