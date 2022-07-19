@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /** @jsx jsx */
 // Note: adding photo functionality is commented out, does not work currently
@@ -142,7 +144,7 @@ function AddAnswer({ question }) {
 
   return (
     <span
-    css={css`
+      css={css`
     .modal {
       position: fixed;
       top: 0px;
@@ -202,12 +204,11 @@ function AddAnswer({ question }) {
 
     .display-none {
       display: none;
-    }`
-    }
+    }`}
     >
       <button onClick={handleAddAnswer} type="button">Add Answer</button>
-      <div onClick={handleAddAnswer} className={answerForm ? "modal" : "display-none"}></div>
-      <form onSubmit={handleCloseForm} className={answerForm ? "display-block modal-main" : "display-none"}>
+      <div onClick={handleAddAnswer} className={answerForm ? 'modal' : 'display-none'} />
+      <form onSubmit={handleCloseForm} className={answerForm ? 'display-block modal-main' : 'display-none'}>
         <button onClick={handleAddAnswer} className="exit" type="button">X</button>
         <br />
         <h3>Submit Your Answer</h3>

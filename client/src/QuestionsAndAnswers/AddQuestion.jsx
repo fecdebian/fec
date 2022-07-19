@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /** @jsx jsx */
 import { useState } from 'react';
@@ -113,8 +115,8 @@ function AddQuestion() {
       display: none;
     }`}
     >
-      <div onClick={handleExit} className={questionForm ? "modal": "display-none"}></div>
-      <form onSubmit={handleCloseForm} className={questionForm ? "display-block modal-main" : "display-none"}>
+      <div onClick={handleExit} className={questionForm ? 'modal' : 'display-none'} />
+      <form onSubmit={handleCloseForm} className={questionForm ? 'display-block modal-main' : 'display-none'}>
         <button onClick={handleExit} className="exit" type="button">X</button>
         <br />
         <h3>Ask Your Question</h3>
