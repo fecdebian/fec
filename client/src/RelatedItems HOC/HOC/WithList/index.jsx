@@ -1,9 +1,10 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 import { useRef } from 'react';
+import PropTypes from 'prop-types';
 
 export default function withList(WrappedComponent) {
-  function WithList() {
+  function WithList({ currentProductDetail }) {
     const scrollRef = useRef(null);
 
     const scrollRightHandler = (e) => {
@@ -35,11 +36,8 @@ export default function withList(WrappedComponent) {
       }
     };
 
-    console.log('withList render');
-
     return (
       <div>
-        <h2>More in related products</h2>
         <div
           css={css`
               border-sizing: border-box;
@@ -75,9 +73,12 @@ export default function withList(WrappedComponent) {
               display:flex;
               width:90%;
               overflow-x:scroll;
+              &::-webkit-scrollbar {
+                display: none;
+              }
           `}
           >
-            <WrappedComponent />
+            <WrappedComponent currentProductDetail={currentProductDetail} />
           </div>
           {/* right handler */}
           <button
@@ -103,6 +104,11 @@ export default function withList(WrappedComponent) {
       </div>
     );
   }
+
+  WithList.propTypes = {
+    currentProductDetail: PropTypes.shape({
+    }).isRequired,
+  };
 
   const wrappedComponentName = WrappedComponent.displayName
     || WrappedComponent.name
