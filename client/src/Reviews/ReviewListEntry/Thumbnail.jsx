@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 export default function Thumbnail({ photo }) {
   return (
-    <a target="_blank" href={photo.url}>
+    <a target="_blank" href={photo.url} rel="noreferrer">
       <img
         css={css`
           border: 1px dotted #ddd;
@@ -22,6 +22,9 @@ export default function Thumbnail({ photo }) {
   );
 }
 
-// ReviewSummary.propTypes = {
-//   summary: PropTypes.string.isRequired,
-// };
+Thumbnail.propTypes = {
+  photo: PropTypes.shape({
+    id: PropTypes.number,
+    url: PropTypes.string,
+  }).isRequired,
+};
