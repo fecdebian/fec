@@ -114,7 +114,7 @@ function QuestionsAndAnswers() {
       >
         <button onClick={handleClick} type="button">Add Question</button>
       </span>
-      <span>{questionForm ? <AddQuestion /> : null}</span>
+      <span><AddQuestion /></span>
     </div>
   );
 }

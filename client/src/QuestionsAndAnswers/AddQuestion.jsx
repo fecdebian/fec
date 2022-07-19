@@ -59,15 +59,14 @@ function AddQuestion() {
 
   return (
     <div
-      className={questionForm ? 'modal display-block' : 'modal display-none'}
       css={css`
     .modal {
       position: fixed;
-      top: 0;
-      left: 0;
-      width:100%;
+      top: 0px;
+      left: 0px;
+      width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.6);
+      background-color: rgba(0,0,0,0.5);
     }
 
     .modal-main {
@@ -114,7 +113,8 @@ function AddQuestion() {
       display: none;
     }`}
     >
-      <form onSubmit={handleCloseForm} className="modal-main">
+      <div onClick={handleExit} className={questionForm ? "modal": "display-none"}></div>
+      <form onSubmit={handleCloseForm} className={questionForm ? "display-block modal-main" : "display-none"}>
         <button onClick={handleExit} className="exit" type="button">X</button>
         <br />
         <h3>Ask Your Question</h3>

@@ -33,14 +33,13 @@ function Question({ question }) {
       `}
       >
         <span css={css`
-        font-size: 18px;
+        font-size: 17px;
         `}
         >
           <strong>{`Q: ${question.question_body}`}</strong>
         </span>
         <span>
           {' Helpful? '}
-          &nbsp;
           <button type="button" onClick={handleClick}>Yes</button>
           {' ('}
           <span>{clicked ? question.question_helpfulness + 1 : question.question_helpfulness}</span>
