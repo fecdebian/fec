@@ -7,10 +7,6 @@ import withCard from '../HOC/WithCard';
 import AddToOutfit from './AddtoOutfit';
 import DeleteButton from './DeleteButton';
 
-function Holder() {
-  return <span>holder</span>;
-}
-
 export default function Outfit({ currentProductDetail }) {
   const [outfits, setOutfits] = useState({});
   const AddToOutfitHandler = () => {
@@ -22,14 +18,21 @@ export default function Outfit({ currentProductDetail }) {
       tmpOutfit[currentProductDetail.id] = currentProductDetail;
       const outfitString = JSON.stringify(tmpOutfit);
       localStorage.setItem('outfits', outfitString);
+      setOutfits(tmpOutfit);
     } else {
       const tmpOutfitString = localStorage.getItem('outfits');
       const tmpOutfit = JSON.parse(tmpOutfitString);
       tmpOutfit[currentProductDetail.id] = currentProductDetail;
-      localStorage.setItem('outfits', tmpOutfit);
+      const outfitString = JSON.stringify(tmpOutfit);
+      localStorage.setItem('outfits', outfitString);
+      setOutfits(tmpOutfit);
     }
 
     // console.log('add to outfit', localStorage.getItem('outfits'));
+  };
+
+  const deleteOutfitHandler = (OutfitList) => {
+    setOutfits(OutfitList);
   };
 
   useEffect(() => {
@@ -52,7 +55,7 @@ export default function Outfit({ currentProductDetail }) {
         .keys(outfits)
         .map((key) => {
           const selectedProduct = outfits[key];
-          const OutfitCard = withCard(DeleteButton, { selectedProduct });
+          const OutfitCard = withCard(DeleteButton, { selectedProduct, deleteOutfitHandler });
           return (
             <div
               key={selectedProduct.id}
