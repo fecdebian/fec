@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -37,7 +37,7 @@ export default function RelatedProductsCards({ currentProductDetail }) {
       });
       setRelatedProducts(relatedProductsCopy);
     }).catch((err) => {
-      console.log('Unable to get related product id from server ', err);
+      throw err;
     });
   }, []);
 

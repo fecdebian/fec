@@ -3,7 +3,11 @@ import React from 'react';
 import AvgStars from './AvgStars';
 import ProductImage from './ProductImage';
 
-export default function withCard(WrappedActionButtonComponent, { selectedProduct, mainProduct, deleteOutfitHandler }) {
+export default function withCard(WrappedActionButtonComponent, {
+  selectedProduct,
+  mainProduct,
+  deleteOutfitHandler,
+}) {
   function WithCard() {
     return (
       <>
