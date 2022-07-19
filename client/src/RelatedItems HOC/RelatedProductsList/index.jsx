@@ -14,7 +14,6 @@ export default function RelatedProductsCards({ currentProductDetail }) {
   const currentProduct = useRecoilValue(currentProductState);
   const [relatedProducts, setRelatedProducts] = useRecoilState(relatedProductsState);
   // const [currentProductDetail, setCurrentProductDetail] = useState({});
-  // const currentProductDetail = props;
   useEffect(() => {
     const relatedProductsRequests = [];
     axios({

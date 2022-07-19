@@ -5,8 +5,10 @@ import axios from 'axios';
 import withList from './HOC/WithList';
 import RelatedProductsCards from './RelatedProductsList';
 import currentProductState from '../currentProduct';
+import Outfit from './OurfitList';
 
 const RelatedProductList = withList(RelatedProductsCards);
+const OutfitList = withList(Outfit);
 
 export default function RelatedItems() {
   const currentProduct = useRecoilValue(currentProductState);
@@ -43,6 +45,7 @@ export default function RelatedItems() {
       <h2>More in Related Items</h2>
       <RelatedProductList currentProductDetail={currentProductDetail} />
       <h2>Your Outfit</h2>
+      <OutfitList currentProductDetail={currentProductDetail} />
     </div>
   );
 }
