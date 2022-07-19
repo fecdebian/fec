@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
-import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 export default function DeleteButton({ selectedProduct, deleteOutfitHandler }) {

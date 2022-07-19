@@ -20,7 +20,7 @@ const ProductDetailPage = function WhateverStupidName() {
         setCurrentProduct(response.data[0]);
       })
       .catch((err) => {
-        console.error('Unable to get product from server ', err);
+        throw err;
       });
   }, []);
 

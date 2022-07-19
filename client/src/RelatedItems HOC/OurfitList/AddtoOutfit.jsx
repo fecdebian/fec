@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
-import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function AddToOutfit({ AddToOutfitHandler }) {
