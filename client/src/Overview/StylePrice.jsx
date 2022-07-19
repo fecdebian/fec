@@ -4,7 +4,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import axios from 'axios';
 import { css, jsx } from '@emotion/react';
 
-import { currentProductStyles, selectedProductStyle } from './overviewAtoms';
+import { currentProductStyles, selectedProductStyle, selectedImage } from './overviewAtoms';
 import currentProductState from '../currentProduct';
 
 function StylePrice() {
@@ -13,6 +13,7 @@ function StylePrice() {
 
   const [productStyles, setProductStyles] = useRecoilState(currentProductStyles);
   const [selectedStyle, setSelectedStyle] = useRecoilState(selectedProductStyle);
+  const [currentImage, setCurrentImage] = useRecoilState(selectedImage);
 
   function getStyles() {
     axios({
@@ -29,6 +30,7 @@ function StylePrice() {
         });
         setProductStyles(allStyles);
         setSelectedStyle(defaultStyle);
+        setCurrentImage(defaultStyle.photos[0].url);
       })
       .catch((err) => console.log('error getting product styles: ', err));
   }

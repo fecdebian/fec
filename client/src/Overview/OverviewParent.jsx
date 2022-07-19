@@ -3,10 +3,12 @@ import { css, jsx } from '@emotion/react';
 
 import { ReviewWeightedAverage } from '../SharedComponents/ReviewWeightedAverage';
 import CatAndTitle from './CategoryAndTitle';
+import GalleryDefault from './GalleryDefault';
 import StylePrice from './StylePrice';
 import StyleList from './StyleList';
 import Cart from './Cart';
 import ProductOverview from './ProductOverview';
+import selectedProductStyle from './overviewAtoms';
 
 function Overview() {
   return (
@@ -30,6 +32,7 @@ function Overview() {
       >
         <ReviewWeightedAverage />
       </div>
+      <GalleryDefault />
       <CatAndTitle />
       <StylePrice />
       <StyleList />
