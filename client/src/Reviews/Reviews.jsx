@@ -8,7 +8,7 @@ import ReviewList from './ReviewList';
 import SubmitReview from './SubmitReview';
 import SortBy from './SortBy';
 import { ReviewsProvider } from './ReviewsContext';
-// import MovingDot from './MovingDot';
+import RatingBreakdown from './RatingBreakdown';
 
 import currentProduct from '../currentProduct';
 
@@ -40,6 +40,7 @@ export default function Reviews() {
         border: solid black 2px;
       `}
     >
+      <RatingBreakdown />
       <ReviewsProvider productReviews={reviews}>
         <SortBy />
         <ReviewList />
