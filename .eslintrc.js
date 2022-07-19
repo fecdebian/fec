@@ -34,4 +34,3 @@ module.exports = {
     'jest-dom/prefer-to-have-attribute': 'error',
   },
 };
-
