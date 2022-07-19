@@ -3,18 +3,19 @@ import { css, jsx } from '@emotion/react';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function AddToOutfit() {
+export default function AddToOutfit({ AddToOutfitHandler }) {
   return (
     <div>
       <button
         type="button"
+        onClick={AddToOutfitHandler}
         css={css`
-          font-size: 11rem;
+          font-size: 10rem;
         `}
       >
         &#43;
       </button>
-      <span>Add to Outfit</span>
+      <div>Add to Outfit</div>
     </div>
   );
 }
@@ -23,4 +24,5 @@ AddToOutfit.propTypes = {
   currentProductDetail: PropTypes.shape({
     id: PropTypes.number.isRequired,
   }).isRequired,
+  AddToOutfitHandler: PropTypes.func.isRequired,
 };
