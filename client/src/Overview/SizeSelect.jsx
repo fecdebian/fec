@@ -33,6 +33,7 @@ function SizeSelect() {
   }
 
   const setNewSize = (e) => {
+    e.preventDefault();
     const newQuantAndSize = e.target.value;
     const newSelectedTotalQuant = newQuantAndSize.slice(0, newQuantAndSize.indexOf(','));
     const newSize = newQuantAndSize;

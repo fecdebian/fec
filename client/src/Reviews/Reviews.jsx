@@ -19,7 +19,7 @@ export default function Reviews() {
   useEffect(() => {
     let ignore = false;
 
-    axios.get(`/reviews?product_id=${prod.id}`)
+    axios.get(`/reviews?product_id=${prod.id}&count=300`)
       .then((res) => {
         if (!ignore) {
           setReviews(res.data.results);
@@ -40,8 +40,8 @@ export default function Reviews() {
         border: solid black 2px;
       `}
     >
-      <RatingBreakdown />
       <ReviewsProvider productReviews={reviews}>
+        <RatingBreakdown />
         <SortBy />
         <ReviewList />
         <SubmitReview />
