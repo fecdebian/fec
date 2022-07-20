@@ -34,3 +34,8 @@ export const selectedImage = atom({
   key: 'selectedImage',
   default: '',
 });
+
+export const selectedImageIndex = atom({
+  key: 'selectedImageIndex',
+  default: 0,
+});

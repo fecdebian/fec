@@ -21,22 +21,24 @@ function AvgStars({ currentProduct }) {
     })
       .then((reviews) => {
         const ratingsObj = reviews.data.ratings;
-        const ratingsValues = Object.values(ratingsObj);
-        const ratingsWeights = Object.keys(ratingsObj);
         let sumOfTotalRatings = 0;
         let sumOfWeightedRatings = 0;
 
-        for (let i = 0; i < ratingsValues.length; i += 1) {
-          sumOfTotalRatings += Number(ratingsValues[i]);
+        // eslint-disable-next-line no-restricted-syntax
+        for (const [rate, entries] of Object.entries(ratingsObj)) {
+          sumOfTotalRatings += Number(entries);
+          sumOfWeightedRatings += rate * entries;
         }
-        for (let i = 0; i < ratingsWeights.length; i += 1) {
-          sumOfWeightedRatings += (ratingsValues[i] * ratingsWeights[i]);
-        }
-
-        avgRating = (Math.round(((sumOfWeightedRatings / sumOfTotalRatings) * 4))
-          / 4).toFixed(2);
+        avgRating = (sumOfWeightedRatings / sumOfTotalRatings).toFixed(2);
         setIsLoaded(true);
-        setAvgStars(avgRating);
+
+        // If there are no reviews, we need to hide this component.
+        // Setting to -1 for conditional rendering below
+        if (sumOfTotalRatings < 1) {
+          setAvgStars(-1);
+        } else {
+          setAvgStars(avgRating);
+        }
       })
       .catch((err) => {
         setIsLoaded(true);

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { css, jsx } from '@emotion/react';
 import { useState } from 'react';
 import axios from 'axios';
@@ -10,8 +10,8 @@ import { selectedProductStyle, selectedQuant, selectedSize } from './overviewAto
 
 function Cart() {
   const currentProductStyle = useRecoilValue(selectedProductStyle);
-  const cartQuant = useRecoilValue(selectedQuant);
-  const cartSize = useRecoilValue(selectedSize);
+  const [cartQuant, setCartQuant] = useRecoilState(selectedQuant);
+  const [cartSize, setCartSize] = useRecoilState(selectedSize);
   const [addSizePopup, setAddSizePopup] = useState(null);
   if (currentProductStyle.style_id === undefined) {
     return <div>Cart Loading...</div>;
@@ -61,6 +61,8 @@ function Cart() {
       };
       repeatCartPost();
     }
+    setCartQuant('-');
+    setCartSize('Select Size');
   };
 
   if (cartSize === 'OUT OF STOCK') {
