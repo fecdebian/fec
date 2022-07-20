@@ -56,9 +56,9 @@ export default function RelatedProductsCards({ currentProductDetail }) {
             <div
               key={product.id}
               css={css`
-                  flex: 0 0 14%;
+                  flex: 0 0 24%;
                   border-sizing: border-box;
-                  width:14%;
+                  width:24%;
                   padding:0.25rem;
                   position:relative;
                 `}
