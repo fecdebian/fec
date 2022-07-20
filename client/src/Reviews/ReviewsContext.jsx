@@ -58,6 +58,16 @@ function filterReviewsBy(star) {
   return newReviews;
 }
 
+function searchReviewsBy(term) {
+  let newReviews = totalReviews.slice();
+  const re = new RegExp(term, 'i');
+  newReviews = newReviews.filter((review) => (
+    re.test(review.summary)
+    || re.test(review.body)
+    || re.test(review.reviewer_name)));
+  return newReviews;
+}
+
 /*  ==========       Export Context           ==========  */
 
 export const ReviewsContext = createContext(null);
@@ -98,10 +108,23 @@ function reviewsReducer(reviews, action) {
     case 'filter_by': {
       if (filterValue === action.value || action.value === 'remove_all') {
         filterValue = null;
-        return [...reInitializeReviews(totalReviews)];
+        return [
+          ...reInitializeReviews(totalReviews),
+        ];
       }
       sortedReviews = filterReviewsBy(action.value);
       filterValue = action.value;
+      return [
+        ...reInitializeReviews(sortedReviews),
+      ];
+    }
+    case 'search_by': {
+      if (action.value.length < 3) {
+        return [
+          ...reInitializeReviews(totalReviews),
+        ];
+      }
+      sortedReviews = searchReviewsBy(action.value);
       return [
         ...reInitializeReviews(sortedReviews),
       ];
