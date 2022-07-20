@@ -8,7 +8,12 @@ import Reviews from './Reviews/Reviews';
 import QuestionsAndAnswers from './QuestionsAndAnswers/QuestionsAndAnswers';
 import currentProductState from './currentProduct';
 import RelatedItems from './RelatedItems HOC';
+import withBigBrotherWatching from './SharedComponents/bigBrotherIsWatchingYou';
 
+const OverviewUnderWatch = withBigBrotherWatching(Overview);
+const RelatedItemsUnderWatch = withBigBrotherWatching(RelatedItems);
+const ReviewsUnderWatch = withBigBrotherWatching(Reviews);
+const QuestionsAndAnswersUnderWatch = withBigBrotherWatching(QuestionsAndAnswers);
 // Huzzah for jsx!
 const ProductDetailPage = function WhateverStupidName() {
   const [currentProduct, setCurrentProduct] = useRecoilState(currentProductState);
@@ -32,10 +37,14 @@ const ProductDetailPage = function WhateverStupidName() {
     <div>
       <h2>Product Name:</h2>
       <h2>{currentProduct.name}</h2>
-      <Overview />
-      <RelatedItems />
-      <Reviews />
-      <QuestionsAndAnswers />
+      {/* <Overview /> */}
+      <OverviewUnderWatch />
+      {/* <RelatedItems /> */}
+      <RelatedItemsUnderWatch />
+      {/* <Reviews /> */}
+      <ReviewsUnderWatch />
+      {/* <QuestionsAndAnswers /> */}
+      <QuestionsAndAnswersUnderWatch />
     </div>
   );
 };
