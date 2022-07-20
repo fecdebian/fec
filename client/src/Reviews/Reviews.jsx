@@ -9,6 +9,7 @@ import SubmitReview from './SubmitReview';
 import SortBy from './SortBy';
 import { ReviewsProvider } from './ReviewsContext';
 import RatingBreakdown from './RatingBreakdown';
+import SearchBy from './SearchBy';
 
 import currentProduct from '../currentProduct';
 
@@ -19,7 +20,7 @@ export default function Reviews() {
   useEffect(() => {
     let ignore = false;
 
-    axios.get(`/reviews?product_id=${prod.id}`)
+    axios.get(`/reviews?product_id=${prod.id}&count=300`)
       .then((res) => {
         if (!ignore) {
           setReviews(res.data.results);
@@ -40,9 +41,10 @@ export default function Reviews() {
         border: solid black 2px;
       `}
     >
-      <RatingBreakdown />
       <ReviewsProvider productReviews={reviews}>
+        <RatingBreakdown />
         <SortBy />
+        <SearchBy />
         <ReviewList />
         <SubmitReview />
       </ReviewsProvider>

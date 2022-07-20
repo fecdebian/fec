@@ -14,13 +14,30 @@ function StyleList() {
   }
 
   return (
-    <div>
-      <span>
+    <div css={css`
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    overflow: auto;
+    padding: 10px;
+    margin: 10px;
+    `}
+    >
+      <div css={css`
+           display: flex;
+           flex-direction: column;
+           align-items: end;
+           overflow: auto;
+           padding: 10px;
+           margin: 10px;
+           `}
+      >
         {currentStyle.name}
-      </span>
-      <ul>
-        {productStyles.map((style) => <StyleThumbnail key={style.style_id} styleThumb={style} />)}
-      </ul>
+        <br />
+        <ul>
+          {productStyles.map((style) => <StyleThumbnail key={style.style_id} styleThumb={style} />)}
+        </ul>
+      </div>
     </div>
   );
 }

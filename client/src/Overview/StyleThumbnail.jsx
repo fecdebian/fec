@@ -3,11 +3,19 @@ import { useRecoilState } from 'recoil';
 import PropTypes from 'prop-types';
 import { css, jsx } from '@emotion/react';
 
-import { selectedProductStyle, selectedSize } from './overviewAtoms';
+import { selectedProductStyle, selectedImage } from './overviewAtoms';
 
 function StyleThumbnail({ styleThumb }) {
   const [currentStyle, setCurrentStyle] = useRecoilState(selectedProductStyle);
+  const [currentImage, setCurrentImage] = useRecoilState(selectedImage);
   const photoURL = styleThumb.photos[0].thumbnail_url;
+  const fullPhotoURL = styleThumb.photos[0].url;
+
+  const clickHandler = (e) => {
+    e.preventDefault();
+    setCurrentStyle(styleThumb);
+    setCurrentImage(fullPhotoURL);
+  };
 
   if (styleThumb.style_id === currentStyle.style_id) {
     return (
@@ -21,7 +29,7 @@ function StyleThumbnail({ styleThumb }) {
         />
         <img
           alt={styleThumb.name} src={photoURL} width="50" height="50"
-          onClick={() => {setCurrentStyle(styleThumb)}}
+          onClick={clickHandler}
         />
       </span>
     );
