@@ -9,6 +9,7 @@ import SubmitReview from './SubmitReview';
 import SortBy from './SortBy';
 import { ReviewsProvider } from './ReviewsContext';
 import RatingBreakdown from './RatingBreakdown';
+import SearchBy from './SearchBy';
 
 import currentProduct from '../currentProduct';
 
@@ -43,6 +44,7 @@ export default function Reviews() {
       <ReviewsProvider productReviews={reviews}>
         <RatingBreakdown />
         <SortBy />
+        <SearchBy />
         <ReviewList />
         <SubmitReview />
       </ReviewsProvider>
