@@ -9,6 +9,7 @@ let sortedReviews;
 let displayedReviews;
 let reviewsLen;
 let ignore = false;
+let filterValue;
 
 /*  ==========       Utilities           ==========  */
 
@@ -50,6 +51,13 @@ function sortReviewsBy(category) {
   throw Error('Unknown category');
 }
 
+function filterReviewsBy(star) {
+  let newReviews = totalReviews.slice();
+  const numStar = Number(star);
+  newReviews = newReviews.filter((review) => review.rating === numStar);
+  return newReviews;
+}
+
 /*  ==========       Export Context           ==========  */
 
 export const ReviewsContext = createContext(null);
@@ -83,6 +91,17 @@ function reviewsReducer(reviews, action) {
     }
     case 'sort_by': {
       sortedReviews = sortReviewsBy(action.value);
+      return [
+        ...reInitializeReviews(sortedReviews),
+      ];
+    }
+    case 'filter_by': {
+      if (filterValue === action.value || action.value === 'remove_all') {
+        filterValue = null;
+        return [...reInitializeReviews(totalReviews)];
+      }
+      sortedReviews = filterReviewsBy(action.value);
+      filterValue = action.value;
       return [
         ...reInitializeReviews(sortedReviews),
       ];
