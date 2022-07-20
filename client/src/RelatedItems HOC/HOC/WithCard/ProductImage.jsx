@@ -46,7 +46,7 @@ function ProductImage({ currentProduct }) {
 
   if (error) {
     return (
-      <div>
+      <div data-testid={`imageError-${productID}`}>
         Error:
         {error.message}
       </div>

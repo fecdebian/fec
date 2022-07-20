@@ -21,10 +21,17 @@ const product = {
 
 afterEach(cleanup);
 
-test('should render component', async () => {
-  render(<ProductImage currentProduct={product} />);
-  const imagElement = screen.getByText('Loading...');
-  expect(imagElement).toBeInTheDocument();
+describe('Product Image Component', () => {
+  test('should render Loading...', () => {
+    render(<ProductImage currentProduct={product} />);
+    const imagElement = screen.getByText('Loading...');
+    expect(imagElement).toBeInTheDocument();
+  });
 
-  expect(imagElement).toBeInTheDocument();
+  test('should render Error', async () => {
+    render(<ProductImage currentProduct={product} />);
+    // const imagElement = await screen.findByTestId(`imageError-${product.id}`);
+    const imagElement = await screen.findByRole('div');
+    expect(imagElement).toBeInTheDocument();
+  });
 });
