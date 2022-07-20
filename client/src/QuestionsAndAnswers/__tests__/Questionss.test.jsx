@@ -1,37 +1,28 @@
 import '@testing-library/jest-dom';
 import React from 'react';
-import axios from 'axios';
 import { RecoilRoot } from 'recoil';
 import { render, screen } from '@testing-library/react';
 // import userEvent from '@testing-library/user-event';
-
+// import { act, renderRecoilHook } from 'react-recoil-hooks-testing-library';
 import QuestionsAndAnswers from '../QuestionsAndAnswers';
+import mockSampleData from '../sampleData';
+import { questionsState } from '../atoms';
+import currentProductState from '../../currentProduct';
 
-jest.mock('axios');
-
-describe('PDP', () => {
-  it('fetches data and renders app', async () => {
-    const sampleProduct = [{
-      id: 37311,
-      campus: 'hr-rfe',
-      name: 'Camo Onesie',
-      slogan: 'Blend in to your crowd',
-      description: 'The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.',
-      category: 'Jackets',
-      default_price: '140.00',
-      created_at: '2021-08-13T14:37:33.145Z',
-      updated_at: '2021-08-13T14:37:33.145Z',
-    }];
-    axios.get.mockImplementationOnce(() => Promise.resolve({ data: sampleProduct }));
-
+describe('Q&A Landing Page', () => {
+  it('fetches productID and renders app', async () => {
     render(
-      <RecoilRoot>
+      <RecoilRoot initializeState={(snap) => {
+        snap.set(currentProductState, '37311');
+        snap.set(questionsState, mockSampleData);
+      }}
+      >
         <QuestionsAndAnswers />
       </RecoilRoot>,
     );
 
     screen.debug();
-    const header = await screen.findByText('Product Name:');
+    const header = await screen.findByText('Questions And Answers'); // No Questions found
     expect(header).toBeInTheDocument();
   });
 });
