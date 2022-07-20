@@ -4,10 +4,10 @@ import { useEffect } from 'react';
 import { css, jsx } from '@emotion/react';
 import axios from 'axios';
 import { useRecoilValue, useSetRecoilState, useRecoilState } from 'recoil';
-import currentProductState from '../currentProduct';
 import {
   questionsState, anyResultsState, sortedQuestionsState, questionsViewState, moreQuestionsState, questionFormState, updateQuestionsState,
 } from './atoms';
+import currentProductState from '../currentProduct';
 import QuestionsList from './QuestionsList';
 import SearchQuestions from './SearchQuestions';
 import AddQuestion from './AddQuestion';
@@ -45,8 +45,9 @@ function QuestionsAndAnswers() {
 
   // getting list of questions given product ID
   useEffect(() => {
-    axios.get(`/qa/questions?product_id=${productID.id}&page=${1}&count=${1000}`) // does count need to be in state? Not sure yet
+    axios.get(`/qa/questions?product_id=${productID.id}&page=${1}&count=${10000}`) // does count need to be in state? Not sure yet
       .then((res) => {
+        console.log(productID);
         console.log('successful GET questions request');
         console.log(res.data.results);
         setQuestions(res.data.results);
