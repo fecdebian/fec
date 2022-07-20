@@ -20,6 +20,9 @@ function GalleryDefault() {
   const previousPhotoHandler = (e) => {
     e.preventDefault();
     const photoIndex = imageIndex;
+    if (photoIndex === 0) {
+      return;
+    }
     setCurrentImage(imageList[photoIndex - 1].url);
     setImageIndex(photoIndex - 1);
   };
@@ -27,6 +30,9 @@ function GalleryDefault() {
   const nextPhotoHandler = (e) => {
     e.preventDefault();
     const photoIndex = imageIndex;
+    if (photoIndex === imageList.length - 1) {
+      return;
+    }
     setCurrentImage(imageList[photoIndex + 1].url);
     setImageIndex(photoIndex + 1);
   };
