@@ -2,6 +2,7 @@
 import { css, jsx } from '@emotion/react';
 import { useRef } from 'react';
 import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
 
 export default function withList(WrappedComponent) {
   function WithList({ currentProductDetail }) {
@@ -9,7 +10,7 @@ export default function withList(WrappedComponent) {
 
     const scrollRightHandler = (e) => {
       e.preventDefault();
-      scrollRef.current.scrollLeft += 200;
+      scrollRef.current.scrollLeft += 183;
       const maxScrollLeft = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
       const leftButtonElement = document.getElementsByClassName('scrollLeftButton');
       if (maxScrollLeft === scrollRef.current.scrollLeft) {
@@ -24,7 +25,7 @@ export default function withList(WrappedComponent) {
 
     const scrollLeftHandler = (e) => {
       e.preventDefault();
-      scrollRef.current.scrollLeft -= 200;
+      scrollRef.current.scrollLeft -= 183;
       const rightButtonElement = document.getElementsByClassName('scrollRightButton');
       if (scrollRef.current.scrollLeft === 0) {
         e.target.setAttribute('style', 'opacity: 0');
@@ -37,70 +38,29 @@ export default function withList(WrappedComponent) {
     };
 
     return (
-      <div data-testid="sliderContainer">
-        <div
-          css={css`
-              border-sizing: border-box;
-              display:flex;
-              justify-content:center;
-              width:100;
-            `}
-        >
-          <button
+      <div>
+        <StyledSliderContainer>
+          <StyledScrollButton
             className="scrollLeftButton"
             type="button"
             onClick={scrollLeftHandler}
-            css={css`
-              border-sizing: border-box;
-              width:5%;
-              z-index:10;
-              display:flex;
-              justify-content:center;
-              align-items:center;
-              color:black;
-              background-color:transparent;
-              border:none;
-              font-size:5rem;
-            `}
           >
             &#8249;
-          </button>
-          <div
+          </StyledScrollButton>
+          <StyledProductsslider
             ref={scrollRef}
             id="related-Products-slider"
-            css={css`
-              border-sizing: border-box;
-              display:flex;
-              width:90%;
-              overflow-x:scroll;
-              &::-webkit-scrollbar {
-                display: none;
-              }
-          `}
           >
             <WrappedComponent currentProductDetail={currentProductDetail} />
-          </div>
-          {/* right handler */}
-          <button
+          </StyledProductsslider>
+          <StyledScrollButton
             className="scrollRightButton"
             type="button"
             onClick={scrollRightHandler}
-            css={css`
-                border-sizing: border-box;
-                width:5%;
-                z-index:10;
-                display:flex;
-                justify-content:center;
-                align-items:center;
-                color:black;
-                background-color:transparent;
-                border:none;
-                font-size:5rem;
-              `}
           >
             &#8250;
-          </button>
-        </div>
+          </StyledScrollButton>
+        </StyledSliderContainer>
       </div>
     );
   }
@@ -117,3 +77,34 @@ export default function withList(WrappedComponent) {
 
   return WithList;
 }
+
+/* ===========    CSS Styled Components   =========== */
+const StyledSliderContainer = styled.div`
+  border-sizing: border-box;
+  display:flex;
+  justify-content:center;
+  width:100;
+`;
+
+const StyledScrollButton = styled.button`
+  border-sizing: border-box;
+  width:5%;
+  z-index:10;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:black;
+  background-color:transparent;
+  border:none;
+  font-size:5rem;
+`;
+
+const StyledProductsslider = styled.div`
+  border-sizing: border-box;
+  display:flex;
+  width:90%;
+  overflow-x:scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
