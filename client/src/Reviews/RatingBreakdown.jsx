@@ -13,7 +13,6 @@ export default function RatingBreakdown() {
   const totalReviews = useRecoilValue(totalReviewsState);
   const reviewMeta = useRecoilValue(reviewMetaState);
 
-  console.log(reviewMeta);
   return (
     <div>
       Average:
