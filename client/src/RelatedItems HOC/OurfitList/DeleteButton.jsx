@@ -1,6 +1,7 @@
 /** @jsx jsx */
-import { css, jsx } from '@emotion/react';
+import { jsx } from '@emotion/react';
 import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
 
 export default function DeleteButton({ selectedProduct, deleteOutfitHandler }) {
   const removeOutFitCardHandler = () => {
@@ -15,21 +16,12 @@ export default function DeleteButton({ selectedProduct, deleteOutfitHandler }) {
   };
 
   return (
-    <button
+    <StyledRemovedCardButton
       onClick={removeOutFitCardHandler}
       type="button"
-      css={css`
-        position:absolute;
-        color:black;
-        background-color:white ;
-        border:solid;
-        right:2%;
-        font-size:1rem;
-        font-weight:bold;
-      `}
     >
       <span>&#10006;</span>
-    </button>
+    </StyledRemovedCardButton>
   );
 }
 
@@ -39,3 +31,14 @@ DeleteButton.propTypes = {
   }).isRequired,
   deleteOutfitHandler: PropTypes.func.isRequired,
 };
+
+/* ===========    CSS Styled Components   =========== */
+const StyledRemovedCardButton = styled.button`
+  position:absolute;
+  color:black;
+  background-color:white ;
+  border:solid;
+  right:2%;
+  font-size:1rem;
+  font-weight:bold;
+`;
