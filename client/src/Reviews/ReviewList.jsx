@@ -41,7 +41,7 @@ export default function ReviewList() {
   && (
   <div
     css={css`
-          max-height: 370px;
+          max-height: 470px;
           overflow: auto;
           padding: 10px;
           margin: 10px;
