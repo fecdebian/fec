@@ -25,6 +25,7 @@ function StyleThumbnail({ styleThumb }) {
           css={css`
           position: absolute;
           z-index: 1;
+          overflow: wrap;
           `}
         />
         <img

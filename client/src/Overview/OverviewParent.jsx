@@ -23,6 +23,7 @@ function Overview() {
            grid-column-end: 4;
            grid-row-start: 1;
            grid-row-end: 5;
+           overflow: wrap;
     `}
       >
         <ReviewWeightedAverage />
