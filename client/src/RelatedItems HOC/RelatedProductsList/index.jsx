@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { css, jsx } from '@emotion/react';
+import { jsx } from '@emotion/react';
 import React, { useEffect } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import axios from 'axios';
@@ -56,13 +56,6 @@ export default function RelatedProductsCards({ currentProductDetail }) {
           return (
             <StyledProductContainer
               key={product.id}
-              // css={css`
-              //     flex: 0 0 24%;
-              //     border-sizing: border-box;
-              //     width:24%;
-              //     padding:0.25rem;
-              //     position:relative;
-              //   `}
             >
               <ProductCard />
             </StyledProductContainer>
@@ -78,6 +71,7 @@ RelatedProductsCards.propTypes = {
   }).isRequired,
 };
 
+/* ===========    CSS Styled Components   =========== */
 const StyledProductContainer = styled.div`
 flex: 0 0 24%;
 border-sizing: border-box;
