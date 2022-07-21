@@ -52,7 +52,7 @@ function QuestionsAndAnswers() {
         setQuestions(res.data.results);
       })
       .catch((err) => {
-        console.error('error fetching questions:', err);
+        console.log('error fetching questions:', err);
       });
   }, [productID, updateQuestions]);
 

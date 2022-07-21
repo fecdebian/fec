@@ -55,12 +55,12 @@ function EachAnswer({ answer }) {
         &nbsp;
         <button onClick={handleHelpfulClick} type="button">Yes</button>
         {' ('}
-        <span>{helpfulClicked ? answer.helpfulness + 1 : answer.helpfulness}</span>
+        <span data-testid="answer-helpful">{helpfulClicked ? answer.helpfulness + 1 : answer.helpfulness}</span>
         {') '}
         &nbsp;
         {'| '}
         &nbsp;
-        <button onClick={handleReportClick} type="button">{reportClicked ? 'Reported' : 'Report'}</button>
+        <button data-testid="report" onClick={handleReportClick} type="button">{reportClicked ? 'Reported' : 'Report'}</button>
       </div>
     </li>
   );

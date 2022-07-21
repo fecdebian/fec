@@ -42,7 +42,7 @@ function Question({ question }) {
           {' Helpful? '}
           <button type="button" onClick={handleClick}>Yes</button>
           {' ('}
-          <span>{clicked ? question.question_helpfulness + 1 : question.question_helpfulness}</span>
+          <span data-testid="helpful">{clicked ? question.question_helpfulness + 1 : question.question_helpfulness}</span>
           {') '}
           &nbsp;
           {'| '}
