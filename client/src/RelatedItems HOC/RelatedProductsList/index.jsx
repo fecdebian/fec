@@ -77,4 +77,5 @@ const StyledProductContainer = styled.div`
   border-sizing: border-box;
   width:160;
   padding:0.25rem;
+  margin-left: 30px;
   position:relative;`;

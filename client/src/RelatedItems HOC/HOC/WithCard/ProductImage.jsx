@@ -25,7 +25,7 @@ function ProductImage({ currentProduct }) {
             if (result.photos[0].thumbnail_url !== null) {
               setProductImage(result.photos[0].thumbnail_url);
             } else {
-              setProductImage('https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg');
+              setProductImage('https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png');
             }
           }
         });
@@ -33,7 +33,7 @@ function ProductImage({ currentProduct }) {
           if (styleResults[0].photos[0].thumbnail_url !== null) {
             setProductImage(styleResults[0].photos[0].thumbnail_url);
           } else {
-            setProductImage('https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg');
+            setProductImage('https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png');
           }
         }
         setIsLoaded(true);
