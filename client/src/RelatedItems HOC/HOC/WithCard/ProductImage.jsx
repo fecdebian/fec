@@ -12,10 +12,11 @@ function ProductImage({ currentProduct }) {
 
   /* ===========    Gat Styles Photos from API and and render photos   =========== */
   useEffect(() => {
-    axios({
-      method: 'get',
-      url: `/products/${productID}/styles`,
-    })
+    // axios({
+    //   method: 'get',
+    //   url: `/products/${productID}/styles`,
+    // })
+    axios.get(`/products/${productID}/styles`)
       .then((style) => {
         const styleResults = style.data.results;
         let hasDefault = false;
@@ -46,7 +47,7 @@ function ProductImage({ currentProduct }) {
 
   if (error) {
     return (
-      <div data-testid={`imageError-${productID}`}>
+      <div>
         Error:
         {error.message}
       </div>
@@ -56,7 +57,7 @@ function ProductImage({ currentProduct }) {
     return <div>Loading...</div>;
   }
   return (
-    <img data-testid={`image-${productID}`} alt={product.name} src={productImage} width="100%" height="160" />
+    <img alt={product.name} src={productImage} width="100%" height="160" />
   );
 }
 
