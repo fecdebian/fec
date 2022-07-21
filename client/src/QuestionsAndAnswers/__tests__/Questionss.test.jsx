@@ -3,7 +3,6 @@ import React from 'react';
 import { RecoilRoot } from 'recoil';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-// import { act, renderRecoilHook } from 'react-recoil-hooks-testing-library';
 import QuestionsAndAnswers from '../QuestionsAndAnswers';
 import mockSampleData from '../sampleData';
 import { questionsState } from '../atoms';
