@@ -47,7 +47,7 @@ export default function AddQuestion({ handleExit }) {
         product_id: product.id,
         rating: starReview,
         summary: e.target.summary.value,
-        body: bodyChars,
+        body: e.target.body.value,
         recommend: recommended,
         name: e.target.nickname.value,
         characteristics: size,
