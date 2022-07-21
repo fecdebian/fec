@@ -41,11 +41,11 @@ export default function RelatedItems() {
     return <div>Loading...</div>;
   }
   return (
-    <div>
+    <>
       <h2>More in Related Items</h2>
       <RelatedProductList currentProductDetail={currentProductDetail} />
       <h2>Your Outfit</h2>
       <OutfitList currentProductDetail={currentProductDetail} />
-    </div>
+    </>
   );
 }

@@ -1,18 +1,17 @@
 /** @jsx jsx */
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { css, jsx } from '@emotion/react';
 import { useState } from 'react';
 import axios from 'axios';
 
 import SizeSelect from './SizeSelect';
 import QuantitySelect from './QuantitySelect';
-import AddToCart from './AddToCart';
 import { selectedProductStyle, selectedQuant, selectedSize } from './overviewAtoms';
 
 function Cart() {
   const currentProductStyle = useRecoilValue(selectedProductStyle);
-  const cartQuant = useRecoilValue(selectedQuant);
-  const cartSize = useRecoilValue(selectedSize);
+  const [cartQuant, setCartQuant] = useRecoilState(selectedQuant);
+  const [cartSize, setCartSize] = useRecoilState(selectedSize);
   const [addSizePopup, setAddSizePopup] = useState(null);
   if (currentProductStyle.style_id === undefined) {
     return <div>Cart Loading...</div>;
@@ -41,21 +40,42 @@ function Cart() {
       data: {
         sku_id: skuVal,
       },
-    });
+    })
+      .catch((err) => {
+        console.error('Unable to post to cart', err);
+      });
   };
 
-  const cartClickHandler = () => {
+  const cartClickHandler = (e) => {
+    e.preventDefault();
+    let cartCounter = 0;
     if (cartSize === 'Select Size') {
       setAddSizePopup('Please select size');
     }
     if (cartSize !== 'Select Size' && cartQuant > 0) {
-      postToCart();
+      const repeatCartPost = () => {
+        if (cartCounter < cartQuant) {
+          cartCounter += 1;
+          postToCart();
+        }
+      };
+      repeatCartPost();
     }
+    setCartQuant('-');
+    setCartSize('Select Size');
   };
 
   if (cartSize === 'OUT OF STOCK') {
     return (
-      <div>
+      <div css={css`
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      overflow: auto;
+      padding: 10px;
+      margin: 10px;
+      `}
+      >
         <SizeSelect />
         <QuantitySelect />
       </div>
@@ -63,7 +83,15 @@ function Cart() {
   }
 
   return (
-    <div>
+    <div css={css`
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    overflow: auto;
+    padding: 10px;
+    margin: 10px;
+    `}
+    >
       {addSizePopup}
       <SizeSelect />
       <QuantitySelect />

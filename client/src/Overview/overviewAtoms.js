@@ -29,3 +29,13 @@ export const selectedSKU = atom({
   key: 'selectedSKU',
   default: '',
 });
+
+export const selectedImage = atom({
+  key: 'selectedImage',
+  default: '',
+});
+
+export const selectedImageIndex = atom({
+  key: 'selectedImageIndex',
+  default: 0,
+});
