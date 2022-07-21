@@ -35,8 +35,6 @@ const ProductDetailPage = function WhateverStupidName() {
 
   return (
     <div>
-      <h2>Product Name:</h2>
-      <h2>{currentProduct.name}</h2>
       {/* <Overview /> */}
       <OverviewUnderWatch />
       {/* <RelatedItems /> */}

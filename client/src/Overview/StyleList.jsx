@@ -14,24 +14,8 @@ function StyleList() {
   }
 
   return (
-    <div css={css`
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    overflow: auto;
-    padding: 10px;
-    margin: 10px;
-    `}
-    >
-      <div css={css`
-           display: flex;
-           flex-direction: column;
-           align-items: end;
-           overflow: auto;
-           padding: 10px;
-           margin: 10px;
-           `}
-      >
+    <div>
+      <div>
         {currentStyle.name}
         <br />
         <ul>
