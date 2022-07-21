@@ -12,11 +12,10 @@ function ProductImage({ currentProduct }) {
 
   /* ===========    Gat Styles Photos from API and and render photos   =========== */
   useEffect(() => {
-    // axios({
-    //   method: 'get',
-    //   url: `/products/${productID}/styles`,
-    // })
-    axios.get(`/products/${productID}/styles`)
+    axios({
+      method: 'get',
+      url: `/products/${productID}/styles`,
+    })
       .then((style) => {
         const styleResults = style.data.results;
         let hasDefault = false;

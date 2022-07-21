@@ -22,7 +22,6 @@ const product = {
 };
 jest.mock('axios');
 
-
 afterEach(cleanup);
 
 describe('Product Image Component', () => {
@@ -63,31 +62,30 @@ describe('Product Image Component', () => {
     //   ],
     // });
 
-    axios.get.mockImplementationOnce(() => Promise.resolve({
+    axios.mockImplementationOnce(() => Promise.resolve({
       data:
-        {
-          product_id: '37311',
-          results: [
-            {
-              style_id: 220998,
-              name: 'Forest Green & Black',
-              original_price: '140.00',
-              sale_price: null,
-              'default?': true,
-              photos: [
-                {
-                  thumbnail_url: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
-                  url: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
-                },
-              ],
-            },
-          ],
-        },
-      // ],
-    }),
-    );
+      {
+        product_id: '37311',
+        results: [
+          {
+            style_id: 220998,
+            name: 'Forest Green & Black',
+            original_price: '140.00',
+            sale_price: null,
+            'default?': true,
+            photos: [
+              {
+                thumbnail_url: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+                url: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
+              },
+            ],
+          },
+        ],
+      },
+    }));
     render(<ProductImage currentProduct={product} />);
     const imagElement = await screen.findByAltText(product.name);
+    screen.debug();
     expect(imagElement).toBeInTheDocument();
   });
 });
