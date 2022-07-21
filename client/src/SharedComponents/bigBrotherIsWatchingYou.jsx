@@ -7,6 +7,7 @@ export default function withBigBrotherWatching(WrappedComponent) {
     || 'Component';
 
   const bigBrotherIsWatchingYouClickHandler = (event) => {
+    // event.preventDefault();
     axios({
       method: 'post',
       url: '/interactions',

@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
 
 import currentProductState from '../../currentProduct';
 import relatedProductsState from '../ModelRelatedItems/relatedProductsState';
@@ -53,18 +54,18 @@ export default function RelatedProductsCards({ currentProductDetail }) {
           const mainProduct = currentProductDetail;
           const ProductCard = withCard(StarButton, { selectedProduct, mainProduct });
           return (
-            <div
+            <StyledProductContainer
               key={product.id}
-              css={css`
-                  flex: 0 0 24%;
-                  border-sizing: border-box;
-                  width:24%;
-                  padding:0.25rem;
-                  position:relative;
-                `}
+              // css={css`
+              //     flex: 0 0 24%;
+              //     border-sizing: border-box;
+              //     width:24%;
+              //     padding:0.25rem;
+              //     position:relative;
+              //   `}
             >
               <ProductCard />
-            </div>
+            </StyledProductContainer>
           );
         },
       )}
@@ -76,3 +77,10 @@ RelatedProductsCards.propTypes = {
   currentProductDetail: PropTypes.shape({
   }).isRequired,
 };
+
+const StyledProductContainer = styled.div`
+flex: 0 0 24%;
+border-sizing: border-box;
+width:24%;
+padding:0.25rem;
+position:relative;`;

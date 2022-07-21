@@ -20,6 +20,9 @@ function GalleryDefault() {
   const previousPhotoHandler = (e) => {
     e.preventDefault();
     const photoIndex = imageIndex;
+    if (photoIndex === 0) {
+      return;
+    }
     setCurrentImage(imageList[photoIndex - 1].url);
     setImageIndex(photoIndex - 1);
   };
@@ -27,6 +30,9 @@ function GalleryDefault() {
   const nextPhotoHandler = (e) => {
     e.preventDefault();
     const photoIndex = imageIndex;
+    if (photoIndex === imageList.length - 1) {
+      return;
+    }
     setCurrentImage(imageList[photoIndex + 1].url);
     setImageIndex(photoIndex + 1);
   };
@@ -34,9 +40,9 @@ function GalleryDefault() {
   return (
     <div
       css={css`
-          display:flex;
-          justify-content:left;
-          align-items: start;
+          display: grid;
+          grid-column-start: 1;
+          grid-column-end: 3;
         `}
     >
       <i
@@ -45,13 +51,11 @@ function GalleryDefault() {
         onClick={previousPhotoHandler}
         css={css`
           z-index:5;
-          display:flex;
-          flex-direction: row;
-          justify-content: start;
-          color:black;
-          background-color:transparent;
-          border:none;
-          font-size:3rem;
+          display: grid;
+          color: black;
+          background-color: transparent;
+          border: none;
+          font-size: 3rem;
         `}
       />
       <img
@@ -61,8 +65,7 @@ function GalleryDefault() {
         height="500"
         css={css`
         position: absolute;
-        display: flex;
-        align-items: center;
+        display: grid;
         z-index: 0;
       `}
       />
@@ -72,23 +75,18 @@ function GalleryDefault() {
         onClick={nextPhotoHandler}
         css={css`
           z-index:5;
-          display:flex;
-          flex-direction: row;
-          justify-content: end;
-          color:black;
-          background-color:transparent;
-          border:none;
-          font-size:3rem;
+          display: grid;
+          color: black;
+          background-color: transparent;
+          border: none;
+          font-size: 3rem;
       `}
       />
 
       <div
         css={css`
-          border-sizing: border-box;
-          display:flex;
-          flex-direction: column;
-          justify-content:left;
-          width:100;
+          display: grid;
+          grid-auto-rows: 50px;
         `}
       >
         <i
@@ -97,12 +95,9 @@ function GalleryDefault() {
         onClick={previousPhotoHandler}
         css={css`
           z-index:5;
-          display:flex;
-          flex-direction: row;
-          justify-content: start;
-          color:black;
-          background-color:transparent;
-          border:none;
+          display: grid;
+          color: black;
+          background-color: transparent;
           font-size:1rem;
         `}
       />
@@ -114,12 +109,9 @@ function GalleryDefault() {
         onClick={nextPhotoHandler}
         css={css`
           z-index:5;
-          display:flex;
-          flex-direction: row;
-          justify-content: end;
-          color:black;
-          background-color:transparent;
-          border:none;
+          display: grid;
+          color: black;
+          background-color: transparent;
           font-size:1rem;
       `}
       />

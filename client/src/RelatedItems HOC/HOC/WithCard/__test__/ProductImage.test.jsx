@@ -25,43 +25,7 @@ jest.mock('axios');
 afterEach(cleanup);
 
 describe('Product Image Component', () => {
-  // test('should render Loading...', () => {
-
-  //   render(<ProductImage currentProduct={product} />);
-  //   const imagElement = screen.getByText('Loading...');
-  //   expect(imagElement).toBeInTheDocument();
-  // });
-
-  // test('should render Error', async () => {
-  //   render(<ProductImage currentProduct={product} />);
-  //   const imagElement = await screen.findByText(/Error:/);
-  //   expect(imagElement).toBeInTheDocument();
-  // });
-
   test('should render Image', async () => {
-    // axios.get.mockResolvedValue({
-    //   data: [
-    //     {
-    //       product_id: '37311',
-    //       results: [
-    //         {
-    //           style_id: 220998,
-    //           name: 'Forest Green & Black',
-    //           original_price: '140.00',
-    //           sale_price: null,
-    //           'default?': true,
-    //           photos: [
-    //             {
-    //               thumbnail_url: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
-    //               url: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
-    //             },
-    //           ],
-    //         },
-    //       ],
-    //     },
-    //   ],
-    // });
-
     axios.mockImplementationOnce(() => Promise.resolve({
       data:
       {
@@ -85,7 +49,8 @@ describe('Product Image Component', () => {
     }));
     render(<ProductImage currentProduct={product} />);
     const imagElement = await screen.findByAltText(product.name);
-    screen.debug();
+    // screen.debug();
+    expect(axios).toHaveBeenCalledTimes(1);
     expect(imagElement).toBeInTheDocument();
   });
 });

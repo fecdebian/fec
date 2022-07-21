@@ -28,7 +28,7 @@ function StyleThumbnail({ styleThumb }) {
           `}
         />
         <img
-          alt={styleThumb.name} src={photoURL} width="50" height="50"
+          alt={styleThumb.name} src={photoURL} width= "65" height= "65"
           onClick={clickHandler}
         />
       </span>
@@ -37,7 +37,7 @@ function StyleThumbnail({ styleThumb }) {
   return (
     <span>
       <img
-        alt={styleThumb.name} src={photoURL} width="50" height="50"
+        alt={styleThumb.name} src={photoURL} width= "65" height= "65"
         onClick={() => {setCurrentStyle(styleThumb)}}
       />
     </span>

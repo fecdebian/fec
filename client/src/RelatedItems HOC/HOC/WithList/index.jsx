@@ -37,7 +37,7 @@ export default function withList(WrappedComponent) {
     };
 
     return (
-      <div data-testid="sliderContainer">
+      <div>
         <div
           css={css`
               border-sizing: border-box;
