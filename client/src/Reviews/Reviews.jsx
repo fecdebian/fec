@@ -45,15 +45,55 @@ export default function Reviews() {
         padding: 10px;
         margin: 10px;
         border: solid black 2px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        grid-template-rows: repeat(1, 1fr);
       `}
     >
       <ReviewsProvider productReviews={reviews}>
-        <RatingBreakdown />
-        <SortBy />
-        <SearchBy />
-        <ReviewList />
-        <button type="button" onClick={handleClick}>Add a review</button >
-        <span>{reviewForm ? <SubmitReview handleExit={handleClick} /> : null}</span>
+        <div
+          css={css`
+            grid-column: 2 / 4;
+            grid-row: 1 / 5;
+          `}
+        >
+          <SortBy
+            css={css`
+          `}
+          />
+          <ReviewList />
+          <button
+            type="button"
+            onClick={handleClick}
+            css={css`
+              grid-column: 3;
+              grid-row: 1;
+            `}
+          >
+            Add a review
+          </button>
+          <span>{reviewForm ? <SubmitReview handleExit={handleClick} /> : null}</span>
+        </div>
+        <div
+        css={css`
+        grid-column: 1;
+        grid-row: 1;
+      `}
+        >
+          <RatingBreakdown
+            css={css`
+              grid-column: 1;
+              grid-row: 1;
+            `}
+          />
+          <SearchBy
+            css={css`
+          grid-column: 1;
+          grid-row: 3;
+        `}
+          />
+        </div>
       </ReviewsProvider>
     </div>
   );

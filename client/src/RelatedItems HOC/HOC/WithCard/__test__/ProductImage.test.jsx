@@ -5,6 +5,8 @@ import {
   render,
   screen,
 } from '@testing-library/react';
+import axios from 'axios';
+
 import ProductImage from '../ProductImage';
 
 const product = {
@@ -18,13 +20,37 @@ const product = {
   created_at: '2021-08-13T14:37:33.145Z',
   updated_at: '2021-08-13T14:37:33.145Z',
 };
+jest.mock('axios');
 
 afterEach(cleanup);
 
-test('should render component', async () => {
-  render(<ProductImage currentProduct={product} />);
-  const imagElement = screen.getByText('Loading...');
-  expect(imagElement).toBeInTheDocument();
-
-  expect(imagElement).toBeInTheDocument();
+describe('Product Image Component', () => {
+  test('should render Image', async () => {
+    axios.mockImplementationOnce(() => Promise.resolve({
+      data:
+      {
+        product_id: '37311',
+        results: [
+          {
+            style_id: 220998,
+            name: 'Forest Green & Black',
+            original_price: '140.00',
+            sale_price: null,
+            'default?': true,
+            photos: [
+              {
+                thumbnail_url: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+                url: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
+              },
+            ],
+          },
+        ],
+      },
+    }));
+    render(<ProductImage currentProduct={product} />);
+    const imagElement = await screen.findByAltText(product.name);
+    // screen.debug();
+    expect(axios).toHaveBeenCalledTimes(1);
+    expect(imagElement).toBeInTheDocument();
+  });
 });
