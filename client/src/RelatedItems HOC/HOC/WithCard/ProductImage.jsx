@@ -56,7 +56,7 @@ function ProductImage({ currentProduct }) {
     return <div>Loading...</div>;
   }
   return (
-    <img data-testid={`image-${productID}`} alt={product.name} src={productImage} width="100%" height="160" />
+    <img alt={product.name} src={productImage} width="100%" height="160" />
   );
 }
 

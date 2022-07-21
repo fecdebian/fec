@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 
-export default function withBigBrotherWatching(WrappedActionButtonComponent) {
-  const wrappedComponentName = WrappedActionButtonComponent.displayName
-    || WrappedActionButtonComponent.name
+export default function withBigBrotherWatching(WrappedComponent) {
+  const wrappedComponentName = WrappedComponent.displayName
+    || WrappedComponent.name
     || 'Component';
 
   const bigBrotherIsWatchingYouClickHandler = (event) => {
@@ -26,7 +26,7 @@ export default function withBigBrotherWatching(WrappedActionButtonComponent) {
   function WithBigBrotherWatching() {
     return (
       <div onClick={bigBrotherIsWatchingYouClickHandler}>
-        <WrappedActionButtonComponent />
+        <WrappedComponent />
       </div>
     );
   }
