@@ -1,11 +1,10 @@
 /** @jsx jsx */
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { css, jsx } from '@emotion/react';
 import { useRecoilValue } from 'recoil';
 import axios from 'axios';
 
 import ReviewList from './ReviewList';
-import SubmitReviewButton from './SubmitReviewButton';
 import SortBy from './SortBy';
 import { ReviewsProvider } from './ReviewsContext';
 import RatingBreakdown from './RatingBreakdown';
@@ -35,9 +34,9 @@ export default function Reviews() {
     };
   }, [prod]);
 
-  function handleClick() {
+  const handleClick = useCallback(() => {
     setReviewForm(!reviewForm);
-  }
+  }, [reviewForm]);
 
   return reviews && (
     <div
@@ -76,7 +75,7 @@ export default function Reviews() {
           <span>{reviewForm ? <SubmitReview handleExit={handleClick} /> : null}</span>
         </div>
         <div
-        css={css`
+          css={css`
         grid-column: 1;
         grid-row: 1;
       `}
