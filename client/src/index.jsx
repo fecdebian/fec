@@ -10,7 +10,6 @@ const root = createRoot(document.getElementById('root'));
 const App = function WhateverStupidName() {
   return (
     <RecoilRoot>
-      <h1>Hello World!!</h1>
       <ProductDetailPage />
     </RecoilRoot>
   );
