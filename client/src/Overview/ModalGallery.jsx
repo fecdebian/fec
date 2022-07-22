@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
-import PropTypes from 'prop-types';
 import { useRecoilState } from 'recoil';
 
 import { showModal } from './overviewAtoms';
@@ -8,7 +7,6 @@ import GalleryDefaultModal from './GalleryDefaultModal';
 
 export default function ModalGallery() {
   const [toggleModal, setToggleModal] = useRecoilState(showModal);
-  console.log('toggleModal', toggleModal);
   if (toggleModal === false) {
     return null;
   }
