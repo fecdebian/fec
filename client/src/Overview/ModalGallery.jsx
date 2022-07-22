@@ -39,7 +39,18 @@ export default function ModalGallery() {
         <div className="modal-header">
 
         </div>
-        <div className="modal-body">
+        <div
+        className="modal-body"
+        css={css`
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.8);
+        z-index:30;
+          `}
+        >
           <GalleryDefault />
         </div>
         <div className="modal-footer">
