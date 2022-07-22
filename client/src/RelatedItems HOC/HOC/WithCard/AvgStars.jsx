@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import styled from '@emotion/styled';
 
 import StarReview from '../../../SharedComponents/StarReview';
 
@@ -8,6 +9,7 @@ function AvgStars({ currentProduct }) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [avgStars, setAvgStars] = useState(0);
+  const [totalReviews, setTotalReviews] = useState(0);
   const product = currentProduct;
   const productID = product.id;
   let avgRating = 0;
@@ -31,7 +33,7 @@ function AvgStars({ currentProduct }) {
         }
         avgRating = (sumOfWeightedRatings / sumOfTotalRatings).toFixed(2);
         setIsLoaded(true);
-
+        setTotalReviews(sumOfTotalRatings);
         // If there are no reviews, we need to hide this component.
         // Setting to -1 for conditional rendering below
         if (sumOfTotalRatings < 1) {
@@ -58,7 +60,12 @@ function AvgStars({ currentProduct }) {
     return <div>Loading...</div>;
   }
   return (
-    <StarReview num={Number(avgStars)} />
+    <>
+      <StarReview num={Number(avgStars)} />
+      <StyledReviews>
+        {totalReviews}
+      </StyledReviews>
+    </>
   );
 }
 
@@ -67,5 +74,12 @@ AvgStars.propTypes = {
     id: PropTypes.number,
   }).isRequired,
 };
+
+/* ===========    CSS Styled Components   =========== */
+const StyledReviews = styled.span`
+  color:#007185;
+  margin-left: 8px;
+  fonr-size: 5px;
+`;
 
 export default AvgStars;

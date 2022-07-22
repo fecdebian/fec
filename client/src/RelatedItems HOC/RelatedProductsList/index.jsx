@@ -73,8 +73,9 @@ RelatedProductsCards.propTypes = {
 
 /* ===========    CSS Styled Components   =========== */
 const StyledProductContainer = styled.div`
-flex: 0 0 24%;
-border-sizing: border-box;
-width:24%;
-padding:0.25rem;
-position:relative;`;
+  flex: 0 0 160;
+  border-sizing: border-box;
+  width:160;
+  padding:0.25rem;
+  margin-left: 30px;
+  position:relative;`;
