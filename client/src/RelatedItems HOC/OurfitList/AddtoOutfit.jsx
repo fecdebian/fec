@@ -28,4 +28,5 @@ AddToOutfit.propTypes = {
 const StyledAddOutfitButton = styled.button`
   font-size: 12rem;
   background-color: transparent;
+  margin-left:15px;
 `;

@@ -10,7 +10,7 @@ export default function withList(WrappedComponent) {
 
     const scrollRightHandler = (e) => {
       e.preventDefault();
-      scrollRef.current.scrollLeft += 183;
+      scrollRef.current.scrollLeft += 197;
       const maxScrollLeft = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
       const leftButtonElement = document.getElementsByClassName('scrollLeftButton');
       if (maxScrollLeft === scrollRef.current.scrollLeft) {
@@ -25,7 +25,7 @@ export default function withList(WrappedComponent) {
 
     const scrollLeftHandler = (e) => {
       e.preventDefault();
-      scrollRef.current.scrollLeft -= 183;
+      scrollRef.current.scrollLeft -= 197;
       const rightButtonElement = document.getElementsByClassName('scrollRightButton');
       if (scrollRef.current.scrollLeft === 0) {
         e.target.setAttribute('style', 'opacity: 0');

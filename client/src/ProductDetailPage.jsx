@@ -45,7 +45,7 @@ const ProductDetailPage = function WhateverStupidName() {
     font-family: inherit;
     background-color: #3BAFDA;
     color: white;
-    font-size: 14px;
+    // font-size: 14px;
     padding: 2px 4px;
     border-radius: 3px;
     cursor: pointer;
@@ -75,7 +75,7 @@ const ProductDetailPage = function WhateverStupidName() {
     font-family: inherit;
     background-color: #3BAFDA;
     color: white;
-    font-size: 14px;
+    // font-size: 14px;
     padding: 2px 4px;
     border-radius: 3px;
     cursor: pointer;
