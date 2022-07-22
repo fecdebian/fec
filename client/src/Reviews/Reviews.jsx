@@ -1,11 +1,11 @@
 /** @jsx jsx */
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { css, jsx } from '@emotion/react';
+import styled from '@emotion/styled';
 import { useRecoilValue } from 'recoil';
 import axios from 'axios';
 
 import ReviewList from './ReviewList';
-import SubmitReviewButton from './SubmitReviewButton';
 import SortBy from './SortBy';
 import { ReviewsProvider } from './ReviewsContext';
 import RatingBreakdown from './RatingBreakdown';
@@ -35,9 +35,9 @@ export default function Reviews() {
     };
   }, [prod]);
 
-  function handleClick() {
+  const handleClick = useCallback(() => {
     setReviewForm(!reviewForm);
-  }
+  }, [reviewForm]);
 
   return reviews && (
     <div
@@ -48,6 +48,7 @@ export default function Reviews() {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 10px;
+        font-size: 16px;
         grid-template-rows: repeat(1, 1fr);
       `}
     >
@@ -63,20 +64,20 @@ export default function Reviews() {
           `}
           />
           <ReviewList />
-          <button
+          <SubmitButton
             type="button"
             onClick={handleClick}
-            css={css`
-              grid-column: 3;
-              grid-row: 1;
-            `}
+            // css={css`
+            //   grid-column: 3;
+            //   grid-row: 1;
+            // `}
           >
             Add a review
-          </button>
+          </SubmitButton>
           <span>{reviewForm ? <SubmitReview handleExit={handleClick} /> : null}</span>
         </div>
         <div
-        css={css`
+          css={css`
         grid-column: 1;
         grid-row: 1;
       `}
@@ -98,3 +99,7 @@ export default function Reviews() {
     </div>
   );
 }
+
+const SubmitButton = styled.button`
+  color: turquoise;
+`;

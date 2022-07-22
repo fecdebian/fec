@@ -17,7 +17,7 @@ export default function withBigBrotherWatching(WrappedComponent) {
         time: new Date().toTimeString(),
       },
     }).then((res) => {
-      console.log('Big Brother Is Watching You', res.data);
+      // console.log('Big Brother Is Watching You', res.data);
     }).catch((err) => {
       console.error('error posting photo: ', err);
     });

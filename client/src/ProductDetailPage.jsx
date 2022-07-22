@@ -40,10 +40,10 @@ const ProductDetailPage = function WhateverStupidName() {
   const light = `
   font-family: Gill Sans, Verdana;
   background: #D3D3D3;
-  color: #3BAFDA;
+  color: #186581;
   button {
     font-family: inherit;
-    background-color: #3BAFDA;
+    background-color: #186581;
     color: white;
     padding: 2px 4px;
     border-radius: 3px;
