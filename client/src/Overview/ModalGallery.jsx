@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useRecoilState } from 'recoil';
 
 import { showModal } from './overviewAtoms';
-import GalleryDefault from './GalleryDefault';
+import GalleryDefaultModal from './GalleryDefaultModal';
 
 export default function ModalGallery() {
   const [toggleModal, setToggleModal] = useRecoilState(showModal);
@@ -39,8 +39,8 @@ export default function ModalGallery() {
         <div className="modal-header">
 
         </div>
-        <div className="modal-body">
-          <GalleryDefault />
+        <div>
+          <GalleryDefaultModal />
         </div>
         <div className="modal-footer">
 
