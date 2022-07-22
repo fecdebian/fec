@@ -22,7 +22,7 @@ const ProductDetailPage = function WhateverStupidName() {
     axios
       .get('./products')
       .then((response) => {
-        setCurrentProduct(response.data[0]);
+        setCurrentProduct(response.data[2]);
       })
       .catch((err) => {
         throw err;
