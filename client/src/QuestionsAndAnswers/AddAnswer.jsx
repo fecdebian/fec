@@ -154,6 +154,11 @@ function AddAnswer({ question }) {
     input[type="submit"] {
       white-space: normal;
       word-wrap: break-word;
+      font-family: Gill Sans, Verdana;
+    }
+
+    input[type="file"] {
+      font-family: Gill Sans, Verdana;
     }
 
     .display-none {

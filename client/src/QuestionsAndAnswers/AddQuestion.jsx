@@ -92,6 +92,7 @@ function AddQuestion() {
     input[type="submit"] {
       white-space: normal;
       word-wrap: break-word;
+      font-family: Gill Sans, Verdana;
     }
 
     .exit {
