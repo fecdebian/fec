@@ -96,7 +96,7 @@ const StyledScrollButton = styled.button`
   color:black;
   background-color:transparent;
   border:none;
-  font-size:5rem;
+  font-size:6rem;
 `;
 
 const StyledProductsslider = styled.div`

@@ -27,7 +27,8 @@ describe('WithList HOC', () => {
   test('should render component', () => {
     const List = withList(Products);
     render(<List currentProductDetail={{}} />);
-    // const SlideELement = screen.getByRole('scrollbar');
-    // expect(SlideELement).toBeInTheDocument();
+    // screen.debug();
+    const SlideELement = screen.getAllByRole('button');
+    expect(SlideELement[0]).toBeInTheDocument();
   });
 });
