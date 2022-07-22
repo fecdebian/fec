@@ -14,10 +14,10 @@ export default function RatingBreakdown() {
   const reviewMeta = useRecoilValue(reviewMetaState);
 
   console.log('reviewMeta ', reviewMeta.data);
-  // if (reviewMeta === undefined) {
-  //   console.log('reviewMeta ', reviewMeta);
-  //   return <>Loading...</>;
-  // }
+  if (reviewMeta?.data === undefined) {
+    console.log('reviewMeta ', reviewMeta);
+    return <>Loading...</>;
+  }
 
   return (
     <div>
