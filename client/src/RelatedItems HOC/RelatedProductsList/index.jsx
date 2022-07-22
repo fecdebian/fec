@@ -84,7 +84,7 @@ export default function RelatedProductsCards({ currentProductDetail }) {
             <img
               alt="Big Brother is watching you"
               src="https://m.media-amazon.com/images/I/71HtUM-C+VL._AC_SL1500_.jpg"
-              width="159"
+              width="160"
               height="200"
             />
           </StyledProductContainer>
