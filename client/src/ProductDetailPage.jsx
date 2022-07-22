@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { css, jsx } from '@emotion/react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import axios from 'axios';
@@ -45,17 +45,9 @@ const ProductDetailPage = function WhateverStupidName() {
     font-family: inherit;
     background-color: #3BAFDA;
     color: white;
-    font-size: 14px;
     padding: 2px 4px;
     border-radius: 3px;
     cursor: pointer;
-
-  }
-  h1 {
-    text-align: center;
-    padding: 0;
-    margin-top: 0;
-    margin-bottom: 10px;
   }
   img {
     border: 1px solid black;
@@ -75,7 +67,6 @@ const ProductDetailPage = function WhateverStupidName() {
     font-family: inherit;
     background-color: #3BAFDA;
     color: white;
-    font-size: 14px;
     padding: 2px 4px;
     border-radius: 3px;
     cursor: pointer;

@@ -62,7 +62,7 @@ function Overview() {
         display: grid;
         grid-column-start: 1;
         grid-column-end: 4;
-        grid-row-start: 6;
+        grid-row-start: 5;
         `}
       >
         <ProductOverview />
