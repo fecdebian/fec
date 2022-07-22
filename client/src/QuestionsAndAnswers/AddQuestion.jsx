@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /** @jsx jsx */
 import { useState } from 'react';
@@ -16,18 +18,6 @@ function AddQuestion() {
   function handleCloseForm(e) {
     e.preventDefault();
     const validEmail = /^\S+@\S+\.\S+$/;
-    if (e.target.body.value.length === 0) {
-      setInvalidInput('Error: Must include a question.');
-      return;
-    }
-    if (e.target.nickname.value.length === 0) {
-      setInvalidInput('Error: Must include a nickname.');
-      return;
-    }
-    if (e.target.email.value.length === 0) {
-      setInvalidInput('Error: Must include an email.');
-      return;
-    }
     if (!validEmail.test(e.target.email.value)) {
       e.target.email.value = '';
       setInvalidInput('Error: must provide a valid email.');
@@ -59,15 +49,14 @@ function AddQuestion() {
 
   return (
     <div
-      className={questionForm ? 'modal display-block' : 'modal display-none'}
       css={css`
     .modal {
       position: fixed;
-      top: 0;
-      left: 0;
-      width:100%;
+      top: 0px;
+      left: 0px;
+      width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.6);
+      background-color: rgba(0,0,0,0.5);
     }
 
     .modal-main {
@@ -114,7 +103,8 @@ function AddQuestion() {
       display: none;
     }`}
     >
-      <form onSubmit={handleCloseForm} className="modal-main">
+      <div onClick={handleExit} className={questionForm ? 'modal' : 'display-none'} />
+      <form onSubmit={handleCloseForm} className={questionForm ? 'display-block modal-main' : 'display-none'}>
         <button onClick={handleExit} className="exit" type="button">X</button>
         <br />
         <h3>Ask Your Question</h3>
@@ -124,14 +114,14 @@ function AddQuestion() {
         <label>
           {'Your Question* '}
           <br />
-          <textarea name="body" type="text" rows="5" cols="50" maxLength="1000" />
+          <textarea data-testid="q-question" name="body" type="text" rows="5" cols="50" maxLength="1000" required />
         </label>
         <br />
         <br />
         <label>
           {'What is your nickname* '}
           <br />
-          <input name="nickname" type="text" maxLength="60" placeholder="Example: jackson11!" />
+          <input data-testid="q-name" name="nickname" type="text" maxLength="60" placeholder="Example: jackson11!" required />
         </label>
         <br />
         For privacy reasons, do not use your full name or email address.
@@ -140,13 +130,13 @@ function AddQuestion() {
         <label>
           {'Your email* '}
           <br />
-          <input name="email" type="text" maxLength="60" placeholder="Why did you like the product or not?" />
+          <input data-testid="q-mail" name="email" type="text" maxLength="60" placeholder="Why did you like the product or not?" required />
         </label>
         <br />
         For authentication reasons, you will not be emailed.
         <br />
         <br />
-        <input type="submit" value="Submit Question" />
+        <input data-testid="q-submit" type="submit" value="Submit Question" />
         <br />
         <br />
         <div className="error">

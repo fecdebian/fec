@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /** @jsx jsx */
 // Note: adding photo functionality is commented out, does not work currently
@@ -20,18 +22,6 @@ function AddAnswer({ question }) {
   function handleCloseForm(e) {
     e.preventDefault();
     const validEmail = /^\S+@\S+\.\S+$/;
-    if (e.target.body.value.length === 0) {
-      setInvalidInput('Error: Must include a question.');
-      return;
-    }
-    if (e.target.nickname.value.length === 0) {
-      setInvalidInput('Error: Must include a nickname.');
-      return;
-    }
-    if (e.target.email.value.length === 0) {
-      setInvalidInput('Error: Must include an email.');
-      return;
-    }
     if (!validEmail.test(e.target.email.value)) {
       e.target.email.value = '';
       setInvalidInput('Error: must provide a valid email.');
@@ -85,24 +75,6 @@ function AddAnswer({ question }) {
     setPhotoURLs([]);
   }
 
-  /*
-   * Promisified FileReader
-   * More info https://developer.mozilla.org/en-US/docs/Web/API/FileReader
-   * @param {*} file
-   * @param {*} method: readAsArrayBuffer, readAsBinaryString, readAsDataURL, readAsText
-
-  const readFile = (file = {}, method = 'readAsDataURL') => {
-    const reader = new FileReader();
-    return new Promise((resolve, reject) => {
-      reader[method](file);
-      reader.onload = () => {
-        resolve(reader);
-      };
-      reader.onerror = (error) => reject(error);
-    });
-  };
-  */
-
   function handleAddAnswer(e) {
     e.preventDefault();
     setAnswerForm(!answerForm);
@@ -111,12 +83,6 @@ function AddAnswer({ question }) {
   function handleImageUpload(e) {
     e.preventDefault();
     setPhotos([...e.target.files]);
-    console.log('photos attached: ', e.target.files);
-    photos.forEach((photo) => {
-      const formData = new FormData();
-      formData.append(photo.name, photo);
-      console.log('formData for each photo: ', formData);
-    });
   }
 
   useEffect(() => {
@@ -127,135 +93,125 @@ function AddAnswer({ question }) {
     photos.forEach((photo) => {
       newPhotoURLs.push(URL.createObjectURL(photo));
     });
-    /*
-    readFile(photos[0])
-      .then((res) => {
-        console.log(res.result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-      */
     setPhotoURLs(newPhotoURLs);
   }, [photos]);
 
   return (
-    <span>
-      <button onClick={handleAddAnswer} className={question.question_id} type="button">Add Answer</button>
-      <div
-        className="modal display-block"
-        css={css`
-      .modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width:100%;
-        height: 100%;
-      }
+    <span
+      css={css`
+    .modal {
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
 
-      .modal-main {
-        position:fixed;
-        background: white;
-        width: 50%;
-        height: auto;
-        top:50%;
-        left:50%;
-        transform: translate(-50%,-50%);
-        border: solid black 2px;
-        text-align: center;
-        white-space: normal;
-        word-wrap: break-word;
-      }
+    .modal-main {
+      position:fixed;
+      background: white;
+      width: 50%;
+      height: auto;
+      top:50%;
+      left:50%;
+      transform: translate(-50%,-50%);
+      border: solid black 2px;
+      text-align: center;
+      white-space: normal;
+      word-wrap: break-word;
+    }
 
-      .display-block {
-        display: block;
-      }
+    .display-block {
+      display: block;
+    }
 
-      .error {
-        color: red;
-      }
+    .error {
+      color: red;
+    }
 
-      .exit {
-        float: right;
-        margin: 5px;
-      }
+    .exit {
+      float: right;
+      margin: 5px;
+    }
 
-      img {
-        border: 1px solid #ddd; /* Gray border */
-        border-radius: 4px;  /* Rounded border */
-        padding: 5px; /* Some padding */
-        width: 50px; /* Set a small width */
-        height: 50px;
-      }
+    img {
+      border: 1px solid #ddd; /* Gray border */
+      border-radius: 4px;  /* Rounded border */
+      padding: 5px; /* Some padding */
+      width: 50px; /* Set a small width */
+      height: 50px;
+    }
 
-      input[type="text"] {
-        width: 80%;
-      }
+    input[type="text"] {
+      width: 80%;
+    }
 
-      textarea {
-        width: 80%;
-      }
+    textarea {
+      width: 80%;
+    }
 
-      input[type="submit"] {
-        white-space: normal;
-        word-wrap: break-word;
-      }
+    input[type="submit"] {
+      white-space: normal;
+      word-wrap: break-word;
+    }
 
-      .display-none {
-        display: none;
-      }`}
-      >
-        <form onSubmit={handleCloseForm} className={answerForm ? 'display-block modal-main' : 'display-none modal-main'}>
-          <button onClick={handleAddAnswer} className="exit" type="button">X</button>
+    .display-none {
+      display: none;
+    }`}
+    >
+      <button onClick={handleAddAnswer} type="button">Add Answer</button>
+      <div onClick={handleAddAnswer} className={answerForm ? 'modal' : 'display-none'} />
+      <form onSubmit={handleCloseForm} className={answerForm ? 'display-block modal-main' : 'display-none'}>
+        <button onClick={handleAddAnswer} className="exit" type="button">X</button>
+        <br />
+        <h3>Submit Your Answer</h3>
+        {`${product.name}: ${question.question_body}`}
+        <br />
+        <br />
+        <label>
+          {'Your Answer* '}
           <br />
-          <h3>Submit Your Answer</h3>
-          {`${product.name}: ${question.question_body}`}
+          <textarea data-testid="a-answer" name="body" type="text" rows="5" cols="50" maxLength="1000" required />
+        </label>
+        <br />
+        <br />
+        <label>
+          {'What is your nickname* '}
           <br />
+          <input data-testid="a-name" name="nickname" type="text" maxLength="60" placeholder="Example: jackson11!" required />
+        </label>
+        <br />
+        For privacy reasons, do not use your full name or email address.
+        <br />
+        <br />
+        <label>
+          {'Your email* '}
           <br />
-          <label>
-            {'Your Answer* '}
-            <br />
-            <textarea name="body" type="text" rows="5" cols="50" maxLength="1000" />
-          </label>
+          <input data-testid="a-email" name="email" type="text" maxLength="60" placeholder="Why did you like the product or not?" required />
+        </label>
+        <br />
+        For authentication reasons, you will not be emailed.
+        <br />
+        <br />
+        <label>
+          Upload your photos:
           <br />
-          <br />
-          <label>
-            {'What is your nickname* '}
-            <br />
-            <input name="nickname" type="text" maxLength="60" placeholder="Example: jackson11!" />
-          </label>
-          <br />
-          For privacy reasons, do not use your full name or email address.
-          <br />
-          <br />
-          <label>
-            {'Your email* '}
-            <br />
-            <input name="email" type="text" maxLength="60" placeholder="Why did you like the product or not?" />
-          </label>
-          <br />
-          For authentication reasons, you will not be emailed.
-          <br />
-          <br />
-          <label>
-            Upload your photos:
-            <br />
-            <input type="file" onChange={handleImageUpload} name="filename" accept="image/*" multiple />
-          </label>
-          <br />
-          {'Hold shift to select multiple photos (up to 5) '}
-          <br />
-          {photoURLs.map((photo) => <img key={photo} src={photo} alt="thumbnail" />)}
-          <br />
-          <input type="submit" value="Submit Answer" />
-          <br />
-          <br />
-          <div className="error">
-            {invalidInput.length > 0 ? invalidInput : null}
-          </div>
-          <br />
-        </form>
-      </div>
+          <input data-testid="a-file" type="file" onChange={handleImageUpload} name="filename" accept="image/*" multiple />
+        </label>
+        <br />
+        {'Hold shift to select multiple photos (up to 5) '}
+        <br />
+        {photoURLs.map((photo) => <img key={photo} src={photo} alt="thumbnail" />)}
+        <br />
+        <input data-testid="a-submit" type="submit" value="Submit Answer" />
+        <br />
+        <br />
+        <div className="error">
+          {invalidInput.length > 0 ? invalidInput : null}
+        </div>
+        <br />
+      </form>
     </span>
   );
 }
