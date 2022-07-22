@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 
+import ModalGallery from './ModalGallery';
 import { ReviewWeightedAverage } from '../SharedComponents/ReviewWeightedAverage';
 import CatAndTitle from './CategoryAndTitle';
 import GalleryDefault from './GalleryDefault';
@@ -20,13 +21,26 @@ function Overview() {
     >
       <div css={css`
            display: grid;
+           grid-column-start: 0;
+           grid-column-end: 7;
+           grid-row-start: 1;
+           grid-row-end: 6;
+           align-content: center;
+           align-items: center;
+           overflow: wrap;
+           `}
+      >
+        <ModalGallery />
+      </div>
+      <div css={css`
+           display: grid;
            grid-column-start: 4;
-           grid-column-end: 5;
+           grid-column-end: 6;
            grid-row-start: 1;
            grid-row-end: 5;
            align-content: center;
            overflow: wrap;
-    `}
+           `}
       >
         <ReviewWeightedAverage />
         <CatAndTitle />
@@ -40,7 +54,7 @@ function Overview() {
             grid-column-end: 4;
             grid-row-start: 1;
             grid-row-end: 5;
-           `}
+            `}
       >
         <GalleryDefault />
       </div>
@@ -50,7 +64,7 @@ function Overview() {
         grid-column-start: 1;
         grid-column-end: 4;
         grid-row-start: 6;
-      `}
+        `}
       >
         <ProductOverview />
       </div>
