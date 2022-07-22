@@ -44,3 +44,8 @@ export const addSizePop = atom({
   key: 'addSizePop',
   default: '',
 });
+
+export const showModal = atom({
+  key: 'showModal',
+  default: false,
+});
