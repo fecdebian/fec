@@ -79,21 +79,7 @@ function QuestionsAndAnswers() {
   }
 
   return (
-    <div css={css`
-    button {
-      background-color: black;
-      color: grey;
-      font-size: 14px;
-      padding: 2px 4px;
-      border-radius: 3px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      color: white;
-    }
-    `}
-    >
+    <div>
       <div css={css`
           display: flex;
           justify-content: flex-start;
@@ -115,6 +101,7 @@ function QuestionsAndAnswers() {
         <button onClick={handleClick} type="button">Add Question</button>
       </span>
       <span><AddQuestion /></span>
+      <br />
     </div>
   );
 }
