@@ -62,6 +62,34 @@ export default function RelatedProductsCards({ currentProductDetail }) {
           );
         },
       )}
+      {relatedProducts.map(
+        (product) => (
+          <StyledProductContainer
+            key={product.id + 100}
+          >
+            <img
+              alt="Big Brother is watching you"
+              src="https://m.media-amazon.com/images/I/71HtUM-C+VL._AC_SL1500_.jpg"
+              width="160"
+              height="200"
+            />
+          </StyledProductContainer>
+        ),
+      )}
+      {relatedProducts.map(
+        (product) => (
+          <StyledProductContainer
+            key={product.id + 200}
+          >
+            <img
+              alt="Big Brother is watching you"
+              src="https://m.media-amazon.com/images/I/71HtUM-C+VL._AC_SL1500_.jpg"
+              width="160"
+              height="200"
+            />
+          </StyledProductContainer>
+        ),
+      )}
     </>
   );
 }
