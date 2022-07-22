@@ -41,8 +41,7 @@ function GalleryDefault() {
     <div
       css={css`
           display: grid;
-          grid-column-start: 1;
-          grid-column-end: 3;
+          grid-template-columns: repeat(4, 1fr);
         `}
     >
       <i
@@ -52,6 +51,8 @@ function GalleryDefault() {
         css={css`
           z-index:5;
           display: grid;
+          grid-column-start: 1;
+          grid-column-end: 1;
           color: black;
           background-color: transparent;
           border: none;
@@ -61,8 +62,8 @@ function GalleryDefault() {
       <img
         alt={currentImage}
         src={currentImage}
-        width="500"
-        height="500"
+        width="600"
+        height="600"
         css={css`
         position: absolute;
         display: grid;
@@ -76,6 +77,8 @@ function GalleryDefault() {
         css={css`
           z-index:5;
           display: grid;
+          grid-column-start: 4;
+          grid-column-end: 4;
           color: black;
           background-color: transparent;
           border: none;
@@ -86,7 +89,7 @@ function GalleryDefault() {
       <div
         css={css`
           display: grid;
-          grid-auto-rows: 50px;
+          grid-column-start: 1;
         `}
       >
         <i
@@ -99,6 +102,7 @@ function GalleryDefault() {
           color: black;
           background-color: transparent;
           font-size:1rem;
+          grid-row-start: 1;
         `}
       />
         {imageList.map((imageObj, index) => <ImageThumbnail image={imageObj} key={index} imageIndex={index} />)}
@@ -113,6 +117,7 @@ function GalleryDefault() {
           color: black;
           background-color: transparent;
           font-size:1rem;
+          grid-row-start: 4;
       `}
       />
 

@@ -10,27 +10,9 @@ function CatAndTitle() {
   const proTitle = currentProduct[0].name;
 
   return (
-    <div css={css`
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    overflow: auto;
-    padding: 10px;
-    margin: 10px;
-    `}
-    >
-      <div css={css`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    overflow: auto;
-    padding: 0px;
-    margin: 0px;
-    `}
-      >
-        <h3>{proCat}</h3>
-        <h1>{proTitle}</h1>
-      </div>
+    <div>
+      <h3>{proCat}</h3>
+      <h1>{proTitle}</h1>
     </div>
   );
 }

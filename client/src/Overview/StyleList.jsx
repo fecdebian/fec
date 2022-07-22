@@ -18,9 +18,13 @@ function StyleList() {
       <div>
         {currentStyle.name}
         <br />
-        <ul>
+        <div css={css`
+             display: grid;
+             grid-template-columns: repeat(4, 1fr);
+    `}
+        >
           {productStyles.map((style) => <StyleThumbnail key={style.style_id} styleThumb={style} />)}
-        </ul>
+        </div>
       </div>
     </div>
   );

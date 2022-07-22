@@ -7,12 +7,14 @@ import {
   selectedProductStyle,
   selectedSize,
   totalQuant,
+  addSizePop,
 } from './overviewAtoms';
 
 function SizeSelect() {
   const currentProductStyle = useRecoilValue(selectedProductStyle);
   const [size, setSize] = useRecoilState(selectedSize);
   const [newTotalQuant, setNewTotalQuant] = useRecoilState(totalQuant);
+  const [addSizePopup, setAddSizePopup] = useRecoilState(addSizePop);
   let sizesList = [];
 
   if (currentProductStyle.style_id === undefined) {
@@ -39,6 +41,7 @@ function SizeSelect() {
     const newSize = newQuantAndSize;
     setSize(newSize);
     setNewTotalQuant(newSelectedTotalQuant);
+    setAddSizePopup('');
   };
 
   let keys = 0;
