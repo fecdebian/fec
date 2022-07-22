@@ -9,26 +9,9 @@ function ProductOverview() {
   const slogan = product.slogan;
   const description = product.description;
   return (
-    <div css={css`
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    overflow: auto;
-    padding: 10px;
-    margin: 10px;
-    `}
-    >
-      <div css={css`
-    display: flex;
-    flex-direction: column;
-    overflow: auto;
-    padding: 10px;
-    margin: 10px;
-    `}
-      >
-        <h2>{slogan}</h2>
-        <h3>{description}</h3>
-      </div>
+    <div>
+      <h2>{slogan}</h2>
+      <h3>{description}</h3>
     </div>
   );
 }

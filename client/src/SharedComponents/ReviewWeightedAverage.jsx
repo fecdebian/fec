@@ -69,10 +69,8 @@ function ReviewWeightedAverage() {
   return (
     <div>
       <StarReview num={averageStarRating} />
-      <button>
-        Read all
-        {totalReviews}
-        reviews
+      <button type="button">
+        Read all {totalReviews} reviews
       </button>
     </div>
   );

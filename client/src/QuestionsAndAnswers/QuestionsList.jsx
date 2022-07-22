@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
 /** @jsx jsx */
-import { useState } from 'react';
 import { css, jsx } from '@emotion/react';
 import { useRecoilValue } from 'recoil';
 import { questionsViewState, searchedLengthState } from './atoms';

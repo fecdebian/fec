@@ -70,9 +70,9 @@ Outfit.propTypes = {
 
 /* ===========    CSS Styled Components   =========== */
 const StyledOutfitCardDiv = styled.div`
-  flex: 0 0 14%;
+  flex: 0 0 160;
   border-sizing: border-box;
-  width:14%;
+  width:160;
   padding:0.25rem;
-  position:relative;
-`;
+  margin-left: 30px;
+  position:relative;`;
