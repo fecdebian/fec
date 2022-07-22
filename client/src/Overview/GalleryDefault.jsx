@@ -99,10 +99,10 @@ function GalleryDefault() {
         `}
       >
         <i
-        className="fa-solid fa-arrow-up"
-        type="button"
-        onClick={previousPhotoHandler}
-        css={css`
+          className="fa-solid fa-arrow-up"
+          type="button"
+          onClick={previousPhotoHandler}
+          css={css`
           z-index:5;
           display: grid;
           color: black;
@@ -110,7 +110,7 @@ function GalleryDefault() {
           font-size:1rem;
           grid-row-start: 1;
         `}
-      />
+        />
         {imageList.map((imageObj, index) => <ImageThumbnail image={imageObj} key={index} imageIndex={index} />)}
       </div>
       <i
