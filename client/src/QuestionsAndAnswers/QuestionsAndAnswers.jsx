@@ -85,6 +85,9 @@ function QuestionsAndAnswers() {
           justify-content: flex-start;
           font-size: 20px;
           padding: 10px;
+          button {
+            font-size: 14px;
+          }
         `}
       >
         Questions And Answers
