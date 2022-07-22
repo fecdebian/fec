@@ -75,39 +75,14 @@ function AddAnswer({ question }) {
     setPhotoURLs([]);
   }
 
-  /*
-   * Promisified FileReader
-   * More info https://developer.mozilla.org/en-US/docs/Web/API/FileReader
-   * @param {*} file
-   * @param {*} method: readAsArrayBuffer, readAsBinaryString, readAsDataURL, readAsText
-
-  const readFile = (file = {}, method = 'readAsDataURL') => {
-    const reader = new FileReader();
-    return new Promise((resolve, reject) => {
-      reader[method](file);
-      reader.onload = () => {
-        resolve(reader);
-      };
-      reader.onerror = (error) => reject(error);
-    });
-  };
-  */
-
   function handleAddAnswer(e) {
     e.preventDefault();
     setAnswerForm(!answerForm);
-    console.log(answerForm);
   }
 
   function handleImageUpload(e) {
     e.preventDefault();
     setPhotos([...e.target.files]);
-    console.log('photos attached: ', e.target.files);
-    photos.forEach((photo) => {
-      const formData = new FormData();
-      formData.append(photo.name, photo);
-      console.log('formData for each photo: ', formData);
-    });
   }
 
   useEffect(() => {
@@ -118,15 +93,6 @@ function AddAnswer({ question }) {
     photos.forEach((photo) => {
       newPhotoURLs.push(URL.createObjectURL(photo));
     });
-    /*
-    readFile(photos[0])
-      .then((res) => {
-        console.log(res.result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-      */
     setPhotoURLs(newPhotoURLs);
   }, [photos]);
 
@@ -206,14 +172,14 @@ function AddAnswer({ question }) {
         <label>
           {'Your Answer* '}
           <br />
-          <textarea name="body" type="text" rows="5" cols="50" maxLength="1000" required />
+          <textarea data-testid="a-answer" name="body" type="text" rows="5" cols="50" maxLength="1000" required />
         </label>
         <br />
         <br />
         <label>
           {'What is your nickname* '}
           <br />
-          <input name="nickname" type="text" maxLength="60" placeholder="Example: jackson11!" required />
+          <input data-testid="a-name" name="nickname" type="text" maxLength="60" placeholder="Example: jackson11!" required />
         </label>
         <br />
         For privacy reasons, do not use your full name or email address.
@@ -222,7 +188,7 @@ function AddAnswer({ question }) {
         <label>
           {'Your email* '}
           <br />
-          <input name="email" type="text" maxLength="60" placeholder="Why did you like the product or not?" required />
+          <input data-testid="a-email" name="email" type="text" maxLength="60" placeholder="Why did you like the product or not?" required />
         </label>
         <br />
         For authentication reasons, you will not be emailed.
@@ -231,14 +197,14 @@ function AddAnswer({ question }) {
         <label>
           Upload your photos:
           <br />
-          <input type="file" onChange={handleImageUpload} name="filename" accept="image/*" multiple />
+          <input data-testid="a-file" type="file" onChange={handleImageUpload} name="filename" accept="image/*" multiple />
         </label>
         <br />
         {'Hold shift to select multiple photos (up to 5) '}
         <br />
         {photoURLs.map((photo) => <img key={photo} src={photo} alt="thumbnail" />)}
         <br />
-        <input type="submit" value="Submit Answer" />
+        <input data-testid="a-submit" type="submit" value="Submit Answer" />
         <br />
         <br />
         <div className="error">

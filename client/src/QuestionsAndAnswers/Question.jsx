@@ -22,7 +22,9 @@ function Question({ question }) {
   }
 
   return (
-    <li css={css`
+    <li
+      data-testid="question"
+      css={css`
     padding: 4px;
     `}
     >

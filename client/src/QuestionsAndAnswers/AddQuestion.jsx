@@ -114,14 +114,14 @@ function AddQuestion() {
         <label>
           {'Your Question* '}
           <br />
-          <textarea name="body" type="text" rows="5" cols="50" maxLength="1000" required />
+          <textarea data-testid="q-question" name="body" type="text" rows="5" cols="50" maxLength="1000" required />
         </label>
         <br />
         <br />
         <label>
           {'What is your nickname* '}
           <br />
-          <input name="nickname" type="text" maxLength="60" placeholder="Example: jackson11!" required />
+          <input data-testid="q-name" name="nickname" type="text" maxLength="60" placeholder="Example: jackson11!" required />
         </label>
         <br />
         For privacy reasons, do not use your full name or email address.
@@ -130,13 +130,13 @@ function AddQuestion() {
         <label>
           {'Your email* '}
           <br />
-          <input name="email" type="text" maxLength="60" placeholder="Why did you like the product or not?" required />
+          <input data-testid="q-mail" name="email" type="text" maxLength="60" placeholder="Why did you like the product or not?" required />
         </label>
         <br />
         For authentication reasons, you will not be emailed.
         <br />
         <br />
-        <input type="submit" value="Submit Question" />
+        <input data-testid="q-submit" type="submit" value="Submit Question" />
         <br />
         <br />
         <div className="error">

@@ -32,7 +32,9 @@ function EachAnswer({ answer }) {
   }
 
   return (
-    <li css={css`
+    <li
+      data-testid="answer"
+      css={css`
     padding: 3px;
     `}
     >
