@@ -1,0 +1,6 @@
+.env
+node_modules
+client/public/bundle.js
+node_modules
+coverage
+FECDebian.pem
