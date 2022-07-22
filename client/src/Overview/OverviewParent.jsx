@@ -14,15 +14,17 @@ function Overview() {
   return (
     <div css={css`
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr);
     `}
     >
       <div css={css`
            display: grid;
-           grid-column-start: 3;
-           grid-column-end: 4;
+           grid-column-start: 4;
+           grid-column-end: 5;
            grid-row-start: 1;
            grid-row-end: 5;
+           align-content: center;
            overflow: wrap;
     `}
       >
@@ -35,7 +37,7 @@ function Overview() {
       <div css={css`
             display: grid;
             grid-column-start: 1;
-            grid-column-end: 3;
+            grid-column-end: 4;
             grid-row-start: 1;
             grid-row-end: 5;
            `}
@@ -47,6 +49,7 @@ function Overview() {
         display: grid;
         grid-column-start: 1;
         grid-column-end: 4;
+        grid-row-start: 6;
       `}
       >
         <ProductOverview />

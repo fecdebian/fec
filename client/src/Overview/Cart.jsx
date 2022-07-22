@@ -6,13 +6,13 @@ import axios from 'axios';
 
 import SizeSelect from './SizeSelect';
 import QuantitySelect from './QuantitySelect';
-import { selectedProductStyle, selectedQuant, selectedSize } from './overviewAtoms';
+import { selectedProductStyle, selectedQuant, selectedSize, addSizePop } from './overviewAtoms';
 
 function Cart() {
   const currentProductStyle = useRecoilValue(selectedProductStyle);
   const [cartQuant, setCartQuant] = useRecoilState(selectedQuant);
   const [cartSize, setCartSize] = useRecoilState(selectedSize);
-  const [addSizePopup, setAddSizePopup] = useState(null);
+  const [addSizePopup, setAddSizePopup] = useRecoilState(addSizePop);
   if (currentProductStyle.style_id === undefined) {
     return <div>Cart Loading...</div>;
   }
@@ -68,35 +68,55 @@ function Cart() {
   if (cartSize === 'OUT OF STOCK') {
     return (
       <div css={css`
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-end;
-      overflow: auto;
-      padding: 10px;
-      margin: 10px;
-      `}
-      >
-        <SizeSelect />
-        <QuantitySelect />
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    `}>
+        <div css={css`
+          display: grid;
+          grid-column-start: 1;
+          grid-column-end: 1;
+      `}>
+          <SizeSelect />
+        </div>
+        <div css={css`
+          display: grid;
+          grid-column-start: 2;
+          grid-column-end: 2;
+      `}>
+          <QuantitySelect />
+        </div>
       </div>
     );
   }
 
   return (
     <div css={css`
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    overflow: auto;
-    padding: 10px;
-    margin: 10px;
-    `}
-    >
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  `}>
       {addSizePopup}
-      <SizeSelect />
-      <QuantitySelect />
-      <button type="submit" onClick={cartClickHandler}> Add to Cart </button>
-      {/* <AddToCart /> */}
+      <div css={css`
+          display: grid;
+          grid-column-start: 1;
+          grid-column-end: 1;
+      `}
+      >
+        <SizeSelect />
+      </div>
+      <div css={css`
+        display: grid;
+        grid-column-start: 2;
+        grid-column-end: 2;
+    `}>
+        <QuantitySelect />
+      </div>
+      <div css={css`
+        display: grid;
+        grid-column-start: 1;
+        grid-column-end: 2;
+    `}>
+        <button type="submit" onClick={cartClickHandler}> Add to Cart </button>
+      </div>
     </div>
   );
 }
