@@ -2,12 +2,11 @@
 /** @jsx jsx */
 import { useState } from 'react';
 import { css, jsx } from '@emotion/react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import axios from 'axios';
-// import { questionFormState, updateQuestionsState } from './atoms';
 import currentProductState from '../currentProduct';
 
-export default function AddQuestion({ handleExit }) {
+export default function AddReview({ handleExit }) {
   const [reviewsForm, setReviewsForm] = useState(false);
   const product = useRecoilValue(currentProductState);
   const [bodyChars, setBodyChars] = useState('');
@@ -47,7 +46,7 @@ export default function AddQuestion({ handleExit }) {
         product_id: product.id,
         rating: starReview,
         summary: e.target.summary.value,
-        body: bodyChars,
+        body: e.target.body.value,
         recommend: recommended,
         name: e.target.nickname.value,
         characteristics: size,
@@ -67,7 +66,6 @@ export default function AddQuestion({ handleExit }) {
     setReviewsForm(!reviewsForm);
     handleSubmitForm(e);
     console.log(e.target);
-
   }
 
   function handleRecommendedChange(e) {
@@ -256,7 +254,6 @@ export default function AddQuestion({ handleExit }) {
             />
             Yes
           </label>
-          {/* <label htmlFor="Yes">Yes</label> */}
           <label>
             <input
               name="No"
@@ -268,7 +265,6 @@ export default function AddQuestion({ handleExit }) {
             />
             No
           </label>
-          {/* <label htmlFor="No">No</label> */}
         </label>
         <br />
         <br />

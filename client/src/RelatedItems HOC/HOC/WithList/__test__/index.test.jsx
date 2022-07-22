@@ -23,9 +23,12 @@ function Products() {
 
 afterEach(cleanup);
 
-test('should render component', async () => {
-  const List = withList(Products);
-  render(<List currentProductDetail={{}} />);
-  const SlideELement = screen.getByTestId('sliderContainer');
-  expect(SlideELement).toBeInTheDocument();
+describe('WithList HOC', () => {
+  test('should render component', () => {
+    const List = withList(Products);
+    render(<List currentProductDetail={{}} />);
+    // screen.debug();
+    const SlideELement = screen.getAllByRole('button');
+    expect(SlideELement[0]).toBeInTheDocument();
+  });
 });

@@ -1,9 +1,10 @@
 /** @jsx jsx */
-import { css, jsx } from '@emotion/react';
+import { jsx } from '@emotion/react';
 import React, { useEffect } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
 
 import currentProductState from '../../currentProduct';
 import relatedProductsState from '../ModelRelatedItems/relatedProductsState';
@@ -53,20 +54,41 @@ export default function RelatedProductsCards({ currentProductDetail }) {
           const mainProduct = currentProductDetail;
           const ProductCard = withCard(StarButton, { selectedProduct, mainProduct });
           return (
-            <div
+            <StyledProductContainer
               key={product.id}
-              css={css`
-                  flex: 0 0 14%;
-                  border-sizing: border-box;
-                  width:14%;
-                  padding:0.25rem;
-                  position:relative;
-                `}
             >
               <ProductCard />
-            </div>
+            </StyledProductContainer>
           );
         },
+      )}
+      {relatedProducts.map(
+        (product) => (
+          <StyledProductContainer
+            key={product.id + 100}
+          >
+            <img
+              alt="Big Brother is watching you"
+              src="https://m.media-amazon.com/images/I/71HtUM-C+VL._AC_SL1500_.jpg"
+              width="160"
+              height="200"
+            />
+          </StyledProductContainer>
+        ),
+      )}
+      {relatedProducts.map(
+        (product) => (
+          <StyledProductContainer
+            key={product.id + 200}
+          >
+            <img
+              alt="Big Brother is watching you"
+              src="https://m.media-amazon.com/images/I/71HtUM-C+VL._AC_SL1500_.jpg"
+              width="160"
+              height="200"
+            />
+          </StyledProductContainer>
+        ),
       )}
     </>
   );
@@ -76,3 +98,12 @@ RelatedProductsCards.propTypes = {
   currentProductDetail: PropTypes.shape({
   }).isRequired,
 };
+
+/* ===========    CSS Styled Components   =========== */
+const StyledProductContainer = styled.div`
+  flex: 0 0 160;
+  border-sizing: border-box;
+  width:160;
+  padding:0.25rem;
+  margin-left: 30px;
+  position:relative;`;

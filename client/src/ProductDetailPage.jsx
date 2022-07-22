@@ -1,5 +1,7 @@
-import React, { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
+/** @jsx jsx */
+import { useEffect } from 'react';
+import { css, jsx } from '@emotion/react';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import axios from 'axios';
 
 import Overview from './Overview/OverviewParent';
@@ -7,8 +9,10 @@ import Overview from './Overview/OverviewParent';
 import Reviews from './Reviews/Reviews';
 import QuestionsAndAnswers from './QuestionsAndAnswers/QuestionsAndAnswers';
 import currentProductState from './currentProduct';
+import { displayModeState } from './QuestionsAndAnswers/atoms';
 import RelatedItems from './RelatedItems HOC';
 import withBigBrotherWatching from './SharedComponents/bigBrotherIsWatchingYou';
+import ToggleButton from './ToggleButton';
 
 const OverviewUnderWatch = withBigBrotherWatching(Overview);
 const RelatedItemsUnderWatch = withBigBrotherWatching(RelatedItems);
@@ -17,6 +21,7 @@ const QuestionsAndAnswersUnderWatch = withBigBrotherWatching(QuestionsAndAnswers
 // Huzzah for jsx!
 const ProductDetailPage = function WhateverStupidName() {
   const [currentProduct, setCurrentProduct] = useRecoilState(currentProductState);
+  const displayMode = useRecoilValue(displayModeState);
 
   useEffect(() => {
     axios
@@ -32,9 +37,55 @@ const ProductDetailPage = function WhateverStupidName() {
   if (currentProduct.id === undefined) {
     return <h1>loading</h1>;
   }
-
+  const light = `
+  font-family: Gill Sans, Verdana;
+  background: #D3D3D3;
+  color: #186581;
+  button {
+    font-family: inherit;
+    background-color: #186581;
+    color: white;
+    padding: 2px 4px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  img {
+    border: 1px solid black;
+  }
+  input::placeholder {
+    font-family: Gill Sans, Verdana;
+  }
+  select {
+    font-family: inherit;
+  }
+  `;
+  const dark = `
+  font-family: Gill Sans, Verdana;
+  background: #2C3333;
+  color: #3BAFDA;
+  button {
+    font-family: inherit;
+    background-color: #3BAFDA;
+    color: white;
+    padding: 2px 4px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  img {
+    border: 1px solid black;
+  }
+  input::placeholder {
+    font-family: Gill Sans, Verdana;
+  }
+  select {
+    font-family: inherit;
+  }
+  `;
   return (
-    <div>
+    <div
+      css={css`${displayMode ? light : dark}`}
+    >
+      <ToggleButton />
       {/* <Overview /> */}
       <OverviewUnderWatch />
       {/* <RelatedItems /> */}

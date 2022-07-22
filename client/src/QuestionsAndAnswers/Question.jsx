@@ -22,7 +22,9 @@ function Question({ question }) {
   }
 
   return (
-    <li css={css`
+    <li
+      data-testid="question"
+      css={css`
     padding: 4px;
     `}
     >
@@ -33,17 +35,16 @@ function Question({ question }) {
       `}
       >
         <span css={css`
-        font-size: 18px;
+        font-size: 17px;
         `}
         >
           <strong>{`Q: ${question.question_body}`}</strong>
         </span>
         <span>
           {' Helpful? '}
-          &nbsp;
           <button type="button" onClick={handleClick}>Yes</button>
           {' ('}
-          <span>{clicked ? question.question_helpfulness + 1 : question.question_helpfulness}</span>
+          <span data-testid="helpful">{clicked ? question.question_helpfulness + 1 : question.question_helpfulness}</span>
           {') '}
           &nbsp;
           {'| '}

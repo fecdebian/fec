@@ -13,6 +13,10 @@ export default function RatingBreakdown() {
   const totalReviews = useRecoilValue(totalReviewsState);
   const reviewMeta = useRecoilValue(reviewMetaState);
 
+  if (reviewMeta?.data === undefined) {
+    return <>Loading...</>;
+  }
+
   return (
     <div>
       Average:

@@ -1,7 +1,8 @@
 /** @jsx jsx */
-import { css, jsx } from '@emotion/react';
+import { jsx } from '@emotion/react';
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
 
 import withCard from '../HOC/WithCard';
 import AddToOutfit from './AddtoOutfit';
@@ -52,18 +53,9 @@ export default function Outfit({ currentProductDetail }) {
           const selectedProduct = outfits[key];
           const OutfitCard = withCard(DeleteButton, { selectedProduct, deleteOutfitHandler });
           return (
-            <div
-              key={selectedProduct.id}
-              css={css`
-                flex: 0 0 14%;
-                border-sizing: border-box;
-                width:14%;
-                padding:0.25rem;
-                position:relative;
-              `}
-            >
+            <StyledOutfitCardDiv key={selectedProduct.id}>
               <OutfitCard />
-            </div>
+            </StyledOutfitCardDiv>
           );
         })}
     </>
@@ -75,3 +67,12 @@ Outfit.propTypes = {
     id: PropTypes.number.isRequired,
   }).isRequired,
 };
+
+/* ===========    CSS Styled Components   =========== */
+const StyledOutfitCardDiv = styled.div`
+  flex: 0 0 160;
+  border-sizing: border-box;
+  width:160;
+  padding:0.25rem;
+  margin-left: 30px;
+  position:relative;`;

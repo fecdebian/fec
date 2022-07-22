@@ -39,3 +39,13 @@ export const selectedImageIndex = atom({
   key: 'selectedImageIndex',
   default: 0,
 });
+
+export const addSizePop = atom({
+  key: 'addSizePop',
+  default: '',
+});
+
+export const showModal = atom({
+  key: 'showModal',
+  default: false,
+});

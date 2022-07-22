@@ -7,13 +7,12 @@ import { useRecoilValue, useRecoilState } from 'recoil';
 import ImageThumbnail from './GalleryThumbs';
 import { selectedProductStyle, selectedImage, selectedImageIndex, showModal } from './overviewAtoms';
 
-function GalleryDefault() {
+function GalleryDefaultModal() {
   const currentStyle = useRecoilValue(selectedProductStyle);
   const [currentImage, setCurrentImage] = useRecoilState(selectedImage);
   const [imageIndex, setImageIndex] = useRecoilState(selectedImageIndex);
   const imageList = currentStyle.photos;
   const [toggleModal, setToggleModal] = useRecoilState(showModal);
-  const currentPictureRef = useRef(null);
 
   if (currentStyle.name === undefined) {
     return <div>Styles Loading...</div>;
@@ -48,6 +47,8 @@ function GalleryDefault() {
       css={css`
           display: grid;
           grid-template-columns: repeat(4, 1fr);
+          align-content: center;
+          // align-items: center;
         `}
     >
       <i
@@ -68,13 +69,14 @@ function GalleryDefault() {
       <img
         alt={currentImage}
         src={currentImage}
-        ref={currentPictureRef}
         onClick={() => modalToggle()}
-        width="53%"
-        height="60%"
+        width="100%"
+        height="100%"
         css={css`
         position: absolute;
         display: grid;
+        grid-row-start: 2;
+        align-content: center;
         z-index: 0;
       `}
       />
@@ -101,10 +103,10 @@ function GalleryDefault() {
         `}
       >
         <i
-          className="fa-solid fa-arrow-up"
-          type="button"
-          onClick={previousPhotoHandler}
-          css={css`
+        className="fa-solid fa-arrow-up"
+        type="button"
+        onClick={previousPhotoHandler}
+        css={css`
           z-index:5;
           display: grid;
           color: black;
@@ -112,7 +114,7 @@ function GalleryDefault() {
           font-size:1rem;
           grid-row-start: 1;
         `}
-        />
+      />
         {imageList.map((imageObj, index) => <ImageThumbnail image={imageObj} key={index} imageIndex={index} />)}
       </div>
       <i
@@ -133,4 +135,4 @@ function GalleryDefault() {
   );
 }
 
-export default GalleryDefault;
+export default GalleryDefaultModal;

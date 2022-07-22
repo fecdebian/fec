@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 
+import ModalGallery from './ModalGallery';
 import { ReviewWeightedAverage } from '../SharedComponents/ReviewWeightedAverage';
 import CatAndTitle from './CategoryAndTitle';
 import GalleryDefault from './GalleryDefault';
@@ -14,16 +15,31 @@ function Overview() {
   return (
     <div css={css`
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr);
     `}
     >
       <div css={css`
            display: grid;
-           grid-column-start: 3;
-           grid-column-end: 4;
+           grid-column-start: 1;
+           grid-column-end: 7;
+           grid-row-start: 1;
+           grid-row-end: 6;
+           align-content: center;
+           align-items: center;
+           `}
+      >
+        <ModalGallery />
+      </div>
+      <div css={css`
+           display: grid;
+           grid-column-start: 4;
+           grid-column-end: 6;
            grid-row-start: 1;
            grid-row-end: 5;
-    `}
+           align-content: center;
+           overflow: wrap;
+           `}
       >
         <ReviewWeightedAverage />
         <CatAndTitle />
@@ -34,10 +50,10 @@ function Overview() {
       <div css={css`
             display: grid;
             grid-column-start: 1;
-            grid-column-end: 3;
+            grid-column-end: 4;
             grid-row-start: 1;
             grid-row-end: 5;
-           `}
+            `}
       >
         <GalleryDefault />
       </div>
@@ -46,7 +62,8 @@ function Overview() {
         display: grid;
         grid-column-start: 1;
         grid-column-end: 4;
-      `}
+        grid-row-start: 5;
+        `}
       >
         <ProductOverview />
       </div>

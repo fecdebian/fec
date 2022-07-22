@@ -1,19 +1,17 @@
 /** @jsx jsx */
-import { css, jsx } from '@emotion/react';
+import { jsx } from '@emotion/react';
 import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
 
 export default function AddToOutfit({ AddToOutfitHandler }) {
   return (
     <div>
-      <button
+      <StyledAddOutfitButton
         type="button"
         onClick={AddToOutfitHandler}
-        css={css`
-          font-size: 10rem;
-        `}
       >
         &#43;
-      </button>
+      </StyledAddOutfitButton>
       <div>Add to Outfit</div>
     </div>
   );
@@ -25,3 +23,10 @@ AddToOutfit.propTypes = {
   }).isRequired,
   AddToOutfitHandler: PropTypes.func.isRequired,
 };
+
+/* ===========    CSS Styled Components   =========== */
+const StyledAddOutfitButton = styled.button`
+  font-size: 12rem;
+  background-color: transparent;
+  margin-left:15px;
+`;

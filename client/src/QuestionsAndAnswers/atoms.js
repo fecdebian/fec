@@ -45,3 +45,8 @@ export const updateQuestionsState = atom({
   key: 'updateQuestionsState',
   default: 0,
 });
+
+export const displayModeState = atom({
+  key: 'displayModeState',
+  default: true,
+});

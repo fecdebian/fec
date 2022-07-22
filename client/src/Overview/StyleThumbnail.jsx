@@ -19,7 +19,7 @@ function StyleThumbnail({ styleThumb }) {
 
   if (styleThumb.style_id === currentStyle.style_id) {
     return (
-      <span>
+      <div>
         <i
           className="fa-solid fa-check"
           css={css`
@@ -31,16 +31,16 @@ function StyleThumbnail({ styleThumb }) {
           alt={styleThumb.name} src={photoURL} width= "65" height= "65"
           onClick={clickHandler}
         />
-      </span>
+      </div>
     );
   }
   return (
-    <span>
+    <div>
       <img
         alt={styleThumb.name} src={photoURL} width= "65" height= "65"
         onClick={() => {setCurrentStyle(styleThumb)}}
       />
-    </span>
+    </div>
   );
 }
 

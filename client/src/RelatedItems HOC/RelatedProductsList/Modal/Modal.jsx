@@ -1,7 +1,7 @@
-import React from 'react';
 /** @jsx jsx */
-import { css, jsx } from '@emotion/react';
+import { jsx } from '@emotion/react';
 import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
 
 const checkMark = <span>&#10003;</span>;
 const saveCheckmarkOrValue = (table, character) => {
@@ -38,31 +38,15 @@ export default function Modal({
   }
 
   return (
-    <div
+    <StyledModalContainer
       className="modal"
       onClick={closeModalHandler}
       onKeyPress={closeModalHandler}
       role="button"
       tabIndex={0}
-      css={css`
-        position:fixed;
-        left: 0;
-        top: 0;
-        right:0;
-        bottom:0;
-        background-color: rgba(0,0,0,0.5);
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        z-index:10;
-          `}
     >
-      <div
+      <StyledModalContent
         className="modal-content"
-        css={css`
-          width:500px;
-          background-color: #fff;
-        `}
         onClick={(e) => {
           e.stopPropagation();
         }}
@@ -72,49 +56,26 @@ export default function Modal({
         role="button"
         tabIndex={0}
       >
-        <div
+        <StyledModalHeader
           className="modal-header"
-          css={css`
-            padding:10px
-          `}
         >
-          <h4
+          <StyledModalHeaderTitle
             className="modal-title"
-            css={css`
-            margin: 0;
-          `}
           >
             COMPARING
-          </h4>
-        </div>
-        <div
+          </StyledModalHeaderTitle>
+        </StyledModalHeader>
+        <StyledModalBody
           className="modal-body"
-          css={css`
-          padding:10px;
-          border-top: 1px solid #eee;
-          border-bottom: 1px solid #eee;
-          overflow-y: auto;
-          height: 20rem;
-          position:relative;
-          display:flex;
-          justify-content:center;
-          align-items: flex-start;
-        `}
         >
           <table>
-            <thead
-              css={css`
-                position: -webkit-sticky;
-                position: sticky;
-                top:0;
-              `}
-            >
+            <StyledTHead>
               <tr>
                 <th>{mainProduct.name}</th>
                 <th>Characteristic</th>
                 <th>{selectedProduct.name}</th>
               </tr>
-            </thead>
+            </StyledTHead>
             <tbody>
               {Object
                 .keys(comparingTable)
@@ -127,12 +88,9 @@ export default function Modal({
                 ))}
             </tbody>
           </table>
-        </div>
-        <div
+        </StyledModalBody>
+        <StyledModalFooter
           className="modal-footer"
-          css={css`
-            padding:10px
-          `}
         >
           <button
             type="button"
@@ -141,9 +99,9 @@ export default function Modal({
           >
             Close
           </button>
-        </div>
-      </div>
-    </div>
+        </StyledModalFooter>
+      </StyledModalContent>
+    </StyledModalContainer>
   );
 }
 
@@ -165,3 +123,53 @@ Modal.propTypes = {
     })),
   }).isRequired,
 };
+
+/* ===========    CSS Styled Components   =========== */
+const StyledModalContainer = styled.div`
+  position:fixed;
+  left: 0;
+  top: 0;
+  right:0;
+  bottom:0;
+  background-color: rgba(0,0,0,0.5);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:10;
+`;
+
+const StyledModalContent = styled.div`
+  width:500px;
+  background-color: #fff;
+`;
+
+const StyledModalHeader = styled.div`
+  padding:10px
+`;
+
+const StyledModalHeaderTitle = styled.h4`
+  margin: 0;
+  text-align: center;
+`;
+
+const StyledModalBody = styled.div`
+  padding:10px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  overflow-y: auto;
+  height: 20rem;
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items: flex-start;
+`;
+
+const StyledTHead = styled.thead`
+  position: -webkit-sticky;
+  position: sticky;
+  top:0;
+`;
+
+const StyledModalFooter = styled.div`
+  padding:10px
+`;
