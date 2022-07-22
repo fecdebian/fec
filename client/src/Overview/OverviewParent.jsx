@@ -21,13 +21,12 @@ function Overview() {
     >
       <div css={css`
            display: grid;
-           grid-column-start: 0;
+           grid-column-start: 1;
            grid-column-end: 7;
            grid-row-start: 1;
            grid-row-end: 6;
            align-content: center;
            align-items: center;
-           overflow: wrap;
            `}
       >
         <ModalGallery />
