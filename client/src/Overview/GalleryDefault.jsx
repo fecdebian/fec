@@ -5,13 +5,14 @@ import PropTypes from 'prop-types';
 import { useRecoilValue, useRecoilState } from 'recoil';
 
 import ImageThumbnail from './GalleryThumbs';
-import { selectedProductStyle, selectedImage, selectedImageIndex } from './overviewAtoms';
+import { selectedProductStyle, selectedImage, selectedImageIndex, showModal } from './overviewAtoms';
 
 function GalleryDefault() {
   const currentStyle = useRecoilValue(selectedProductStyle);
   const [currentImage, setCurrentImage] = useRecoilState(selectedImage);
   const [imageIndex, setImageIndex] = useRecoilState(selectedImageIndex);
   const imageList = currentStyle.photos;
+  const [toggleModal, setToggleModal] = useRecoilState(showModal);
 
   if (currentStyle.name === undefined) {
     return <div>Styles Loading...</div>;
@@ -35,6 +36,10 @@ function GalleryDefault() {
     }
     setCurrentImage(imageList[photoIndex + 1].url);
     setImageIndex(photoIndex + 1);
+  };
+
+  const modalToggle = () => {
+    setToggleModal(true);
   };
 
   return (
@@ -62,6 +67,7 @@ function GalleryDefault() {
       <img
         alt={currentImage}
         src={currentImage}
+        onClick={() => modalToggle()}
         width="600"
         height="600"
         css={css`

@@ -92,7 +92,7 @@ function Cart() {
   return (
     <div css={css`
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   `}>
       {addSizePopup}
       <div css={css`
@@ -113,7 +113,7 @@ function Cart() {
       <div css={css`
         display: grid;
         grid-column-start: 1;
-        grid-column-end: 2;
+        grid-column-end: 3;
     `}>
         <button type="submit" onClick={cartClickHandler}> Add to Cart </button>
       </div>
