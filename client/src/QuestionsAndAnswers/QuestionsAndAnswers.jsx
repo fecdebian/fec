@@ -47,8 +47,8 @@ function QuestionsAndAnswers() {
   useEffect(() => {
     axios.get(`/qa/questions?product_id=${productID.id}&page=${1}&count=${10000}`) // does count need to be in state? Not sure yet
       .then((res) => {
-        console.log('successful GET questions request');
-        console.log(res.data.results);
+        // console.log('successful GET questions request');
+        // console.log(res.data.results);
         setQuestions(res.data.results);
       })
       .catch((err) => {
@@ -74,7 +74,7 @@ function QuestionsAndAnswers() {
   // toggles Add Question modal
   function handleClick(e) {
     e.preventDefault();
-    console.log(questionForm);
+    // console.log(questionForm);
     setQuestionForm(!questionForm);
   }
 

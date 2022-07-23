@@ -16,7 +16,7 @@ export default function ReviewList() {
   const totalLength = useReviewsTotalLengthContext();
   const entriesLen = reviewEntries.length;
   const displayButton = entriesLen < totalLength;
-  const firstReviewId = reviewEntries[0].review_id;
+  const firstReviewId = reviewEntries[0]?.review_id || null;
 
   const reviewRef = useRef(null);
 
